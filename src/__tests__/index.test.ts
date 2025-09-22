@@ -1,6 +1,6 @@
 import request from 'supertest';
 import express from 'express';
-import router from '../index.js';
+import router from '../router.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
