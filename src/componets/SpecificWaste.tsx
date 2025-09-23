@@ -37,8 +37,14 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
                                 {item.recyclingMethods.map((method: recyclingmethod) => (
                                     <li key={method.id}>
                                         <strong>{method.title}:</strong> {method.description}
+                                        {method.infoPageUrl && (
+                                            <a href={method.infoPageUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline ml-2">
+                                                More Info
+                                            </a>
+                                        )}
                                     </li>
                                 ))}
+                                
                             </ul>
                         </>
                     )}

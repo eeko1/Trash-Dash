@@ -2,7 +2,6 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from './views/Home'
 import PickTheGame from './views/PickTheGame'
 import RecycleGuide from './views/RecycleGuide';
-import SpecificWaste from './componets/SpecificWaste';
 
 
 function App() {

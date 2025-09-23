@@ -24,16 +24,20 @@ const WasteTypesList = () => {
     if (error) return <div className="text-red-600">{error}</div>;
 
     return (
-        <div className="grid grid-cols-2 gap-4 w-full max-w-xl mx-auto">
-            {wasteTypes.map(waste => (
-                <button
-                    key={waste.id}
-                    className="py-8 bg-white text-teal-700 rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold hover:bg-teal-50 transition"
-                    onClick={() => setSelectedId(waste.id)}
-                >
-                    {waste.title}
-                </button>
-            ))}
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="rounded-xl p-8 flex items-center justify-center h-full">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-96">
+                    {wasteTypes.map(waste => (
+                        <button
+                            key={waste.id}
+                            className="py-8 bg-teal-700 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition"
+                            onClick={() => setSelectedId(waste.id)}
+                        >
+                            {waste.title}
+                        </button>
+                    ))}
+                </div>
+            </div>
             {selectedId !== null && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg relative">
