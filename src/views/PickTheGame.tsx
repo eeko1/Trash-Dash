@@ -17,9 +17,6 @@ const PickTheGame = () => {
               Waste Drop
             </button>
           </div>
-          <button className='w-full py-8 bg-teal-600 text-white rounded shadow-lg text-xl font-bold'>
-            Check recycling guide
-          </button>
         </div>
       </div>
     </div>
