@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "esnext"
@@ -20,6 +20,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src/**/*.ts"
   ]
 }

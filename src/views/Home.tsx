@@ -31,7 +31,9 @@ const Home = () => {
           <button className='w-full py-2 bg-teal-600 text-white rounded'>
             Leaderboards
           </button>
-          <button className='w-full py-2 bg-teal-600 text-white rounded'>
+          <button className='w-full py-2 bg-teal-600 text-white rounded'
+            onClick={() => navigate('/RecyclingGuide')}
+          >
             Find where to sort
           </button>
         </div>
