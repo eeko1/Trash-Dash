@@ -1,6 +1,8 @@
-import React from 'react';
+import { useUser } from '../contexts/UserContext';
 
 const PickTheGame = () => {
+
+
   return (
     <div className='flex flex-col justify-center min-h-screen bg-gray-100'>
       <div className='w-full h-full rounded flex flex-col items-center'>

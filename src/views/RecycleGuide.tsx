@@ -40,7 +40,7 @@ const WasteTypesList = () => {
             </div>
             {selectedId !== null && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg relative">
+                    <div className="bg-white p-8 rounded-lg shadow-lg relative w-1/2 max-h-3/4 overflow-y-auto">
                         <button
                             className="absolute top-2 right-2 text-gray-500"
                             onClick={() => setSelectedId(null)}
