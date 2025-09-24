@@ -4,14 +4,14 @@ import SpecificWaste from '../componets/SpecificWaste';
 import { wastpage } from '../types/apiTypes'
 
 
+
 const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
 
-
-    useEffect(() => {
+ useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
         fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages`)
             .then(data => {
@@ -19,7 +19,7 @@ const WasteTypesList = () => {
                 setWastePages(data.hits);
             })
             .catch(err => setError(err.message));
-    }, []);
+    }, []); 
 
     if (error) return <div className="text-red-600">{error}</div>;
 
@@ -42,7 +42,7 @@ const WasteTypesList = () => {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg relative w-1/2 max-h-3/4 overflow-y-auto">
                         <button
-                            className="absolute top-2 right-2 text-gray-500"
+                            className="absolute top-2 right-2 text-black-500 w-10 h-10 p-0 border rounded-md bg-red-600 items-center justify-center"
                             onClick={() => setSelectedId(null)}
                         >
                             &times;
