@@ -28,7 +28,9 @@ const Home = () => {
           <button className='w-full py-2 bg-teal-600 text-white rounded'>
             Practice
           </button>
-          <button className='w-full py-2 bg-teal-600 text-white rounded'>
+          <button className='w-full py-2 bg-teal-600 text-white rounded'
+          onClick={() => navigate('/Leaderboard')}
+          >
             Leaderboards
           </button>
           <button className='w-full py-2 bg-teal-600 text-white rounded'
