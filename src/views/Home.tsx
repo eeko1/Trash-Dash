@@ -20,12 +20,12 @@ const Home = () => {
           className='mb-6 w-[45%] px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400'
         />
         <div className='w-1/2 flex flex-col space-y-4'>
-          <button className='w-full py-2 bg-teal-600 text-white rounded'
-           onClick={() => navigate('/PickTheGame')}
-          >
+          <button className='w-full py-2 bg-teal-600 text-white rounded'>
             Play
           </button>
-          <button className='w-full py-2 bg-teal-600 text-white rounded'>
+          <button className='w-full py-2 bg-teal-600 text-white rounded'
+          onClick={() => navigate('/PickTheGame')}
+          >
             Practice
           </button>
           <button className='w-full py-2 bg-teal-600 text-white rounded'

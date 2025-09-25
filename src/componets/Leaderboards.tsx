@@ -38,17 +38,26 @@ type leadersboard = {
 
 const Leaderboards = () => {
     const [leaderboards, setLeaderboars] = useState<leadersboard[]>([]);
-    
+
     useEffect(() => {
         setLeaderboars(leaderboardMock);
     }, []);
 
     return (
-        <>
+         <div className="flex flex-col justify-center min-h-screen space-y-4">
+            <div className='flex items-center justify-center'>
+                        <div className='py-1 text-l w-[40%]'>
+                            <div className='flex justify-between w-full'>
+                            <div className='font-bold'>ranking</div>
+                            <div>Username</div>
+                            <div className='text-teal-700'>Points</div>
+                            </div>
+                        </div>
+                    </div>
             {leaderboards.map((item) => (
                 <div key={item.ranking}>
                     <div className='flex items-center justify-center'>
-                        <div className='px-4 py-2 border rounded text-l w-[40%]'>
+                        <div className='px-6 py-5 border rounded text-l w-[40%]'>
                             <div className='flex justify-between w-full'>
                             <div className='font-bold'>#{item.ranking}</div>
                             <div>{item.name}</div>
@@ -58,7 +67,7 @@ const Leaderboards = () => {
                     </div>
                 </div>
             ))}
-        </>
+        </div>
     )
 }
 
