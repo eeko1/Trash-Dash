@@ -28,6 +28,21 @@ const leaderboardMock = [
         name: 'testi',
         points: 10,
     },
+      {
+        ranking: 6,
+        name: 'testi',
+        points: 9,
+    },
+    {
+        ranking: 7,
+        name: 'testi',
+        points: 7,
+    },
+    {
+        ranking: 8,
+        name: 'testi',
+        points: 1,
+    },
 
 ];
 
@@ -68,9 +83,10 @@ const Leaderboards = () => {
                     </div>
                 </div>
             </div>
+            <div className='h-96 overflow-y-auto space-y-4'>
             {leaderboards.map((item) => (
                 <div key={item.ranking}>
-                    <div className='flex items-center justify-center'>
+                    <div className='flex flex-col items-center justify-center'>
                         <div className='px-6 py-5 border rounded text-l w-[40%]'>
                             <div className='flex justify-between w-full'>
                                 <div className='font-bold'>#{item.ranking}</div>
@@ -81,6 +97,7 @@ const Leaderboards = () => {
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     )
 }
