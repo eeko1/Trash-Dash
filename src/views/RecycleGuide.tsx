@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { fetchData } from '../lib/utils';
 import SpecificWaste from '../componets/SpecificWaste';
 import { wastpage } from '../types/apiTypes'
+import { useNavigate } from "react-router-dom";
+import { VscIndent } from "react-icons/vsc";
+
 
 
 
@@ -11,7 +14,7 @@ const WasteTypesList = () => {
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
 
- useEffect(() => {
+    useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
         fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages`)
             .then(data => {
@@ -19,12 +22,21 @@ const WasteTypesList = () => {
                 setWastePages(data.hits);
             })
             .catch(err => setError(err.message));
-    }, []); 
+    }, []);
+
+    const navigate = useNavigate();
 
     if (error) return <div className="text-red-600">{error}</div>;
 
     return (
         <div className="flex items-center justify-center min-h-screen">
+            <div
+                className="cursor-pointer ml-8 mt-4 w-fit"
+                onClick={() => navigate('/')}
+                title="Go to Home"
+            >
+                <VscIndent className="rotate-180 text-5xl" />
+            </div>
             <div className="rounded-xl p-8 flex items-center justify-center h-full">
                 <div className="grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-96">
                     {wasteTypes.map(waste => (

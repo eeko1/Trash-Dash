@@ -11,10 +11,10 @@ function App() {
       <UserProvider>
          <Router>
             <Routes>
-               <Route path="/" element={<Home />} />
-               <Route path="/PickTheGame" element={<PickTheGame />} />
-               <Route path="/RecyclingGuide" element={<RecycleGuide />} />
-               <Route path="/Leaderboard" element={<Leaderboard />} />
+               <Route path='/' element={<Home />} />
+               <Route path='/PickTheGame' element={<PickTheGame />} />
+               <Route path='/RecyclingGuide' element={<RecycleGuide />} />
+               <Route path='/Leaderboard' element={<Leaderboard />} />
             </Routes>
          </Router>
       </UserProvider>
