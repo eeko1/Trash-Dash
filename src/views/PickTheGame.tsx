@@ -1,6 +1,6 @@
 import { useUser } from '../contexts/UserContext';
-import { useNavigate } from "react-router-dom";
-import { VscIndent } from "react-icons/vsc";
+import { useNavigate } from 'react-router-dom';
+import { VscIndent } from 'react-icons/vsc';
 
 
 const PickTheGame = () => {
@@ -9,25 +9,25 @@ const PickTheGame = () => {
 
 
   return (
-    <div className='flex flex-col justify-center min-h-screen bg-gray-100'>
+    <div className='flex flex-col justify-center min-h-screen bg-gray-100 px-2 sm:px-0'>
       <div
-        className="cursor-pointer ml-8 mt-4 w-fit"
+        className='cursor-pointer ml-8 mt-4 w-fit'
         onClick={() => navigate('/')}
-        title="Go to Home"
+        title='Go to Home'
       >
-        <VscIndent className="rotate-180 text-5xl" />
+        <VscIndent className='rotate-180 text-5xl' />
       </div>
       <div className='w-full h-full rounded flex flex-col items-center'>
-        <div className='mb-6 w-full h-96 bg-gray-500 rounded' />
-        <h2 className='text-4xl font-extrabold text-black-700 mb-4 drop-shadow-lg tracking-wide'>
+        <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
+        <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>
           Pick the game
         </h2>
-        <div className='w-1/2 flex flex-col space-y-4'>
-          <div className='flex flex-row space-x-4'>
-            <button className='w-1/2 py-8 bg-teal-600 text-white rounded shadow-lg text-xl font-bold'>
+        <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
+          <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
+            <button className='w-full py-6 bg-teal-600 text-white rounded text-xl font-bold sm:py-8 sm:w-1/2'>
               Trash or Pass
             </button>
-            <button className='w-1/2 py-8 bg-teal-600 text-white rounded shadow-lg text-xl font-bold'>
+            <button className='w-full py-6 bg-teal-600 text-white rounded text-xl font-bold sm:py-8 sm:w-1/2'>
               Waste Drop
             </button>
           </div>
