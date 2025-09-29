@@ -85,7 +85,7 @@ const WasteTypesList = () => {
     if (error) return <div className='text-red-600'>{error}</div>;
 
     return (
-        <div className='flex flex-col justify-center min-h-screen bg-gray-100 px-2 sm:px-0'>
+        <div className='flex flex-col min-h-screen space-y-4 px-2 sm:px-0'>
             <div
                 className='cursor-pointer ml-8 mt-4 w-fit'
                 onClick={() => navigate('/')}
@@ -95,7 +95,7 @@ const WasteTypesList = () => {
             </div>
             <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
             <div className='flex items-center justify-center h-full rounded-xl p-4 sm:p-8'>
-                <div className='grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-80 sm:grid-cols-2 sm:h.96'>
+                <div className='grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-80 sm:grid-cols-2 sm:h-96'>
                     {wasteTypes.map(waste => (
                         <button
                             key={waste.id}

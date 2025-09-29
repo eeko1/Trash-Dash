@@ -64,7 +64,7 @@ const Leaderboards = () => {
 
 
     return (
-        <div className='flex flex-col justify-center min-h-screen space-y-4 px-2 sm:px-0'>
+        <div className='flex flex-col min-h-screen space-y-4 px-2 sm:px-0'>
             <div
                 className='cursor-pointer ml-8 mt-4 w-fit'
                 onClick={() => navigate('/')}
@@ -73,13 +73,13 @@ const Leaderboards = () => {
                 <VscIndent className='rotate-180 text-5xl' />
             </div>
             <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
-            <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide text-center'>Leaderboars</h2>
+            <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide text-center'>Leaderboars</h2>
             <div className='flex items-center justify-center'>
                 <div className='py-1 text-l w-full sm:w-[40%]'>
                     <div className='flex justify-between w-full'>
-                        <div className='font-bold'>ranking</div>
-                        <div className='font-bold'>Username</div>
-                        <div className='font-bold'>Points</div>
+                        <div className='font-bold font-sans'>ranking</div>
+                        <div className='font-bold font-sans'>Username</div>
+                        <div className='font-bold font-sans'>Points</div>
                     </div>
                 </div>
             </div>
@@ -89,9 +89,9 @@ const Leaderboards = () => {
                     <div className='flex flex-col items-center justify-center'>
                         <div className='px-6 py-5 border rounded text-l w-full sm:py-5 sm:w-[40%]'>
                             <div className='flex justify-between w-full'>
-                                <div className='font-bold'>#{item.ranking}</div>
+                                <div className='font-bold font-sans'>#{item.ranking}</div>
                                 <div>{item.name}</div>
-                                <div className='text-teal-700'>{item.points} pts</div>
+                                <div className='text-teal-700 font-sans'>{item.points} pts</div>
                             </div>
                         </div>
                     </div>

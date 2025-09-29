@@ -60,19 +60,19 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
         <>
             {wastePage.filter(item => item.id === id).map((item) => (
                 <div key={item.id} className='p-4 rounded'>
-                    <h2 className='text-2xl font-bold mb-2'>{item.title}</h2>
-                    <p className='mb-2 text-gray-700'><strong>Additional Info:</strong> {item.additionalInfo}</p>
+                    <h2 className='text-2xl font-bold font-sans mb-2'>{item.title}</h2>
+                    <p className='mb-2 text-gray-700 font-sans'><strong>Additional Info:</strong> {item.additionalInfo}</p>
                     {item.synonyms && item.synonyms.length > 0 && (
-                        <p className='mb-2 text-gray-700'><strong>Synonyms:</strong> {item.synonyms.join(', ')}</p>
+                        <p className='mb-2 text-gray-700 font-sans'><strong>Synonyms:</strong> {item.synonyms.join(', ')}</p>
                     )}
                     {item.recyclingMethods && item.recyclingMethods.length > 0 && (
                         <>
-                            <h3 className='text-xl font-semibold mb-2'>Recycling Methods:</h3>
+                            <h3 className='text-xl font-semibold mb-2 font-sans'>Recycling Methods:</h3>
                             <div className='space-y-4'>
                                 {item.recyclingMethods.map((method: recyclingmethod) => (
                                     <div key={method.id} className='border rounded p-2'>
-                                        <div className='font-bold text-lg'>{method.title}</div>
-                                        <div>{method.description}</div>
+                                        <div className='font-bold font-sans text-lg'>{method.title}</div>
+                                        <div className='font-sans'>{method.description}</div>
                                         {method.infoPageUrl && (
                                             <a href={method.infoPageUrl} target='_blank' rel='noopener noreferrer'>
                                                 More Info
