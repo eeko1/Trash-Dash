@@ -99,7 +99,7 @@ const WasteTypesList = () => {
                     {wasteTypes.map(waste => (
                         <button
                             key={waste.id}
-                            className='py-6 bg-teal-700 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition sm:py-8'
+                            className='py-6 bg-main_dark_turquise text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition sm:py-8'
                             onClick={() => setSelectedId(waste.id)}
                         >
                             {waste.title}

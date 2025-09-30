@@ -24,10 +24,10 @@ const PickTheGame = () => {
         </h2>
         <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
           <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
-            <button className='w-full py-6 bg-teal-600 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'>
+            <button className='w-full py-6 bg-main_dark_turquise text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'>
               Trash or Pass
             </button>
-            <button className='w-full py-6 bg-teal-600 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'>
+            <button className='w-full py-6 bg-main_dark_turquise text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'>
               Waste Drop
             </button>
           </div>
