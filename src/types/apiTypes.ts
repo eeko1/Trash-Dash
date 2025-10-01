@@ -1,34 +1,34 @@
 export type recyclingmethod = {
-    id : number,
-    title : string,
-    description : string,
-    isFree : boolean,
-    infoPageUrl : string,
+    id: number,
+    title: string,
+    description: string,
+    isFree: boolean,
+    infoPageUrl: string,
 }
 
 export type wastetypes = {
-    id : number,
-    title : string,
-    description : string,
-    informationPageUrl : string,
+    id: number,
+    title: string,
+    description: string,
+    informationPageUrl: string,
 }
 
 export type searchResult = {
-    id : number,
-    title : string,
-    synonyms : string[],
-    notes : string,
-    additionalInfo : string,
-    wasteTypes : wastetypes[],
-    recyclingMethods : recyclingmethod[],
+    id: number,
+    title: string,
+    synonyms: string[],
+    notes: string,
+    additionalInfo: string,
+    wasteTypes: wastetypes[],
+    recyclingMethods: recyclingmethod[],
 }
 
 export type wastpage = {
-    id : number,
-    title : string,
-    synonyms : string[],
-    notes : string,
-    additionalInfo : string,
-    wasteTypes : wastetypes[],
-    recyclingMethods : recyclingmethod[],
+    id: number,
+    title: string,
+    synonyms: string[],
+    notes: string,
+    additionalInfo: string,
+    wasteTypes: wastetypes[],
+    recyclingMethods: recyclingmethod[],
 }

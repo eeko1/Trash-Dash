@@ -15,7 +15,8 @@ const headers = {
 
 router.get('/wastetypes', async (req: Request, res: Response) => {
     try {
-        const response = await axios.get<wastetypes[]>(`${API_BASE_URL}/waste-types`, {headers});
+        const lang = req.query.lang;
+        const response = await axios.get<wastetypes[]>(`${API_BASE_URL}/waste-types?lang=${lang}`, {headers});
         res.json(response.data)
         console.log(JSON.stringify(response.data, null, 2))
     } catch (error) {
@@ -26,7 +27,8 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
 
 router.get('/recyclingmethods', async (req: Request, res: Response) => {
     try {
-        const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods`, {headers});
+        const lang = req.query.lang;
+        const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?lang=${lang}`, {headers});
         res.json(response.data)
         console.log(response.data)
     } catch (error) {   
@@ -37,7 +39,8 @@ router.get('/recyclingmethods', async (req: Request, res: Response) => {
 
 router.get('/wastepages', async (req: Request, res: Response) => {
     try {
-        const response = await axios.get<wastpage[]>(`${API_BASE_URL}/waste-pages`, {headers});
+        const lang = req.query.lang;
+        const response = await axios.get<wastpage[]>(`${API_BASE_URL}/waste-pages?lang=${lang}`, {headers});
         res.json(response.data)
         console.log(response.data)
     } catch (error) {
@@ -48,7 +51,8 @@ router.get('/wastepages', async (req: Request, res: Response) => {
 
 router.get('/search', async (req: Request, res: Response) => {
     try {
-        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search`, {headers});
+        const lang = req.query.lang;
+        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?lang=${lang}`, {headers});
         res.json(response.data)
         console.log(JSON.stringify(response.data, null, 2))
     } catch (error) {
@@ -59,7 +63,8 @@ router.get('/search', async (req: Request, res: Response) => {
 
 router.get('/wastepages/:id', async (req: Request, res: Response) => {
     try {
-        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/waste-pages/${req.params.id}`, {headers});
+        const lang = req.query.lang;
+        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`, {headers});
         res.json(response.data)
         console.log(response.data)
     } catch (error) {

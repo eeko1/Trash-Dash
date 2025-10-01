@@ -2,11 +2,28 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
 const Home = () => {
-  const { username, setUsername } = useUser();
+  const { username, setUsername, lang, setLang } = useUser();
   const navigate = useNavigate();
 
   return (
     <div className='flex flex-col min-h-screen px-2 sm:px-0'>
+      <div className="absolute top-4 right-4 flex space-x-2">
+        <span
+          className={`cursor-pointer text-2xl ${lang === 'fi' ? 'ring-2 ring-main_dark_turquise' : ''}`}
+          onClick={() => setLang('fi')}
+          title="Suomi"
+        >🇫🇮</span>
+        <span
+          className={`cursor-pointer text-2xl ${lang === 'en' ? 'ring-2 ring-main_dark_turquise' : ''}`}
+          onClick={() => setLang('en')}
+          title="English"
+        >🇬🇧</span>
+        <span
+          className={`cursor-pointer text-2xl ${lang === 'sv' ? 'ring-2 ring-main_dark_turquise' : ''}`}
+          onClick={() => setLang('sv')}
+          title="Svenska"
+        >🇸🇪</span>
+      </div>
       <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
       <div className='w-full h-full rounded flex flex-col items-center'>
         <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>

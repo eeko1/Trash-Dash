@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { wastpage, recyclingmethod } from '../types/apiTypes';
 import { fetchData } from '../lib/utils';
+import { useUser } from '../contexts/UserContext';
 
 type SpecificWasteProps = {
     id: number;
@@ -37,17 +38,18 @@ type SpecificWasteProps = {
 const SpecificWaste = ({ id }: SpecificWasteProps) => {
     const [wastePage, setWastePage] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const { lang } = useUser();
 
+    console.log(lang)
 
-
-/*    useEffect(() => {
+ /*   useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
-        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages`)
+        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
             .then(data => {
                 setWastePage(data.hits);
             })
             .catch(err => setError(err.message));
-    }, []);  */
+    }, [lang]);  */ 
 
     useEffect(() => {
         setWastePage(mockWastePages);
@@ -61,9 +63,9 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
             {wastePage.filter(item => item.id === id).map((item) => (
                 <div key={item.id} className='p-4 rounded'>
                     <h2 className='text-2xl font-bold font-sans mb-2'>{item.title}</h2>
-                    <p className='mb-2 text-gray-700 font-sans'><strong>Additional Info:</strong> {item.additionalInfo}</p>
+                    <p className='mb-2 text-black-700 font-sans'><strong>Additional Info:</strong> {item.additionalInfo}</p>
                     {item.synonyms && item.synonyms.length > 0 && (
-                        <p className='mb-2 text-gray-700 font-sans'><strong>Synonyms:</strong> {item.synonyms.join(', ')}</p>
+                        <p className='mb-2 text-black-700 font-sans'><strong>Synonyms:</strong> {item.synonyms.join(', ')}</p>
                     )}
                     {item.recyclingMethods && item.recyclingMethods.length > 0 && (
                         <>

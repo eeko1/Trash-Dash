@@ -4,6 +4,7 @@ import SpecificWaste from '../componets/SpecificWaste';
 import { wastpage } from '../types/apiTypes'
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
+import { useUser } from '../contexts/UserContext';
 
 const mockWastePages: wastpage[] = [
     {
@@ -31,7 +32,7 @@ const mockWastePages: wastpage[] = [
         ]
     },
     {
-        id: 1,
+        id: 2,
         title: 'Class Bottle',
         synonyms: ['PET Bottle', 'Water Bottle'],
         notes: 'Rinse before recycling.',
@@ -61,24 +62,26 @@ const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const { lang } = useUser();
 
 
-    /*    useEffect(() => {
-            const baseUrl = process.env.REACT_APP_SERVER || '';
-            fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages`)
-                .then(data => {
-                    console.log('Fetched wastePages:', data);
-                    setWastePages(data.hits);
-                })
-                .catch(err => setError(err.message));
-        }, []); */
+console.log(lang)
+    /* useEffect(() => {
+        const baseUrl = process.env.REACT_APP_SERVER || '';
+        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
+            .then(data => {
+                console.log('Fetched wastePages:', data);
+                setWastePages(data.hits);
+            })
+            .catch(err => setError(err.message));
+    }, [lang]); */
 
 
-
-    useEffect(() => {
-        setWastePages(mockWastePages);
-    }, []);
-
+    
+        useEffect(() => {
+            setWastePages(mockWastePages);
+        }, []);
+    
 
     const navigate = useNavigate();
 
