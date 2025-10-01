@@ -3,12 +3,14 @@ import TinderCard from 'react-tinder-card';
 
 const Trashorsmash = () => {
   const [cards, setCards] = useState([
-    { id: '1', name: 'Plastic Bottle', image: '/assets/coca-cola.png' },
-    { id: '2', name: 'Soda Can', image: '/assets/box.jpg' },
-    { id: '3', name: 'Pizza Box', image: '/assets/waste-paper-reduce.jpg' },
+    { id: '1', name: 'Plastic Bottle', image: '/assets/coca-cola.jpg' },
+    { id: '2', name: 'Plastic bag', image: '/assets/plastic-bag.png' },
+    { id: '3', name: 'Banana', image: '/assets/banana.png' },
   ]);
 
-  // Create refs for each card
+  const [username] = useState('Matti Meikäläinen');
+  const [score] = useState(0);
+
   const childRefs = useRef<Array<React.RefObject<any>>>(
     Array(cards.length)
       .fill(0)
@@ -66,24 +68,36 @@ const Trashorsmash = () => {
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="font-sans font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <button type="button" className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0">
+                <a
+                  href="https://www.hsy.fi/jatteet-ja-kierratys/sortti-asemat-ja-muut-kierratyspalvelut/"
+                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
+                >
                   Sortti-asemat
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0">
+                <a
+                  href="https://www.hsy.fi/jatteet-ja-kierratys/jateopas-ja-lajitteluohjeet/"
+                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
+                >
                   Jäteopas
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0">
+                <a
+                  href="https://www.hsy.fi/hsy/asiakaspalvelu/"
+                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
+                >
                   Asiakaspalvelu
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0">
+                <a
+                  href="https://www.hsy.fi/hsy/omahsy-asiointipalvelu/"
+                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
+                >
                   OmaHSY
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -96,54 +110,74 @@ const Trashorsmash = () => {
             Trash or Smash?
           </h1>
 
-          <p className="text-white font-medium mb-4 text-lg">
-            Mihin roskikseen tämä menee?
-          </p>
+          <p className="text-white font-medium mb-4 text-lg">Which bin does it go in?</p>
 
-          <div className="relative w-full h-48 sm:h-56 md:h-64 mb-4">
+          <div className="relative w-full h-64 sm:h-72 md:h-80 mb-4 flex items-center justify-center">
+            <div className="absolute inset-y-0 left-0 flex flex-col items-center justify-center px-4">
+              <button
+                onClick={() => swipe('left')}
+                className="bg-red-500 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center hover:bg-red-600 overflow-hidden shadow-lg transform transition hover:scale-105"
+              >
+                <img
+                  src="/assets/food-waste-bin.png"
+                  alt="Biowaste Bin"
+                  className="w-12 h-12 object-contain"
+                />
+              </button>
+              <p className="text-white font-medium mt-2 text-lg">Biowaste</p>
+            </div>
+
+            <div className="absolute inset-y-0 right-0 flex flex-col items-center justify-center px-4">
+              <button
+                onClick={() => swipe('right')}
+                className="bg-green-500 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center hover:bg-green-600 overflow-hidden shadow-lg transform transition hover:scale-105"
+              >
+                <img
+                  src="/assets/recycle-trash-bin-plastic-icon.jpg"
+                  alt="Plastic Bin"
+                  className="w-12 h-12 object-contain"
+                />
+              </button>
+              <p className="text-white font-medium mt-2 text-lg">Plastic</p>
+            </div>
+
             {cards.map((card, index) => (
-              // @ts-ignore
               <TinderCard
-                ref={childRefs.current[index] as any}
+                ref={childRefs.current[index]}
                 key={card.id}
                 onSwipe={(dir) => onSwipe(dir, card.name)}
                 onCardLeftScreen={() => onCardLeftScreen(card.name)}
                 preventSwipe={['up', 'down']}
+                className="absolute"
+                {...({} as any)}
               >
-                <div className="absolute w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 rounded-2xl overflow-hidden shadow-lg border border-gray-600 left-1/2 -translate-x-1/2">
-                  <img
-                    src={card.image}
-                    alt={card.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="flex flex-col items-center">
+                  <div className="w-24 sm:w-32 md:w-36 h-24 sm:h-32 md:h-36 rounded-2xl overflow-hidden bg-secondary shadow-lg border-4 border-black/20">
+                    <img
+                      src={card.image}
+                      alt={card.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
               </TinderCard>
             ))}
           </div>
 
-          {/* Swipe Buttons */}
-          <div className="absolute inset-y-0 left-0 flex items-center px-2">
-            <button
-              onClick={() => swipe('left')}
-              className="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl hover:bg-red-600"
-            >
-              &larr;
-            </button>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center px-2">
-            <button
-              onClick={() => swipe('right')}
-              className="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl hover:bg-green-600"
-            >
-              &rarr;
-            </button>
+          <div className="w-full flex justify-between items-center text-white">
+            <div className="font-bold text-lg">
+              <span className="font-normal text-gray-300">{username}</span>
+            </div>
+            <div className="font-bold text-lg">
+              Score: <span className="font-normal text-gray-300">{score}</span>
+            </div>
           </div>
         </div>
       </main>
 
       <footer className="bg-footer text-gray-400 text-sm p-4 sm:p-6 lg:p-8">
         <div className="max-w-screen-xl mx-auto text-center">
-          &copy; 2024 HSY. All rights reserved.
+          &copy; 2025 HSY. All rights reserved.
         </div>
       </footer>
     </>
