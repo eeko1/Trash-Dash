@@ -1,5 +1,5 @@
 import React from 'react'
-import Leaderboards from '../componets/Leaderboards'
+import Leaderboards from '../components/Leaderboards'
 
 const Leaderboard = () => {
   return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
+import { useTranslation } from 'react-i18next';
 
 const leaderboardMock = [
     {
@@ -28,7 +29,7 @@ const leaderboardMock = [
         name: 'testi',
         points: 10,
     },
-      {
+    {
         ranking: 6,
         name: 'testi',
         points: 9,
@@ -55,6 +56,7 @@ type leadersboard = {
 
 const Leaderboards = () => {
     const [leaderboards, setLeaderboars] = useState<leadersboard[]>([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setLeaderboars(leaderboardMock);
@@ -73,30 +75,30 @@ const Leaderboards = () => {
                 <VscIndent className='rotate-180 text-5xl' />
             </div>
             <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
-            <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide text-center'>Leaderboars</h2>
+            <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide text-center'>{t('leaderboards')}</h2>
             <div className='flex items-center justify-center'>
                 <div className='py-1 text-l w-full sm:w-[40%]'>
                     <div className='flex justify-between w-full'>
-                        <div className='font-bold font-sans'>ranking</div>
-                        <div className='font-bold font-sans'>Username</div>
-                        <div className='font-bold font-sans'>Points</div>
+                        <div className='font-bold font-sans'>{t('Ranking')}</div>
+                        <div className='font-bold font-sans'>{t('Username')}</div>
+                        <div className='font-bold font-sans'>{t('Points')}</div>
                     </div>
                 </div>
             </div>
             <div className='h-80 overflow-y-auto space-y-4 sm:h-96'>
-            {leaderboards.map((item) => (
-                <div key={item.ranking}>
-                    <div className='flex flex-col items-center justify-center'>
-                        <div className='px-6 py-5 border rounded text-l w-full sm:py-5 sm:w-[40%]'>
-                            <div className='flex justify-between w-full'>
-                                <div className='font-bold font-sans'>#{item.ranking}</div>
-                                <div>{item.name}</div>
-                                <div className='text-teal-700 font-sans'>{item.points} pts</div>
+                {leaderboards.map((item) => (
+                    <div key={item.ranking}>
+                        <div className='flex flex-col items-center justify-center'>
+                            <div className='px-6 py-5 border rounded text-l w-full sm:py-5 sm:w-[40%]'>
+                                <div className='flex justify-between w-full'>
+                                    <div className='font-bold font-sans'>#{item.ranking}</div>
+                                    <div>{item.name}</div>
+                                    <div className='text-teal-700 font-sans'>{item.points} pts</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
             </div>
         </div>
     )

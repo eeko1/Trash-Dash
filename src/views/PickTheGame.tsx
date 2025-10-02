@@ -1,11 +1,13 @@
 import { useUser } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
+import { useTranslation } from 'react-i18next';
 
 
 const PickTheGame = () => {
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
 
   return (
@@ -20,7 +22,7 @@ const PickTheGame = () => {
       <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
       <div className='flex flex-col items-center w-full  rounded'>
         <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide'>
-          Pick the game
+          {t('Pick the game')}
         </h2>
         <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
           <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>

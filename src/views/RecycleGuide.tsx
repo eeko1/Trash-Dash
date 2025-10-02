@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from '../lib/utils';
-import SpecificWaste from '../componets/SpecificWaste';
+import SpecificWaste from '../components/SpecificWaste';
 import { wastpage } from '../types/apiTypes'
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
-import { useUser } from '../contexts/UserContext';
+import { useTranslation } from 'react-i18next';
+
 
 const mockWastePages: wastpage[] = [
     {
@@ -62,10 +63,12 @@ const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null);
-    const { lang } = useUser();
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
 
 
-console.log(lang)
+
+    console.log(lang)
     /* useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
         fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
@@ -77,11 +80,11 @@ console.log(lang)
     }, [lang]); */
 
 
-    
-        useEffect(() => {
-            setWastePages(mockWastePages);
-        }, []);
-    
+
+    useEffect(() => {
+        setWastePages(mockWastePages);
+    }, []);
+
 
     const navigate = useNavigate();
 

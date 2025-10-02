@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { wastpage, recyclingmethod } from '../types/apiTypes';
 import { fetchData } from '../lib/utils';
-import { useUser } from '../contexts/UserContext';
+import { useTranslation } from 'react-i18next';
+
 
 type SpecificWasteProps = {
     id: number;
 };
 
 
- const mockWastePages: wastpage[] = [
+const mockWastePages: wastpage[] = [
     {
         id: 1,
         title: 'Plastic Bottle',
@@ -24,7 +25,7 @@ type SpecificWasteProps = {
                 infoPageUrl: 'https://example.com/plastic-recycling',
                 isFree: true
             },
-                {
+            {
                 id: 102,
                 title: 'Curbside Recycling',
                 description: 'Place in the recycling bin after rinsing.',
@@ -33,27 +34,28 @@ type SpecificWasteProps = {
             }
         ]
     }
-]; 
+];
 
 const SpecificWaste = ({ id }: SpecificWasteProps) => {
     const [wastePage, setWastePage] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const { lang } = useUser();
+    const { i18n, t } = useTranslation();
+    const lang = i18n.language;
 
     console.log(lang)
 
- /*   useEffect(() => {
-        const baseUrl = process.env.REACT_APP_SERVER || '';
-        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
-            .then(data => {
-                setWastePage(data.hits);
-            })
-            .catch(err => setError(err.message));
-    }, [lang]);  */ 
+    /*   useEffect(() => {
+           const baseUrl = process.env.REACT_APP_SERVER || '';
+           fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
+               .then(data => {
+                   setWastePage(data.hits);
+               })
+               .catch(err => setError(err.message));
+       }, [lang]);  */
 
     useEffect(() => {
         setWastePage(mockWastePages);
-    }, []); 
+    }, []);
 
 
     if (error) return <div className='text-red-600'>{error}</div>;
@@ -77,7 +79,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
                                         <div className='font-sans'>{method.description}</div>
                                         {method.infoPageUrl && (
                                             <a href={method.infoPageUrl} target='_blank' rel='noopener noreferrer'>
-                                                More Info
+                                                {t('More Info')}
                                             </a>
                                         )}
                                     </div>
