@@ -18,7 +18,6 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
         const lang = req.query.lang;
         const response = await axios.get<wastetypes[]>(`${API_BASE_URL}/waste-types?lang=${lang}`, {headers});
         res.json(response.data)
-        console.log(JSON.stringify(response.data, null, 2))
     } catch (error) {
         console.error('Error fetching waste types:', error);
         throw error;
@@ -30,19 +29,19 @@ router.get('/recyclingmethods', async (req: Request, res: Response) => {
         const lang = req.query.lang;
         const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?lang=${lang}`, {headers});
         res.json(response.data)
-        console.log(response.data)
     } catch (error) {   
         console.error('Error fetching recycling methods:', error);
         throw error;
     }
 });
 
+
 router.get('/wastepages', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const response = await axios.get<wastpage[]>(`${API_BASE_URL}/waste-pages?lang=${lang}`, {headers});
+        const page = req.query.page || 1;
+        const response = await axios.get<wastpage[]>(`${API_BASE_URL}/waste-pages?lang=${lang}&page=${page}`, { headers });
         res.json(response.data)
-        console.log(response.data)
     } catch (error) {
         console.error('Error fetching waste pages:', error);
         throw error;
@@ -54,7 +53,6 @@ router.get('/search', async (req: Request, res: Response) => {
         const lang = req.query.lang;
         const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?lang=${lang}`, {headers});
         res.json(response.data)
-        console.log(JSON.stringify(response.data, null, 2))
     } catch (error) {
         console.error('Error fetching search results:', error);
         throw error;
@@ -64,14 +62,14 @@ router.get('/search', async (req: Request, res: Response) => {
 router.get('/wastepages/:id', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`, {headers});
+        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`, {headers});
         res.json(response.data)
-        console.log(response.data)
     } catch (error) {
         console.error('Error fetching search results:', error);
         throw error;
     }
 }); 
+
 
 
 export default router;

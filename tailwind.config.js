@@ -22,8 +22,6 @@ module.exports = {
         support_purple: '#814494',
         support_dark_blue: '#006AA7',
         support_light_blue: '#9BCBEB',
-
-
       },
       fontFamily: {
         sans: ['Inter', 'Arial', 'sans-serif'],

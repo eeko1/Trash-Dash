@@ -7,7 +7,7 @@ import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
 
 
-const mockWastePages: wastpage[] = [
+/* const mockWastePages: wastpage[] = [
     {
         id: 1,
         title: 'Plastic Bottle',
@@ -57,33 +57,35 @@ const mockWastePages: wastpage[] = [
         ]
     },
 
-];
+]; */
 
 const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const [page, setPage] = useState(1);
     const { i18n } = useTranslation();
     const lang = i18n.language;
 
 
 
-    console.log(lang)
-    /* useEffect(() => {
+
+    useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
-        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}`)
+        fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`)
             .then(data => {
                 console.log('Fetched wastePages:', data);
                 setWastePages(data.hits);
+                setSelectedId(null); 
             })
             .catch(err => setError(err.message));
-    }, [lang]); */
+    }, [lang, page]);
 
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         setWastePages(mockWastePages);
-    }, []);
+    }, []); */
 
 
     const navigate = useNavigate();
@@ -100,7 +102,23 @@ const WasteTypesList = () => {
                 <VscIndent className='rotate-180 text-5xl' />
             </div>
             <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
-            <div className='flex items-center justify-center h-full rounded-xl p-4 sm:p-8'>
+            <div className='flex flex-col items-center'>
+                <div className='flex space-x-2 mb-4'>
+                    <button
+                        className='px-4 py-2 bg-teal-600 text-white rounded disabled:opacity-50'
+                        onClick={() => setPage(page => Math.max(page - 1, 1))}
+                        disabled={page === 1}
+                    >
+                        Prev
+                    </button>
+                    <span className='px-4 py-2'>{page}</span>
+                    <button
+                        className='px-4 py-2 bg-teal-600 text-white rounded'
+                        onClick={() => setPage(page => page + 1)}
+                    >
+                        Next
+                    </button>
+                </div>
                 <div className='grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-80 sm:grid-cols-2 sm:h-96'>
                     {wasteTypes.map(waste => (
                         <button
