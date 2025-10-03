@@ -1,6 +1,8 @@
 import express, {Request, Response} from 'express';
 import axios from 'axios';
 import { wastetypes, wastpage, searchResult, recyclingmethod } from './types/apiTypes';
+import { LeaderboardModel } from './models/Leaderboard';
+
 
 import dotenv from 'dotenv';
 dotenv.config(); 
@@ -69,6 +71,21 @@ router.get('/wastepages/:id', async (req: Request, res: Response) => {
         throw error;
     }
 }); 
+
+router.get('/leaderboards', async (eq: Request, res: Response) => {
+    try {
+        const data = await LeaderboardModel.find().sort({ points: -1 });
+        const leaderboards = data.map((item, idx) => ({
+            ranking: idx + 1,
+            name: item.username,
+            points: item.points,
+        }));
+        res.json(leaderboards);
+    } catch (error) {
+        console.error('Error fetching leaderboards:', error);
+        res.status(500).json({ error: 'Failed to fetch leaderboards' });
+    }
+});
 
 
 

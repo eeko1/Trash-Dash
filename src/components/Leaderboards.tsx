@@ -2,50 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
+import { fetchData } from '../lib/utils';
 
-const leaderboardMock = [
-    {
-        ranking: 1,
-        name: 'testi',
-        points: 1337,
-    },
-    {
-        ranking: 2,
-        name: 'testi',
-        points: 901,
-    },
-    {
-        ranking: 3,
-        name: 'testi',
-        points: 690,
-    },
-    {
-        ranking: 4,
-        name: 'testi',
-        points: 400,
-    },
-    {
-        ranking: 5,
-        name: 'testi',
-        points: 10,
-    },
-    {
-        ranking: 6,
-        name: 'testi',
-        points: 9,
-    },
-    {
-        ranking: 7,
-        name: 'testi',
-        points: 7,
-    },
-    {
-        ranking: 8,
-        name: 'testi',
-        points: 1,
-    },
-
-];
 
 type leadersboard = {
     ranking: number,
@@ -57,12 +15,22 @@ type leadersboard = {
 const Leaderboards = () => {
     const [leaderboards, setLeaderboars] = useState<leadersboard[]>([]);
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setLeaderboars(leaderboardMock);
-    }, []);
+    const baseUrl = process.env.REACT_APP_SERVER;
+    const getLeaderboards = async () => {
+        try {
+            const data = await fetchData<leadersboard[]>(`${baseUrl}/leaderboards`);
+            console.log(data)
+            setLeaderboars(data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    getLeaderboards();
+}, []);
 
-    const navigate = useNavigate();
 
 
     return (
