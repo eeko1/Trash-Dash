@@ -43,12 +43,25 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
     const lang = i18n.language;
 
 
+        useEffect(() => {
+        const baseUrl = process.env.REACT_APP_SERVER;
+        const getSpecificWaste = async () => {
+            try {
+                const data = await fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`);
+                setWastePage(data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        getSpecificWaste();
+    }, [lang, id]);
+/* 
       useEffect(() => {
            const baseUrl = process.env.REACT_APP_SERVER || '';
            fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`)
                   .then(data => setWastePage(data))
         .catch(err => setError(err.message));
-       }, [lang, id]); 
+       }, [lang, id]);  */
 
  /*    useEffect(() => {
         setWastePage(mockWastePages);

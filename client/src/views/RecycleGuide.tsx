@@ -68,8 +68,22 @@ const WasteTypesList = () => {
     const lang = i18n.language;
 
 
+    useEffect(() => {
+    const baseUrl = process.env.REACT_APP_SERVER;
+    const getWastePages = async () => {
+        try {
+            const data = await fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`);
+            console.log(data)
+            setWastePages(data.hits);
+            setSelectedId(null); 
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    getWastePages();
+}, [lang, page]);
 
-
+/* 
     useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER || '';
         fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`)
@@ -79,7 +93,7 @@ const WasteTypesList = () => {
                 setSelectedId(null); 
             })
             .catch(err => setError(err.message));
-    }, [lang, page]);
+    }, [lang, page]); */
 
 
 
