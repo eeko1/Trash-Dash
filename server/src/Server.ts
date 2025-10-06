@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import router from './router.js';
+import router from './router';
 import mongoose from 'mongoose';
+import 'dotenv/config'; 
 
 const app = express();
 const PORT = 5000;
@@ -10,9 +11,9 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use('/', router);
-
 const mongoConnect = async () => {
   try {
+    console.log(process.env.DB_URL)
     if (!process.env.DB_URL) {
       throw new Error('Database URL is not provided in the .env file');
     }
