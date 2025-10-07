@@ -42,8 +42,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
     const { i18n, t } = useTranslation();
     const lang = i18n.language;
 
-
-        useEffect(() => {
+    useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER;
         const getSpecificWaste = async () => {
             try {
@@ -55,17 +54,17 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
         };
         getSpecificWaste();
     }, [lang, id]);
-/* 
-      useEffect(() => {
-           const baseUrl = process.env.REACT_APP_SERVER || '';
-           fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`)
-                  .then(data => setWastePage(data))
-        .catch(err => setError(err.message));
-       }, [lang, id]);  */
+    /* 
+          useEffect(() => {
+               const baseUrl = process.env.REACT_APP_SERVER || '';
+               fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`)
+                      .then(data => setWastePage(data))
+            .catch(err => setError(err.message));
+           }, [lang, id]);  */
 
- /*    useEffect(() => {
-        setWastePage(mockWastePages);
-    }, []); */
+    /*    useEffect(() => {
+           setWastePage(mockWastePages);
+       }, []); */
 
 
     if (error) return <div className='text-red-600'>{error}</div>;
@@ -74,13 +73,13 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
     return (
         <div key={wastePage.id} className='p-4 rounded'>
             <h2 className='text-2xl font-bold font-sans mb-2'>{wastePage.title}</h2>
-            <p className='mb-2 text-black-700 font-sans'><strong>Additional Info:</strong> {wastePage.additionalInfo}</p>
+            <p className='mb-2 text-black-700 font-sans'><strong>{t('additional info')}:</strong> {wastePage.additionalInfo}</p>
             {wastePage.synonyms && wastePage.synonyms.length > 0 && (
-                <p className='mb-2 text-black-700 font-sans'><strong>Synonyms:</strong> {wastePage.synonyms.join(', ')}</p>
+                <p className='mb-2 text-black-700 font-sans'><strong>{t('synonyms')}:</strong> {wastePage.synonyms.join(', ')}</p>
             )}
             {wastePage.recyclingMethods && wastePage.recyclingMethods.length > 0 && (
                 <>
-                    <h3 className='text-xl font-semibold mb-2 font-sans'>Recycling Methods:</h3>
+                    <h3 className='text-xl font-semibold mb-2 font-sans'>{t('recycling methods')}:</h3>
                     <div className='space-y-4'>
                         {wastePage.recyclingMethods.map((method: recyclingmethod) => (
                             <div key={method.id} className='border rounded p-2'>
@@ -88,7 +87,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
                                 <div className='font-sans'>{method.description}</div>
                                 {method.infoPageUrl && (
                                     <a href={method.infoPageUrl} target='_blank' rel='noopener noreferrer'>
-                                    {t('More Info')}
+                                        {t('more info')}
                                     </a>
                                 )}
                             </div>

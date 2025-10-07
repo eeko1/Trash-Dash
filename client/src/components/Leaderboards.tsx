@@ -18,18 +18,18 @@ const Leaderboards = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-    const baseUrl = process.env.REACT_APP_SERVER;
-    const getLeaderboards = async () => {
-        try {
-            const data = await fetchData<leadersboard[]>(`${baseUrl}/leaderboards`);
-            console.log(data)
-            setLeaderboars(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-    getLeaderboards();
-}, []);
+        const baseUrl = process.env.REACT_APP_SERVER;
+        const getLeaderboards = async () => {
+            try {
+                const data = await fetchData<leadersboard[]>(`${baseUrl}/leaderboards`);
+                console.log(data)
+                setLeaderboars(data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        getLeaderboards();
+    }, []);
 
 
 
