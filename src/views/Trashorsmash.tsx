@@ -1,186 +1,122 @@
-import React, { useState, useRef, createRef } from 'react';
-import TinderCard from 'react-tinder-card';
+import { useState, useRef } from 'react';
+import { useTrashGame } from '../hooks/useTrashGame';
+import EndScreen from '../components/Endscreen';
+import GameCard from '../components/GameCard';
+import TrashBinButton from '../components/TrashBinButton';
 
 const Trashorsmash = () => {
-  const [cards, setCards] = useState([
-    { id: '1', name: 'Plastic Bottle', image: '/assets/coca-cola.jpg' },
-    { id: '2', name: 'Plastic bag', image: '/assets/plastic-bag.png' },
-    { id: '3', name: 'Banana', image: '/assets/banana.png' },
-  ]);
-
+  const { score, wrongAnswers, feedback, gameCards, handleSwipe, removeTopCard, handleRestart } = useTrashGame();
+  const [offsetX, setOffsetX] = useState(0);
+  const [isFlying, setIsFlying] = useState(false);
+  const [flyDir, setFlyDir] = useState<'left' | 'right' | null>(null);
+  const touchStartX = useRef<number | null>(null);
   const [username] = useState('Matti Meikäläinen');
-  const [score] = useState(0);
 
-  const childRefs = useRef<Array<React.RefObject<any>>>(
-    Array(cards.length)
-      .fill(0)
-      .map(() => createRef())
-  );
-
-  const onSwipe = (direction: string, name: string) => {
-    console.log(`Swiped ${direction} on ${name}`);
+  const triggerSwipeAnimation = (dir: 'left' | 'right') => {
+    if (gameCards.length === 0 || isFlying) return;
+    handleSwipe(dir);
+    setFlyDir(dir);
+    setIsFlying(true);
+    setTimeout(() => {
+      removeTopCard();
+      setIsFlying(false);
+      setFlyDir(null);
+      setOffsetX(0);
+    }, 300);
   };
 
-  const onCardLeftScreen = (name: string) => {
-    console.log(`${name} left the screen`);
-    setCards((prevCards) => prevCards.filter((card) => card.name !== name));
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isFlying) return;
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const swipe = (dir: 'left' | 'right') => {
-    const cardsLeft = cards.length;
-    if (cardsLeft) {
-      const index = cardsLeft - 1;
-      childRefs.current[index].current?.swipe(dir);
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || isFlying) return;
+    const diff = e.touches[0].clientX - touchStartX.current;
+    setOffsetX(diff);
+  };
+
+  const handleTouchEnd = () => {
+    if (isFlying) return;
+    if (Math.abs(offsetX) > 100) {
+      const dir: 'left' | 'right' = offsetX < 0 ? 'left' : 'right';
+      triggerSwipeAnimation(dir);
+    } else {
+      setOffsetX(0);
     }
+    touchStartX.current = null;
+  };
+
+  if (gameCards.length === 0) {
+    return <EndScreen score={score} wrongAnswers={wrongAnswers} onRestart={handleRestart} />;
+  }
+
+  const currentCard = gameCards[0];
+  const cardStyle = {
+    transform: isFlying
+      ? `translateX(${flyDir === 'left' ? '-400px' : '400px'}) rotate(${flyDir === 'left' ? '-30deg' : '30deg'}) scale(0.8)`
+      : `translateX(${offsetX}px) rotate(${offsetX / 20}deg) scale(1)`,
   };
 
   return (
-    <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <div className="bg-white min-h-screen font-sans flex flex-col">
+      <nav className="bg-white border-b border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="./" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/assets/hsy-logo_600px.png" className="h-8" alt="HSY Logo" />
+          <a href="./" className="flex items-center space-x-3">
+            <img src="/assets/hsy-logo_600px.png" className="h-12" alt="HSY Logo" />
           </a>
-          <button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
-          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul className="font-sans font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                <a
-                  href="https://www.hsy.fi/jatteet-ja-kierratys/sortti-asemat-ja-muut-kierratyspalvelut/"
-                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
-                >
-                  Sortti-asemat
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.hsy.fi/jatteet-ja-kierratys/jateopas-ja-lajitteluohjeet/"
-                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
-                >
-                  Jäteopas
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.hsy.fi/hsy/asiakaspalvelu/"
-                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
-                >
-                  Asiakaspalvelu
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.hsy.fi/hsy/omahsy-asiointipalvelu/"
-                  className="font-bold text-primary block py-2 px-3 rounded-sm hover:underline md:p-0"
-                >
-                  OmaHSY
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </nav>
 
-      <main className="bg-primary flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-3xl bg-gray-800/60 rounded-2xl shadow-2xl shadow-indigo-500/10 border border-gray-700 flex flex-col items-center justify-center text-center p-8 transition-all duration-300 hover:shadow-indigo-500/20 hover:border-gray-600 relative">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-2">
-            Trash or Smash?
-          </h1>
+      <main className="bg-main_medium_turquise flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="w-full max-w-lg bg-gray-800/60 rounded-2xl shadow-2xl border-gray-700 flex flex-col items-center text-center p-6 relative">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trash or Smash?</h1>
+          <p className="text-gray-300 font-medium mb-6 text-lg">Which bin does it go in?</p>
 
-          <p className="text-white font-medium mb-4 text-lg">Which bin does it go in?</p>
-
-          <div className="relative w-full h-64 sm:h-72 md:h-80 mb-4 flex items-center justify-center">
-            <div className="absolute inset-y-0 left-0 flex flex-col items-center justify-center px-4">
-              <button
-                onClick={() => swipe('left')}
-                className="bg-red-500 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center hover:bg-red-600 overflow-hidden shadow-lg transform transition hover:scale-105"
-              >
-                <img
-                  src="/assets/food-waste-bin.png"
-                  alt="Biowaste Bin"
-                  className="w-12 h-12 object-contain"
-                />
-              </button>
-              <p className="text-white font-medium mt-2 text-lg">Biowaste</p>
-            </div>
-
-            <div className="absolute inset-y-0 right-0 flex flex-col items-center justify-center px-4">
-              <button
-                onClick={() => swipe('right')}
-                className="bg-green-500 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center hover:bg-green-600 overflow-hidden shadow-lg transform transition hover:scale-105"
-              >
-                <img
-                  src="/assets/recycle-trash-bin-plastic-icon.jpg"
-                  alt="Plastic Bin"
-                  className="w-12 h-12 object-contain"
-                />
-              </button>
-              <p className="text-white font-medium mt-2 text-lg">Plastic</p>
-            </div>
-
-            {cards.map((card, index) => (
-              <TinderCard
-                ref={childRefs.current[index]}
-                key={card.id}
-                onSwipe={(dir) => onSwipe(dir, card.name)}
-                onCardLeftScreen={() => onCardLeftScreen(card.name)}
-                preventSwipe={['up', 'down']}
-                className="absolute"
-                {...({} as any)}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-24 sm:w-32 md:w-36 h-24 sm:h-32 md:h-36 rounded-2xl overflow-hidden bg-secondary shadow-lg border-4 border-black/20">
-                    <img
-                      src={card.image}
-                      alt={card.name}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </TinderCard>
-            ))}
+          <div className="h-10 mb-4 flex items-center justify-center">
+            {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-green-400' : 'text-red-400'}`}>{feedback.message}</p>}
           </div>
 
-          <div className="w-full flex justify-between items-center text-white">
-            <div className="font-bold text-lg">
-              <span className="font-normal text-gray-300">{username}</span>
+          <div className="relative w-full flex justify-between items-center mb-4 px-4">
+            <TrashBinButton
+              onClick={() => triggerSwipeAnimation('left')}
+              label="Biowaste"
+              imageUrl="/assets/food-waste-bin.png"
+              altText="Biowaste Bin"
+              bgColorClasses="bg-red-500 hover:bg-red-600"
+            />
+
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              {currentCard && <GameCard card={currentCard} style={cardStyle} />}
             </div>
+
+            <TrashBinButton
+              onClick={() => triggerSwipeAnimation('right')}
+              label="Plastic"
+              imageUrl="/assets/recycle-trash-bin-plastic-icon.jpg"
+              altText="Plastic Bin"
+              bgColorClasses="bg-green-500 hover:bg-green-600"
+            />
+          </div>
+
+          <div className="w-full flex justify-between items-center text-white mt-8 pt-4">
+            <div className="font-bold text-lg">{username}</div>
             <div className="font-bold text-lg">
-              Score: <span className="font-normal text-gray-300">{score}</span>
+              Score: <span className="text-2xl text-yellow-400">{score}</span>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="bg-footer text-gray-400 text-sm p-4 sm:p-6 lg:p-8">
-        <div className="max-w-screen-xl mx-auto text-center">
-          &copy; 2025 HSY. All rights reserved.
-        </div>
+      <footer className="bg-main_dark_turquoise text-white text-sm p-4">
+        <div className="max-w-screen-xl mx-auto text-center">&copy; 2025 HSY. All rights reserved.</div>
       </footer>
-    </>
+    </div>
   );
 };
 
