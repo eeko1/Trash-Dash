@@ -24,20 +24,20 @@ const Home = () => {
           className='mb-6 w-full px-4 py-2 border rounded sm:w-[45%]'
         />
         <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
-          <button className='w-full py-3 bg-main_dark_turquise text-white font-sans sm:py-4'>
+          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'>
             {t('play')}
           </button>
-          <button className='w-full py-3 bg-main_dark_turquise text-white font-sans sm:py-4'
+          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
             onClick={() => navigate('/PickTheGame')}
           >
             {t('practice')}
           </button>
-          <button className='w-full py-3 bg-main_dark_turquise text-white font-sans sm:py-4'
+          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
             onClick={() => navigate('/Leaderboard')}
           >
             {t('leaderboards')}
           </button>
-          <button className='w-full py-3 bg-main_dark_turquise text-white font-sans sm:py-4'
+          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
             onClick={() => navigate('/RecyclingGuide')}
           > 
            {t('find')}
