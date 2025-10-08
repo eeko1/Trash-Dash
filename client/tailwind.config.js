@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         main_light_turquoise: '#64C3CD',
-        main_medium_turquise: '#00AAA3',
+        main_medium_turquoise: '#00AAA3',
         main_dark_turquoise: '#008782',
         main_black: '#2C2A29',
         support_pink: '#D8318A',

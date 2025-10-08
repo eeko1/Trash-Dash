@@ -68,7 +68,7 @@ const Trashorsmash = () => {
         </div>
       </nav>
 
-      <main className="bg-main_medium_turquise flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      <main className="bg-main_medium_tourquise flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-lg bg-gray-800/60 rounded-2xl shadow-2xl border-gray-700 flex flex-col items-center text-center p-6 relative">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trash or Smash?</h1>
           <p className="text-gray-300 font-medium mb-6 text-lg">Which bin does it go in?</p>

@@ -9,41 +9,51 @@ const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <div className='flex flex-col min-h-screen px-2 sm:px-0'>
-      <LanguageSelector />
-      <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
-      <div className='w-full h-full rounded flex flex-col items-center'>
-        <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>
-          Wastes Dash
-        </h2>
-        <input
-          type='text'
-          placeholder='Enter username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className='mb-6 w-full px-4 py-2 border rounded sm:w-[45%]'
-        />
-        <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
-          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'>
-            {t('play')}
-          </button>
-          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
-            onClick={() => navigate('/PickTheGame')}
-          >
-            {t('practice')}
-          </button>
-          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
-            onClick={() => navigate('/Leaderboard')}
-          >
-            {t('leaderboards')}
-          </button>
-          <button className='w-full py-3 bg-main_dark_turquoise text-white font-sans sm:py-4'
-            onClick={() => navigate('/RecyclingGuide')}
-          > 
-           {t('find')}
-          </button>
+    <div className='flex flex-col min-h-screen'>
+      <nav className='bg-white border-b border-gray-200'>
+        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+          <LanguageSelector />
         </div>
-      </div>
+      </nav>
+
+      <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
+        <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
+        <div className='w-full h-full rounded flex flex-col items-center'>
+          <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>
+            Wastes Dash
+          </h2>
+          <input
+            type='text'
+            placeholder='Enter username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className='mb-6 w-full px-4 py-2 border rounded sm:w-[45%]'
+          />
+          <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
+            <button className='w-full py-3 bg-gray-800/60 text-white font-sans sm:py-4'>
+              {t('play')}
+            </button>
+            <button className='w-full py-3 bg-gray-800/60 text-white font-sans sm:py-4'
+              onClick={() => navigate('/PickTheGame')}
+            >
+              {t('practice')}
+            </button>
+            <button className='w-full py-3 bg-gray-800/60 text-white font-sans sm:py-4'
+              onClick={() => navigate('/Leaderboard')}
+            >
+              {t('leaderboards')}
+            </button>
+            <button className='w-full py-3 bg-gray-800/60 text-white font-sans sm:py-4'
+              onClick={() => navigate('/RecyclingGuide')}
+            >
+              {t('find')}
+            </button>
+          </div>
+        </div>
+      </main>
+      <footer className="bg-main_dark_turquoise text-white text-sm p-4">
+        <div className="max-w-screen-xl mx-auto text-center">&copy; 2025 HSY. All rights reserved.</div>
+      </footer>
     </div>
   );
 };

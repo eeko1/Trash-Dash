@@ -11,34 +11,40 @@ const PickTheGame = () => {
 
 
   return (
-    <div className='flex flex-col min-h-screen space-y-4 px-2 sm:px-0'>
-      <div
-        className='cursor-pointer ml-8 mt-4 w-fit'
-        onClick={() => navigate('/')}
-        title='Go to Home'
-      >
-        <VscIndent className='rotate-180 text-5xl' />
-      </div>
-      <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
-      <div className='flex flex-col items-center w-full  rounded'>
-        <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide'>
-          {t('Pick the game')}
-        </h2>
-        <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
-          <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
-            <button className='w-full py-6 bg-main_dark_turquoise text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
-              onClick={() => navigate('/TrashOrMash')}
-            >
-              Trash or Pass
-            </button>
-            <button className='w-full py-6 bg-main_dark_turquoise text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
-              onClick={() => navigate('/DropGame')}
-            >
-              Waste Drop
-            </button>
+    <div className="flex flex-col min-h-screen">
+      <nav className="bg-white border-b border-gray-200">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
+            <VscIndent className='rotate-180 text-5xl text-gray-800' />
           </div>
         </div>
-      </div>
+      </nav>
+
+      <main className="bg-main_medium_turquoise flex-grow flex flex-col items-center p-4">
+        <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
+        <div className='flex flex-col items-center w-full  rounded'>
+          <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide'>
+            {t('Pick the game')}
+          </h2>
+          <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
+            <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
+              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
+                onClick={() => navigate('/TrashOrMash')}
+              >
+                Trash or Pass
+              </button>
+              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
+                onClick={() => navigate('/DropGame')}
+              >
+                Waste Drop
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="bg-main_dark_turquoise text-white text-sm p-4">
+        <div className="max-w-screen-xl mx-auto text-center">&copy; 2025 HSY. All rights reserved.</div>
+      </footer>
     </div>
   );
 };
