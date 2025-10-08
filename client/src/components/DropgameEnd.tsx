@@ -43,7 +43,7 @@ const DropGameEnd: React.FC<DropGameEndProps> = ({ score, mistakeData }) => {
             </button>
           </Link>
           
-          <Link to="/game">
+          <Link to="/PickTheGame">
             <button className="bg-yellow-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition w-full">
               Play Again
             </button>

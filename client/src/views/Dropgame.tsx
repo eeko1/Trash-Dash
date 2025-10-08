@@ -333,7 +333,7 @@ const DropGame: React.FC = () => {
     
     // Score counting
     if (correctBinItems.length > 0) {
-      setScore(prev => prev + correctBinItems.length / 2); // Each correct item gives 1 point, for some reason it was counting double
+      setScore(prev => prev + correctBinItems.length); // Each correct item gives 1 point
 
       // Increase item speed slightly for each correct item
       setItemSpeed(prevSpeed => prevSpeed + (0.01 * correctBinItems.length));
@@ -346,7 +346,7 @@ const DropGame: React.FC = () => {
     const totalMissed = wrongBinItems.length + missedItems.length;
       if (totalMissed > 0) {
         setMissed(prev => {
-          const newMissed = prev + totalMissed / 2;
+          const newMissed = prev + totalMissed;
           // Check if game over (5 or more mistakes)
           if (newMissed >= 5 && isGameRunning) {
             setIsGameOver(true);
@@ -360,7 +360,7 @@ const DropGame: React.FC = () => {
           const newMistakeData = { ...prev };
           
           // Update missed count
-          newMistakeData.missed += missedItems.length / 2;
+          newMistakeData.missed += missedItems.length;
           
           // Update wrong bin counts
           wrongBinItems.forEach(item => {
