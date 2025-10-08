@@ -18,8 +18,8 @@ const Home = () => {
         </div>
       </nav>
 
+      <div className='w-full h-40 bg-gray-500 sm:h-96' />
       <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
-        <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
         <div className='w-full h-full rounded flex flex-col items-center'>
           <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>
             Trash Dash

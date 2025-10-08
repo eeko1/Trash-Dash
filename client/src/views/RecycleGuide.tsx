@@ -114,7 +114,7 @@ const WasteTypesList = () => {
                     <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
                     </div>
-                       <LanguageSelector />
+                    <LanguageSelector />
                 </div>
             </nav>
 

@@ -18,12 +18,12 @@ const PickTheGame = () => {
           <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
             <VscIndent className='rotate-180 text-5xl text-gray-800' />
           </div>
-             <LanguageSelector />
+          <LanguageSelector />
         </div>
       </nav>
 
+      <div className='w-full h-40 bg-gray-500 sm:h-96' />
       <main className="bg-main_medium_turquoise flex-grow flex flex-col items-center p-4">
-        <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
         <div className='flex flex-col items-center w-full  rounded'>
           <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide'>
             {t('Pick the game')}
