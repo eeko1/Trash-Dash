@@ -5,6 +5,7 @@ import { wastpage } from '../types/apiTypes'
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
+import LanguageSelector from '../components/LanguageSelector';
 
 
 /* const mockWastePages: wastpage[] = [
@@ -113,6 +114,7 @@ const WasteTypesList = () => {
                     <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
                     </div>
+                       <LanguageSelector />
                 </div>
             </nav>
 
@@ -121,7 +123,7 @@ const WasteTypesList = () => {
                 <div className='flex flex-col items-center'>
                     <div className='flex space-x-2 mb-4'>
                         <button
-                            className='px-4 py-2 bg-gray-800/60 text-white rounded disabled:opacity-50'
+                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'
                             onClick={() => setPage(page => Math.max(page - 1, 1))}
                             disabled={page === 1}
                         >
@@ -129,7 +131,7 @@ const WasteTypesList = () => {
                         </button>
                         <span className='px-4 py-2'>{page}</span>
                         <button
-                            className='px-4 py-2 bg-gray-800/60 text-white rounded'
+                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80'
                             onClick={() => setPage(page => page + 1)}
                         >
                             Next
@@ -139,7 +141,7 @@ const WasteTypesList = () => {
                         {wasteTypes.map(waste => (
                             <button
                                 key={waste.id}
-                                className='py-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition sm:py-8'
+                                className='py-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition hover:bg-gray-800/80 sm:py-8'
                                 onClick={() => setSelectedId(waste.id)}
                             >
                                 {waste.title}

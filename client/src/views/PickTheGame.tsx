@@ -2,6 +2,7 @@ import { useUser } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
+import LanguageSelector from '../components/LanguageSelector';
 
 
 const PickTheGame = () => {
@@ -17,6 +18,7 @@ const PickTheGame = () => {
           <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
             <VscIndent className='rotate-180 text-5xl text-gray-800' />
           </div>
+             <LanguageSelector />
         </div>
       </nav>
 
@@ -28,12 +30,12 @@ const PickTheGame = () => {
           </h2>
           <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
             <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
-              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
+              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold hover:bg-gray-800/80 sm:py-8 sm:w-1/2'
                 onClick={() => navigate('/TrashOrMash')}
               >
                 Trash or Pass
               </button>
-              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold sm:py-8 sm:w-1/2'
+              <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold hover:bg-gray-800/80 sm:py-8 sm:w-1/2'
                 onClick={() => navigate('/DropGame')}
               >
                 Waste Drop

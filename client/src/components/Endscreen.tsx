@@ -6,7 +6,7 @@ interface EndScreenProps {
 
 const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
   return (
-    <div className="bg-main_medium_tourquise min-h-screen flex flex-col items-center justify-center text-white font-sans p-6">
+    <div className="bg-main_medium_turquoise min-h-screen flex flex-col items-center justify-center text-white font-sans p-6">
       <div className="bg-gray-800/60 border border-gray-700 rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center">
         <h1 className="text-3xl font-extrabold mb-4">Game Over!</h1>
         <p className="text-xl font-bold mb-6">Your Score: <span className="text-yellow-400">{score} / 5</span></p>
