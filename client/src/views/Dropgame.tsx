@@ -28,10 +28,10 @@ const DropGame: React.FC = () => {
 
   // Bin images mapping
   const binImages = {
-    1: "BinBio.png",
-    2: "BinCardboard.png",
-    3: "BinGlass.png",
-    4: "BinMetal.png"
+    1: "./assets/BinBio.png",
+    2: "./assets/BinCardboard.png",
+    3: "./assets/BinGlass.png",
+    4: "./assets/BinMetal.png"
   };
   
   // Map bin numbers to categories
@@ -44,10 +44,10 @@ const DropGame: React.FC = () => {
   
   // Item images mapping - each category has multiple images
   const itemImages: Record<ItemCategory, string[]> = {
-    Bio: ["Bio1.png", "Bio2.webp", "Bio3.png"],
-    Cardboard: ["Cardboard1.webp", "Cardboard2.png", "Cardboard3.png"],
-    Glass: ["Glass1.png", "Glass2.png", "Glass3.png"],
-    Metal: ["Metal1.png", "Metal2.png", "Metal3.webp"]
+    Bio: ["./assets/Bio1.png", "./assets/Bio2.webp", "./assets/Bio3.png"],
+    Cardboard: ["./assets/Cardboard1.webp", "./assets/Cardboard2.png", "./assets/Cardboard3.png"],
+    Glass: ["./assets/Glass1.png", "./assets/Glass2.png", "./assets/Glass3.png"],
+    Metal: ["./assets/Metal1.png", "./assets/Metal2.png", "./assets/Metal3.webp"]
   };
 
   // Use a ref to track real-time values
