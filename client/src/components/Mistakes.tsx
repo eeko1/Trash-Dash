@@ -54,7 +54,7 @@ const Mistakes: React.FC<MistakesProps> = ({ mistakeData, onClose }) => {
         
         <button 
           onClick={onClose}
-          className="mt-6 bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition w-full"
+          className="mt-6 bg-main_medium_turquoise text-white px-6 py-2 rounded-lg font-semibold hover:bg-main_light_turquoise transition w-full"
         >
           Close
         </button>

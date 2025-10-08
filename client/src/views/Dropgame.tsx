@@ -393,7 +393,7 @@ const DropGame: React.FC = () => {
   return (
     <>
       {!isGameOver ? (
-        <div className="flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-main_light_turquoise to-main_medium_turquoise">
           <div className="mb-4 flex justify-between w-full" style={{ maxWidth: gameWidth }}>
             <div className="text-xl font-bold">Score: {score}</div>
             <div className="text-xl font-bold text-red-500">Missed: {missed}</div>
