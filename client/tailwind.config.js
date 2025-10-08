@@ -12,6 +12,7 @@ module.exports = {
         main_black: '#2C2A29',
         support_pink: '#D8318A',
         support_red: '#BD3429',
+        support_light_red: '#ff0f0f',
         support_dark_orange: '#BE4D00',
         support_orange: '#EA7600',
         support_yellow: '#F9D800',

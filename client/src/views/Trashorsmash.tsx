@@ -60,21 +60,13 @@ const Trashorsmash = () => {
 
   return (
     <div className="bg-white min-h-screen font-sans flex flex-col">
-      <nav className="bg-white border-b border-gray-200">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="./" className="flex items-center space-x-3">
-            <img src="/assets/hsy-logo_600px.png" className="h-12" alt="HSY Logo" />
-          </a>
-        </div>
-      </nav>
-
       <main className="bg-main_medium_turquoise flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-lg bg-gray-800/60 rounded-2xl shadow-2xl border-gray-700 flex flex-col items-center text-center p-6 relative">
+        <div className="w-full max-w-lg bg-main_dark_turquoise rounded-2xl shadow-2xl border-main_black flex flex-col items-center text-center p-6 relative">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trash or Smash?</h1>
-          <p className="text-gray-300 font-medium mb-6 text-lg">Which bin does it go in?</p>
+          <p className="text-white font-medium mb-6 text-lg">Which bin does it go in?</p>
 
           <div className="h-10 mb-4 flex items-center justify-center">
-            {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-green-400' : 'text-red-400'}`}>{feedback.message}</p>}
+            {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-support_medium_green' : 'text-support_red'}`}>{feedback.message}</p>}
           </div>
 
           <div className="relative w-full flex justify-between items-center mb-4 px-4">
@@ -83,7 +75,7 @@ const Trashorsmash = () => {
               label="Biowaste"
               imageUrl="/assets/food-waste-bin.png"
               altText="Biowaste Bin"
-              bgColorClasses="bg-red-500 hover:bg-red-600"
+              bgColorClasses="bg-support_red"
             />
 
             <div
@@ -100,14 +92,14 @@ const Trashorsmash = () => {
               label="Plastic"
               imageUrl="/assets/recycle-trash-bin-plastic-icon.jpg"
               altText="Plastic Bin"
-              bgColorClasses="bg-green-500 hover:bg-green-600"
+              bgColorClasses="bg-support_medium_green"
             />
           </div>
 
           <div className="w-full flex justify-between items-center text-white mt-8 pt-4">
             <div className="font-bold text-lg">{username}</div>
             <div className="font-bold text-lg">
-              Score: <span className="text-2xl text-yellow-400">{score}</span>
+              Score: <span className="text-2xl text-support_yellow">{score}</span>
             </div>
           </div>
         </div>

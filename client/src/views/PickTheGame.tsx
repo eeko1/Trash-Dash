@@ -31,9 +31,9 @@ const PickTheGame = () => {
           <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
             <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
               <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold hover:bg-gray-800/80 sm:py-8 sm:w-1/2'
-                onClick={() => navigate('/TrashOrMash')}
+                onClick={() => navigate('/TrashOrSmash')}
               >
-                Trash or Pass
+                Trash or Smash
               </button>
               <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold hover:bg-gray-800/80 sm:py-8 sm:w-1/2'
                 onClick={() => navigate('/DropGame')}

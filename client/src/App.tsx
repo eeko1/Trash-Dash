@@ -4,7 +4,7 @@ import PickTheGame from './views/PickTheGame'
 import RecycleGuide from './views/RecycleGuide';
 import Leaderboard from './views/Leaderboard';
 import DropGame from './views/Dropgame';
-import TrashOrMash from './views/Trashorsmash'
+import TrashOrSmash from './views/Trashorsmash'
 import { UserProvider } from './contexts/UserContext';
 
 
@@ -18,7 +18,7 @@ function App() {
                <Route path='/RecyclingGuide' element={<RecycleGuide />} />
                <Route path='/Leaderboard' element={<Leaderboard />} />
                <Route path='/DropGame' element={<DropGame />} />
-               <Route path='/TrashOrMash' element={<TrashOrMash />} />
+               <Route path='/TrashOrSmash' element={<TrashOrSmash />} />
             </Routes>
          </Router>
       </UserProvider>
