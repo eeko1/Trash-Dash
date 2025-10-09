@@ -10,13 +10,13 @@ const Home = () => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <nav className='bg-white border-b border-gray-200'>
+      <div className='bg-white border-b border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center mx-auto p-4'>
           <div className="ml-auto">
             <LanguageSelector />
           </div>
         </div>
-      </nav>
+      </div>
 
       <div className='w-full h-40 bg-gray-500 sm:h-96' />
       <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>

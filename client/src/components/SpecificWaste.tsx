@@ -79,7 +79,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
             )}
             {wastePage.recyclingMethods && wastePage.recyclingMethods.length > 0 && (
                 <>
-                    <h3 className='text-xl font-semibold mb-2 font-sans'>{t('recycling methods')}:</h3>
+                    <h3 className='text-xl font-bold mb-2 font-sans'>{t('recycling methods')}:</h3>
                     <div className='space-y-4'>
                         {wastePage.recyclingMethods.map((method: recyclingmethod) => (
                             <div key={method.id} className='border rounded p-2'>

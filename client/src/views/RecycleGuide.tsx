@@ -109,14 +109,14 @@ const WasteTypesList = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <nav className="bg-white border-b border-gray-200">
+            <div className="bg-white border-b border-gray-200">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
                     </div>
                     <LanguageSelector />
                 </div>
-            </nav>
+            </div>
 
             <main className="bg-main_medium_turquoise flex-grow flex flex-col items-center p-4">
                 <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
