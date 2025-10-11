@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { wastetypes } from '../types/apiTypes';
 import { fetchData } from '../lib/utils';
 import { useTranslation } from 'react-i18next';
-import RecydleGame from '../components/RecydleGame';
+import RecydleGame from '../components/recydle/RecydleGame';
 
 const Trashle = () => {
 
@@ -24,6 +24,8 @@ const Trashle = () => {
         };
         getWastetype();
     }, [lang]);
+
+    console.log(solution?.title)
 
     return (
         <div>

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useRecydle } from "../hooks/useRecydle"
+import { useRecydle } from "../../hooks/useRecydle";
+import RecydleGrid from "./RecydleGrid";
 
 type SolutionProps = {
   solution: string;
 }
 const RecydleGame: React.FC<SolutionProps> = ({ solution }) => {
-  const { currentGuess, handleKeyUp } = useRecydle(solution);
+  const { currentGuess,guesses, turn, isCorrect ,handleKeyUp } = useRecydle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
@@ -13,9 +14,10 @@ const RecydleGame: React.FC<SolutionProps> = ({ solution }) => {
   }, [handleKeyUp]);
 
 
+    console.log(solution)
   return (
     <div>
-      Current - {currentGuess}
+      <RecydleGrid guesses={guesses} currentGuess={currentGuess} turn={turn} />
     </div>
   )
 }
