@@ -1,0 +1,50 @@
+export type LetterState = 'default' | 'wrong' | 'correct' | 'wrong-place';
+
+export type solutionProps = {
+  solution: string;
+  wordLength: number;
+};
+
+export type keyPadProps = {
+    onKeyPress: (key: string) => void;
+    letterToLetterState: { [letter: string]: LetterState }
+};
+
+export type keyProps = {
+    letter: string;
+    onKeyPress: (key: string) => void;
+    letterState: LetterState;
+}
+
+export type GameState = {
+  puzzleDate: string;
+  guesses: Array<string>;
+};
+
+export type rowProps = {
+    guess: string | undefined;
+    letterState: Array<LetterState>;
+    shake: boolean;
+    jump: boolean;
+    wordLength: number;
+};
+export type tileProps = {
+    letter: string | undefined;
+    state: LetterState;
+    id: number;
+    jump: boolean
+}
+
+type AddLetterAction = {
+    type: 'add';
+    letter: string;
+}
+type BackspaceAction = {
+    type: 'Backspace';
+}
+
+type ClearAction = {
+    type: 'clear';
+}
+
+export type Action = AddLetterAction | BackspaceAction | ClearAction

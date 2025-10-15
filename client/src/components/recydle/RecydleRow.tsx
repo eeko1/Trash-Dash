@@ -1,53 +1,46 @@
-type FormattedLetter = {
-  key: string;
-  color: 'grey' | 'green' | 'yellow';
-};
+import { useEffect, useState } from "react";
+import { rowProps, tileProps } from "../../types/recydleTypes";
 
 
-type RecydleRowProps = {
-  guess?: FormattedLetter[]; 
-  currentGuess?: string;
-};
-
-
-const RecydleRow: React.FC<RecydleRowProps> = ({ guess, currentGuess }) => {
-    if (guess) {
-        return (
-            <div className='pass'>
-                {guess.map((l, i) => (
-                    <div key={i} className={l.color}>
-                        {l.key}
-                    </div>
-                ))}
-            </div>
-        );
-    }
-    if (currentGuess) {
-        let letters = currentGuess.split('');
-
-        return (
-            <div className='pass'>
-                {letters.map((letter, i) => (
-                    <div key={i} className='filled'>
-                        {letter}
-                    </div>
-                ))}
-                {[...Array(5 - letters.length)].map((_, i) => (
-                    <div key={i}></div>
-                ))}
-            </div>
-        );
-    }
-
-return (
-    <div className='flex justify-center text-center'>
-        <div className='block text-center uppercase font-bold font-sans border border-l-main_black'></div>
-        <div className='block text-center uppercase font-bold font-sans border border-l-main_black'></div>
-        <div className='block text-center uppercase font-bold font-sans border border-l-main_black'></div>
-        <div className='block text-center uppercase font-bold font-sans border border-l-main_black'></div>
-        <div className='block text-center uppercase font-bold font-sans border border-l-main_black'></div>
+export const RecydleRow = ({ guess, letterState, shake, jump, wordLength }: rowProps) => {
+    return <div className='flex gap-2'>
+        {Array.from({ length: wordLength }).map((_, id) => {
+            return <Tile key={id} id={id} letter={guess ? guess[id] : ''} state={letterState[id]} jump={jump} />
+        })}
     </div>
-)
 }
+    export const Tile = ({ letter, state, id, jump }: tileProps) => {
+        const [revealColor, setRevealColor] = useState(false);
+        const animationDelay = jump ? id * 80 : id * 300;
+        useEffect(() => {
+            let timeout: number;
 
-export default RecydleRow
+            if (state !== 'default') {
+                timeout = window.setTimeout(() => {
+                    setRevealColor(true);
+                }, animationDelay + 300);
+            }
+
+            return () => clearTimeout(timeout);
+        }, [state, animationDelay]);
+
+    const bgColor = revealColor
+        ? state === 'correct' ? 'bg-green-500' :
+            state === 'wrong-place' ? 'bg-yellow-500' :
+                state === 'wrong' ? 'bg-gray-700' : 'bg-gray-500'
+        : 'bg-gray-300'; 
+
+    return (
+        <div
+            className={`
+        border border-gray-500 w-16 h-16 flex items-center justify-center text-2xl font-bold
+        transition-colors duration-500 ease-in-out
+        ${bgColor}
+        ${jump ? 'animate-jump' : ''}
+      `}
+            style={{ transitionDelay: `${animationDelay}ms` }}
+        >
+            {letter}
+        </div>
+    );
+};
