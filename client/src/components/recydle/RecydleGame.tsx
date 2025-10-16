@@ -18,9 +18,8 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
   const [guesses, SetGuesses] = useState<Array<string>>(getStoredGameState())
   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active')
   const [toastText, setToastText] = useState('');
-  const [shakeCurrentRow, setShakeCurrentRow] = useState(false);
   const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
-  const shakeTimeout = useRef<ReturnType<typeof setTimeout>>();
+
 
 
   const setGuessesCallback = useCallback(
@@ -40,24 +39,14 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
     }, [setToastText, toastTimeout]
   );
 
-  const shakeCurrentGuess = useCallback(() => {
-    clearTimeout(shakeTimeout.current)
-    setShakeCurrentRow(true);
-    shakeTimeout.current = setTimeout(() => {
-      setShakeCurrentRow(false)
-    }, 650)
-    return () => clearTimeout(shakeTimeout.current)
-  }, [shakeTimeout])
-
   const submitWord = useCallback(() => {
     if (currentGuess.length !== wordLength) {
       showToast('not enough pylons')
-      shakeCurrentGuess();
       return;
     }
     setGuessesCallback([...guesses, currentGuess]);
     dispatch({ type: 'clear' })
-    if (currentGuess === solution) {
+    if (currentGuess.toUpperCase() === solution.toUpperCase()) {
       setTimeout(() => {
         setGameCompletion('won');
       }, 2000)
@@ -78,7 +67,6 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
     dispatch,
     setGameCompletion,
     setGuessesCallback,
-    shakeCurrentGuess,
     showToast,
     solution,
     wordLength
@@ -146,7 +134,10 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
 
   return (
     <div className='flex justify-center w-full h-full'>
-      <div className='flex flex-col items-center justify-between w-full max-w-xl max-h-[700px] py-8'>
+      {toastText && (
+        <div className='absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10'>{toastText}</div>
+      )}
+      <div className='flex flex-col items-center justify-between w-full max-w-lg py-8'>
         <div className='flex flex-col gap-2'>
           {Array.from({ length: Game_Rounds }).map((_, id) => {
             const isCurrentGuess = id === guesses.length;
@@ -155,7 +146,6 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
                 key={id}
                 guess={isCurrentGuess ? currentGuess : guesses[id]}
                 letterState={guessIdTotiles[id]}
-                shake={shakeCurrentRow && isCurrentGuess}
                 jump={gameCompletion === 'won' && id === guesses.length - 1}
                 wordLength={wordLength}
               />

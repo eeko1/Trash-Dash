@@ -1,10 +1,9 @@
-import { keyPadProps, keyProps, LetterState } from "../../types/recydleTypes";
+import { keyPadProps, keyProps } from "../../types/recydleTypes";
 
 const Rows = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
-    ["z", "x", "c", "v", "b", "n", "m", "Backspace"],
-    ["Enter"]
+    ["z", "x", "c", "v", "b", "n", "m", "Backspace"], ["Enter"]
 ];
 
 
@@ -35,9 +34,10 @@ export const Key = ({ letter, onKeyPress, letterState }: keyProps) => {
     const revealColor = true;
     const bgColor = revealColor
         ? letterState === 'correct' ? 'bg-green-500'
-            : letterState === 'wrong-place' ? 'bg-yellow-500'
-                : letterState === 'wrong' ? 'bg-gray-700'
-                    : 'bg-gray-500'
+        : letterState === 'wrong-place' ? 'bg-yellow-500'
+        : letterState === 'wrong' ? 'bg-red-700'
+        : letterState === 'default' ?  'bg-gray-300'
+        : 'bg-gray-500'
         : 'bg-gray-300';
     return (
         <button className={`flex justify-center items-center rounded-md h-14 font-bold text-lg flex-1 ${bgColor}`} onClick={() => onKeyPress(letter)}>

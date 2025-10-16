@@ -24,7 +24,6 @@ export type GameState = {
 export type rowProps = {
     guess: string | undefined;
     letterState: Array<LetterState>;
-    shake: boolean;
     jump: boolean;
     wordLength: number;
 };
