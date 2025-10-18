@@ -10,24 +10,32 @@ import {
   setStoredGameState,
 } from '../../utils/gameStorage';
 import { LetterState, solutionProps } from '../../types/recydleTypes';
+import RecydleEnd from './RecydleEnd';
+import { useTranslation } from 'react-i18next';
+
 
 
 
 const RecydleGame = ({ solution, wordLength }: solutionProps) => {
   const [currentGuess, dispatch] = useCurrentGuessReducer(wordLength);
-  const [guesses, SetGuesses] = useState<Array<string>>(getStoredGameState())
   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active')
   const [toastText, setToastText] = useState('');
   const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  const [guesses, setGuesses] = useState<string[]>(
+    getStoredGameState(lang)
+  );
 
 
 
-  const setGuessesCallback = useCallback(
-    (guesses: Array<string>) => {
-      SetGuesses(guesses);
-      setStoredGameState(guesses);
-    }, [SetGuesses])
-
+const setGuessesCallback = useCallback(
+  (guesses: string[]) => {
+    setGuesses(guesses);
+    setStoredGameState(guesses, lang);
+  },
+  [lang]
+);
   const showToast = useCallback(
     (text: string) => {
       clearTimeout(toastTimeout.current);
@@ -48,10 +56,10 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
     dispatch({ type: 'clear' })
     if (currentGuess.toUpperCase() === solution.toUpperCase()) {
       setTimeout(() => {
-        setGameCompletion('won');
+        showToast('congatulation')
       }, 2000)
       setTimeout(() => {
-        showToast('congatulation')
+        setGameCompletion('won');
       }, 4000)
       return
     }
@@ -126,39 +134,48 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
         return
       }
       if (titleSate === 'wrong') {
-        letterToLetterStates[letter] = 'wrong-place';
+        letterToLetterStates[letter] = 'wrong';
       }
     });
   });
 
 
+
+
   return (
-    <div className='flex justify-center w-full h-full'>
+    <div className="flex justify-center w-full h-full">
       {toastText && (
-        <div className='absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10'>{toastText}</div>
-      )}
-      <div className='flex flex-col items-center justify-between w-full max-w-lg py-8'>
-        <div className='flex flex-col gap-2'>
-          {Array.from({ length: Game_Rounds }).map((_, id) => {
-            const isCurrentGuess = id === guesses.length;
-            return (
-              <RecydleRow
-                key={id}
-                guess={isCurrentGuess ? currentGuess : guesses[id]}
-                letterState={guessIdTotiles[id]}
-                jump={gameCompletion === 'won' && id === guesses.length - 1}
-                wordLength={wordLength}
-              />
-            )
-          })}
+        <div className="absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10">
+          {toastText}
         </div>
-        <KeyPad
-          onKeyPress={onKeyPress}
-          letterToLetterState={letterToLetterStates}
-        />
-      </div>
+      )}
+
+      {(gameCompletion === 'won' || gameCompletion === 'lost') ? (
+        <RecydleEnd result={gameCompletion} />
+      ) : (
+        <div className="flex flex-col items-center gap-10 w-full max-w-lg py-5">
+          <div className="flex flex-col gap-2">
+            {Array.from({ length: Game_Rounds }).map((_, id) => {
+              const isCurrentGuess = id === guesses.length;
+              return (
+                <RecydleRow
+                  key={id}
+                  guess={isCurrentGuess ? currentGuess : guesses[id]}
+                  letterState={guessIdTotiles[id]}
+                  jump={id === guesses.length - 1}
+                  wordLength={wordLength}
+                />
+              );
+            })}
+          </div>
+          <KeyPad
+            onKeyPress={onKeyPress}
+            letterToLetterState={letterToLetterStates}
+          />
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default RecydleGame
+export default RecydleGame;

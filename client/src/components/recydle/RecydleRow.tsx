@@ -11,7 +11,7 @@ export const RecydleRow = ({ guess, letterState, jump, wordLength }: rowProps) =
 }
     export const Tile = ({ letter, state, id, jump }: tileProps) => {
         const [revealColor, setRevealColor] = useState(false);
-        const animationDelay = jump ? id * 80 : id * 300;
+        const animationDelay = jump ? id * 300 : id * 600;
         useEffect(() => {
             let timeout: number;
 

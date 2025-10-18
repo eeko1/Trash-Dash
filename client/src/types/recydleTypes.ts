@@ -1,8 +1,8 @@
 export type LetterState = 'default' | 'wrong' | 'correct' | 'wrong-place';
 
 export type solutionProps = {
-  solution: string;
-  wordLength: number;
+    solution: string;
+    wordLength: number;
 };
 
 export type keyPadProps = {
@@ -17,8 +17,8 @@ export type keyProps = {
 }
 
 export type GameState = {
-  puzzleDate: string;
-  guesses: Array<string>;
+    puzzleDate: string;
+    guesses: Array<string>;
 };
 
 export type rowProps = {

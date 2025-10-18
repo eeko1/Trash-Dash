@@ -12,7 +12,6 @@ const Trashle = () => {
     useEffect(() => {
         const baseUrl = process.env.REACT_APP_SERVER;
         const getWastetype = async () => {
-            console.log('hello')
             const today = new Date().toISOString().split('T')[0];
             const key = `daily-solution-${lang}`;
             const stored = localStorage.getItem(key);
@@ -27,9 +26,10 @@ const Trashle = () => {
                 const [wasteType, recyclingMethods] = await Promise.all([
                     fetchData<{ hits: wastetypes[] }>(
                         `${baseUrl}/wastetypes?lang=${lang}`),
-                    fetchData<{ hits: recyclingmethod[] }>(
-                        `${baseUrl}/recyclingmethods?lang=${lang}`)
-                ]);
+                        fetchData<{ hits: recyclingmethod[] }>(
+                            `${baseUrl}/recyclingmethods?lang=${lang}`)
+                        ]);
+      
                 const combineData = [...wasteType.hits, ...recyclingMethods.hits]
                 const filteredSolution = combineData.filter(item => {
                     const solution = item.title;
@@ -39,7 +39,7 @@ const Trashle = () => {
                 setSolution(randomSolution.title)
                 localStorage.setItem(
                     key,
-                    JSON.stringify({ date: today, solution: filteredSolution })
+                    JSON.stringify({ date: today, solution: randomSolution.title })
                 );
             } catch (err) {
                 console.error(err);
@@ -50,7 +50,7 @@ const Trashle = () => {
     }, [lang]);
 
     return (
-        <div className='flex flex-col h-full'>
+        <div className='flex flex-col h-full bg-main_medium_turquoise'>
             {solution && <RecydleGame solution={solution} wordLength={solution.length} />}
         </div>
     )
