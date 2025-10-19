@@ -19,7 +19,7 @@ export const KeyPad = ({ onKeyPress, letterToLetterState }: keyPadProps) => {
                                     key={id}
                                     letter={letter}
                                     onKeyPress={onKeyPress}
-                                    letterState={letterToLetterState[letter] ?? 'default'}
+                                    letterState={letterToLetterState[letter.toUpperCase()] ?? 'default'}
                                 />
                             )
                         })}
@@ -31,14 +31,15 @@ export const KeyPad = ({ onKeyPress, letterToLetterState }: keyPadProps) => {
 };
 
 export const Key = ({ letter, onKeyPress, letterState }: keyProps) => {
+
     const revealColor = true;
     const bgColor = revealColor
-        ? letterState === 'correct' ? 'bg-green-500'
-        : letterState === 'wrong-place' ? 'bg-yellow-500'
-        : letterState === 'wrong' ? 'bg-red-700'
-        : letterState === 'default' ?  'bg-gray-300'
-        : 'bg-gray-500'
-        : 'bg-gray-300';
+        ? letterState === 'correct' ? 'bg-support_light_green'
+        : letterState === 'wrong-place' ? 'bg-support_yellow'
+        : letterState === 'wrong' ? 'bg-support_dark_grey'
+        : 'bg-support_gray'
+        : 'bg-support_gray';
+
     return (
         <button className={`flex justify-center items-center rounded-md h-14 font-bold text-lg flex-1 ${bgColor}`} onClick={() => onKeyPress(letter)}>
             {letter === 'Backspace' ? (<svg

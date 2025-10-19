@@ -19,6 +19,7 @@ export type keyProps = {
 export type GameState = {
     puzzleDate: string;
     guesses: Array<string>;
+    gameCompletion: 'active' | 'won' | 'lost';
 };
 
 export type rowProps = {
@@ -32,6 +33,10 @@ export type tileProps = {
     state: LetterState;
     id: number;
     jump: boolean
+}
+
+export type recydleEndProp = {
+    result: string;
 }
 
 type AddLetterAction = {

@@ -14,9 +14,10 @@ export const getTileStates = (
   guess: string | undefined,
   isSubmitted: boolean
 ) => {
-  const tileStates: Array<LetterState> = Array.from<LetterState>({
-    length: solution.length,
-  }).fill('default');
+  const
+    tileStates: Array<LetterState> = Array.from<LetterState>({
+      length: solution.length,
+    }).fill('default');
   if (!isSubmitted || !guess) {
     return tileStates;
   }
@@ -41,6 +42,7 @@ export const getTileStates = (
       tileStates[i] = 'wrong';
     }
   }
+
 
   return tileStates;
 };

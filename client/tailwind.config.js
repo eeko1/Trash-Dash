@@ -23,6 +23,8 @@ module.exports = {
         support_purple: '#814494',
         support_dark_blue: '#006AA7',
         support_light_blue: '#9BCBEB',
+        support_gray:'#99a1af',
+        support_dark_grey:'#484f5b',
       },
       fontFamily: {
         sans: ['Inter', 'Arial', 'sans-serif'],

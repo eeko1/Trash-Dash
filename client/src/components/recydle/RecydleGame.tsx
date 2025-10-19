@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Backspace, Enter, Game_Rounds } from '../../data/constants'
 import { KeyPad } from './Keypad'
@@ -18,24 +17,22 @@ import { useTranslation } from 'react-i18next';
 
 const RecydleGame = ({ solution, wordLength }: solutionProps) => {
   const [currentGuess, dispatch] = useCurrentGuessReducer(wordLength);
-  const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active')
+/*   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active') */
   const [toastText, setToastText] = useState('');
   const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
   const { i18n } = useTranslation();
   const lang = i18n.language;
-  const [guesses, setGuesses] = useState<string[]>(
-    getStoredGameState(lang)
+  const storedState = getStoredGameState(lang);
+  const [guesses, setGuesses] = useState<string[]>(storedState.guesses);
+  const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>(storedState.gameCompletion);
+
+  const setGuessesCallback = useCallback(
+    (guesses: string[]) => {
+      setGuesses(guesses);
+      setStoredGameState(guesses, lang, gameCompletion);
+    },
+    [lang, gameCompletion]
   );
-
-
-
-const setGuessesCallback = useCallback(
-  (guesses: string[]) => {
-    setGuesses(guesses);
-    setStoredGameState(guesses, lang);
-  },
-  [lang]
-);
   const showToast = useCallback(
     (text: string) => {
       clearTimeout(toastTimeout.current);
@@ -60,16 +57,19 @@ const setGuessesCallback = useCallback(
       }, 2000)
       setTimeout(() => {
         setGameCompletion('won');
+        setStoredGameState([...guesses, currentGuess], lang, 'won');
       }, 4000)
       return
     }
     if (guesses.length + 1 === Game_Rounds) {
       setGameCompletion('lost');
+      setStoredGameState([...guesses, currentGuess], lang, 'lost');
       setTimeout(() => {
         showToast('see you next time')
       }, 2500)
     }
   }, [
+    lang,
     currentGuess,
     guesses,
     dispatch,
@@ -138,8 +138,6 @@ const setGuessesCallback = useCallback(
       }
     });
   });
-
-
 
 
   return (
