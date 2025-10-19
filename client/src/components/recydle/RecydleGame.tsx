@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 const RecydleGame = ({ solution, wordLength }: solutionProps) => {
   const [currentGuess, dispatch] = useCurrentGuessReducer(wordLength);
-/*   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active') */
+  /*   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active') */
   const [toastText, setToastText] = useState('');
   const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
   const { i18n } = useTranslation();
@@ -141,7 +141,7 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
 
 
   return (
-    <div className="flex justify-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full">
       {toastText && (
         <div className="absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10">
           {toastText}
@@ -173,6 +173,7 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
         </div>
       )}
     </div>
+    
   );
 }
 

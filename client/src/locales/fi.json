@@ -3,13 +3,15 @@
   "practice": "Harjoittele",
   "leaderboards": "Tulostaulukot",
   "find": "Etsi lajittelupaikka",
-  "enter_username": "Enter username",
+  "enter_username": "Anna käyttäjänimi",
   "Pick the game": "Valitse peli",
   "Ranking": "Sijoitus",
   "Username": "Käyttäjänimi",
   "Points": "Pisteet",
   "more info": "Lisätietoa",
-  "recycling method": "Recycling Method",
-  "synonyms": "synonyms",
-  "additional info": "additional info"
+  "recycling method": "Kierrätys menetelmä",
+  "synonyms": "synonyymi",
+  "additional info": "Lisätietoa",
+  "daily" : "Uusi päivittäinen Recydle",
+   "menu":"Päävalikko"
 }

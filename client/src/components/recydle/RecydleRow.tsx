@@ -9,32 +9,35 @@ export const RecydleRow = ({ guess, letterState, jump, wordLength }: rowProps) =
         })}
     </div>
 }
-    export const Tile = ({ letter, state, id, jump }: tileProps) => {
-        const [revealColor, setRevealColor] = useState(false);
-        const animationDelay = jump ? id * 300 : id * 600;
-        useEffect(() => {
-            let timeout: number;
+export const Tile = ({ letter, state, id, jump }: tileProps) => {
+    const [revealColor, setRevealColor] = useState(false);
+    const animationDelay = jump ? id * 300 : id * 600;
+    useEffect(() => {
+        let timeout: number;
 
-            if (state !== 'default') {
-                timeout = window.setTimeout(() => {
-                    setRevealColor(true);
-                }, animationDelay + 300);
-            }
+        if (state !== 'default') {
+            timeout = window.setTimeout(() => {
+                setRevealColor(true);
+            }, animationDelay + 300);
+        }
 
-            return () => clearTimeout(timeout);
-        }, [state, animationDelay]);
+        return () => clearTimeout(timeout);
+    }, [state, animationDelay]);
 
     const bgColor = revealColor
         ? state === 'correct' ? 'bg-green-500' :
             state === 'wrong-place' ? 'bg-yellow-500' :
                 state === 'wrong' ? 'bg-gray-700' : 'bg-gray-500'
-        : 'bg-gray-300'; 
+        : 'bg-gray-300';
 
     return (
         <div
             className={`
-        border border-gray-500 w-16 h-16 flex items-center justify-center text-2xl font-bold
-        transition-colors duration-500 ease-in-out
+      border border-gray-500 
+                w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16
+                flex items-center justify-center 
+                text-lg sm:text-xl md:text-2xl font-bold
+                transition-colors duration-500 ease-in-out
         ${bgColor}
       `}
             style={{ transitionDelay: `${animationDelay}ms` }}
