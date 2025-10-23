@@ -23,7 +23,7 @@ const Trashle = () => {
                 }
             }
             try {
-               /*  const [wasteType, recyclingMethods] = await Promise.all([
+                 const [wasteType, recyclingMethods] = await Promise.all([
                     fetchData<{ hits: wastetypes[] }>(
                         `${baseUrl}/wastetypes?lang=${lang}`),
                         fetchData<{ hits: recyclingmethod[] }>(
@@ -35,10 +35,10 @@ const Trashle = () => {
                     const solution = item.title;
                     return solution && solution.length < 10;
                 })
-                const randomSolution = filteredSolution[Math.floor(Math.random() * filteredSolution.length)]; */
-                const data = await fetchData<{ hits: wastetypes[] }>(`${baseUrl}/wastetypes?lang=${lang}`);
+                const randomSolution = filteredSolution[Math.floor(Math.random() * filteredSolution.length)]; 
+                /* const data = await fetchData<{ hits: wastetypes[] }>(`${baseUrl}/wastetypes?lang=${lang}`);
                 console.log(data)
-                const randomSolution = data.hits[Math.floor(Math.random() * data.hits.length)]
+                const randomSolution = data.hits[Math.flo or(Math.random() * data.hits.length)]*/
                 setSolution(randomSolution.title)
                 localStorage.setItem(
                     key,

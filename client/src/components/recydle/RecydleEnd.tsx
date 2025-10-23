@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 
 const RecydleEnd = ({ result }: recydleEndProp) => {
     const navigate = useNavigate();
-    const { i18n, t } = useTranslation();
-    const lang = i18n.language; 
+    const { t } = useTranslation();
+   /*  const lang = i18n.language;  */
     const [timeUntilReset, setTimeUntilReset] = useState<string>('');
 
 
@@ -44,7 +44,7 @@ return (
             <h1 className="text-3xl font-extrabold mb-4">{t('daily')}</h1>
             
             <div className="text-2xl font-bold mb-6">
-                Next puzzle in: {timeUntilReset}
+               {t('Next recydle in')}: {timeUntilReset}
             </div>
             <div className="flex flex-col items-center gap-4 mt-4">
                 <button
