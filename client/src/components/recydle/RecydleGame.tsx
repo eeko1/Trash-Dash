@@ -16,16 +16,15 @@ import { useTranslation } from 'react-i18next';
 
 
 const RecydleGame = ({ solution, wordLength }: solutionProps) => {
-  const [currentGuess, dispatch] = useCurrentGuessReducer(wordLength);
-  /*   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>('active') */
-  const [toastText, setToastText] = useState('');
-  const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
   const { i18n } = useTranslation();
   const lang = i18n.language;
+  const [currentGuess, dispatch] = useCurrentGuessReducer(wordLength);
+  const [toastText, setToastText] = useState('');
+  const toastTimeout = useRef<ReturnType<typeof setTimeout>>();
   const storedState = getStoredGameState(lang);
   const [guesses, setGuesses] = useState<string[]>(storedState.guesses);
   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>(storedState.gameCompletion);
-
+  
   const setGuessesCallback = useCallback(
     (guesses: string[]) => {
       setGuesses(guesses);

@@ -3,7 +3,7 @@ import { rowProps, tileProps } from "../../types/recydleTypes";
 
 
 export const RecydleRow = ({ guess, letterState, jump, wordLength }: rowProps) => {
-    return <div className='flex gap-2'>
+    return <div className='flex gap-1.5'>
         {Array.from({ length: wordLength }).map((_, id) => {
             return <Tile key={id} id={id} letter={guess ? guess[id] : ''} state={letterState[id]} jump={jump} />
         })}
@@ -25,10 +25,11 @@ export const Tile = ({ letter, state, id, jump }: tileProps) => {
     }, [state, animationDelay]);
 
     const bgColor = revealColor
-        ? state === 'correct' ? 'bg-green-500' :
-            state === 'wrong-place' ? 'bg-yellow-500' :
-                state === 'wrong' ? 'bg-gray-700' : 'bg-gray-500'
-        : 'bg-gray-300';
+        ? state === 'correct' ? 'bg-support_light_green' 
+        : state === 'wrong-place' ? 'bg-support_yellow' 
+        : state === 'wrong' ? 'bg-support_dark_grey' 
+        : 'bg-support_gray'
+        : 'bg-white';
 
     return (
         <div

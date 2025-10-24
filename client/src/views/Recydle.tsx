@@ -33,8 +33,9 @@ const Trashle = () => {
                 const combineData = [...wasteType.hits, ...recyclingMethods.hits]
                 const filteredSolution = combineData.filter(item => {
                     const solution = item.title;
-                    return solution && solution.length < 10;
+                    return solution && solution.length < 7;
                 })
+
                 const randomSolution = filteredSolution[Math.floor(Math.random() * filteredSolution.length)]; 
                 /* const data = await fetchData<{ hits: wastetypes[] }>(`${baseUrl}/wastetypes?lang=${lang}`);
                 console.log(data)
