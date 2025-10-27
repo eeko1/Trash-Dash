@@ -3,10 +3,12 @@ import { recyclingmethod, wastetypes } from '../types/apiTypes';
 import { fetchData } from '../lib/utils';
 import { useTranslation } from 'react-i18next';
 import RecydleGame from '../components/recydle/RecydleGame';
+import RecydleGuide from '../components/recydle/RecydleGuide';
 
 const Trashle = () => {
     const [solution, setSolution] = useState<string | undefined>();
-    const { i18n } = useTranslation();
+    const [showGuide, setShowGuide] = useState(true);
+    const { t,i18n } = useTranslation();
     const lang = i18n.language;
 
     useEffect(() => {
@@ -53,11 +55,25 @@ const Trashle = () => {
         getWastetype();
     }, [lang]);
 
-    return (
-        <div className='flex flex-col h-full bg-main_medium_turquoise'>
-            {solution && <RecydleGame solution={solution} wordLength={solution.length} />}
+   return (
+    <div className="flex flex-col h-full bg-main_medium_turquoise">
+      {showGuide ? (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="flex flex-col items-center bg-white rounded-lg shadow-lg p-4 max-w-md w-full">
+            <RecydleGuide />
+            <button
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              onClick={() => setShowGuide(false)}
+            >
+            {t(`Let's Play!`)}
+            </button>
+          </div>
         </div>
-    )
-}
+      ) : (
+        solution && <RecydleGame solution={solution} wordLength={solution.length} />
+      )}
+    </div>
+  );
+};
 
 export default Trashle
