@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { rowProps, tileProps } from "../../types/recydleTypes";
+import { useEffect, useState } from 'react';
+import { rowProps, tileProps } from '../../types/recydleTypes';
 
 
 export const RecydleRow = ({ guess, letterState, jump, wordLength }: rowProps) => {

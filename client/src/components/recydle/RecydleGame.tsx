@@ -24,7 +24,7 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
   const storedState = getStoredGameState(lang);
   const [guesses, setGuesses] = useState<string[]>(storedState.guesses);
   const [gameCompletion, setGameCompletion] = useState<'active' | 'won' | 'lost'>(storedState.gameCompletion);
-  
+
   const setGuessesCallback = useCallback(
     (guesses: string[]) => {
       setGuesses(guesses);
@@ -140,39 +140,46 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
 
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
-      {toastText && (
-        <div className="absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10">
-          {toastText}
-        </div>
-      )}
-
-      {(gameCompletion === 'won' || gameCompletion === 'lost') ? (
-        <RecydleEnd result={gameCompletion} />
-      ) : (
-        <div className="flex flex-col items-center gap-10 w-full max-w-lg py-5">
-          <div className="flex flex-col gap-2">
-            {Array.from({ length: Game_Rounds }).map((_, id) => {
-              const isCurrentGuess = id === guesses.length;
-              return (
-                <RecydleRow
-                  key={id}
-                  guess={isCurrentGuess ? currentGuess : guesses[id]}
-                  letterState={guessIdTotiles[id]}
-                  jump={id === guesses.length - 1}
-                  wordLength={wordLength}
-                />
-              );
-            })}
+    <div className='flex flex-col min-h-screen'>
+      <div className='flex flex-1 items-center justify-center w-full h-full relative'>
+        {toastText && (
+          <div className='absolute mt-4 font-bold bg-slate-500 p-4 rounded-md z-10'>
+            {toastText}
           </div>
-          <KeyPad
-            onKeyPress={onKeyPress}
-            letterToLetterState={letterToLetterStates}
-          />
-        </div>
-      )}
+        )}
+
+        {(gameCompletion === 'won' || gameCompletion === 'lost') ? (
+          <RecydleEnd result={gameCompletion} />
+        ) : (
+          <div className='flex flex-col items-center gap-10 w-full max-w-lg py-5'>
+            <div className='flex items-center justify-center text-4xl font-bold text-white'>
+              <h2>Recydle</h2>
+            </div>
+            <div className='flex flex-col gap-2'>
+              {Array.from({ length: Game_Rounds }).map((_, id) => {
+                const isCurrentGuess = id === guesses.length;
+                return (
+                  <RecydleRow
+                    key={id}
+                    guess={isCurrentGuess ? currentGuess : guesses[id]}
+                    letterState={guessIdTotiles[id]}
+                    jump={id === guesses.length - 1}
+                    wordLength={wordLength}
+                  />
+                );
+              })}
+            </div>
+            <KeyPad
+              onKeyPress={onKeyPress}
+              letterToLetterState={letterToLetterStates}
+            />
+          </div>
+        )}
+      </div>
+      <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
+        <div className='max-w-screen-xl mx-auto text-center'>&copy; 2025 HSY. All rights reserved.</div>
+      </footer>
     </div>
-    
   );
 }
 

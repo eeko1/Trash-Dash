@@ -1,4 +1,4 @@
-import { GameState } from "../types/recydleTypes";
+import { GameState } from '../types/recydleTypes';
 
 
 

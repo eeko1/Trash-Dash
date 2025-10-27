@@ -35,8 +35,8 @@ const Leaderboards = () => {
 
     return (
         <div className='flex flex-col min-h-screen'>
-            <div className="bg-white border-b border-gray-200">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div className='bg-white border-b border-gray-200'>
+                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
                     <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
                     </div>
@@ -45,7 +45,7 @@ const Leaderboards = () => {
             </div>
 
             <div className='w-full h-40 bg-gray-500 sm:h-96' />
-            <main className="bg-main_medium_turquoise flex-grow flex flex-col p-4">
+            <main className='bg-main_medium_turquoise flex-grow flex flex-col p-4'>
                 <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide text-center'>{t('leaderboards')}</h2>
                 <div className='flex items-center justify-center'>
                     <div className='py-1 text-l w-full sm:w-[40%]'>

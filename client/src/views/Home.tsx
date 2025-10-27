@@ -12,7 +12,7 @@ const Home = () => {
     <div className='flex flex-col min-h-screen'>
       <div className='bg-white border-b border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center mx-auto p-4'>
-          <div className="ml-auto">
+          <div className='ml-auto'>
             <LanguageSelector />
           </div>
         </div>
@@ -53,8 +53,8 @@ const Home = () => {
           </div>
         </div>
       </main>
-      <footer className="bg-main_dark_turquoise text-white text-sm p-4">
-        <div className="max-w-screen-xl mx-auto text-center">&copy; 2025 HSY. All rights reserved.</div>
+      <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
+        <div className='max-w-screen-xl mx-auto text-center'>&copy; 2025 HSY. All rights reserved.</div>
       </footer>
     </div>
   );

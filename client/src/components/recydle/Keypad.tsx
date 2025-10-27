@@ -1,9 +1,9 @@
-import { keyPadProps, keyProps } from "../../types/recydleTypes";
+import { keyPadProps, keyProps } from '../../types/recydleTypes';
 
 const Rows = [
-    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"],
-    ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
-    ["z", "x", "c", "v", "b", "n", "m", "Backspace"], ["Enter"]
+    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'å'],
+    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ö', 'ä'],
+    ['z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'], ['Enter']
 ];
 
 

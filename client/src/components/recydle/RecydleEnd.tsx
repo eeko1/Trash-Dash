@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { recydleEndProp } from "../../types/recydleTypes";
-import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { recydleEndProp } from '../../types/recydleTypes';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 
 
 const RecydleEnd = ({ result }: recydleEndProp) => {
     const navigate = useNavigate();
     const { t } = useTranslation();
-   /*  const lang = i18n.language;  */
+    /*  const lang = i18n.language;  */
     const [timeUntilReset, setTimeUntilReset] = useState<string>('');
 
 
@@ -38,25 +38,25 @@ const RecydleEnd = ({ result }: recydleEndProp) => {
     }, []);
 
 
-return (
-    <div className="bg-main_medium_turquoise min-h-screen flex flex-col items-center justify-center text-white font-sans p-6">
-        <div className="bg-main_dark_turquoise border border-main_black rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center">
-            <h1 className="text-3xl font-extrabold mb-4">{t('daily')}</h1>
-            
-            <div className="text-2xl font-bold mb-6">
-               {t('Next recydle in')}: {timeUntilReset}
-            </div>
-            <div className="flex flex-col items-center gap-4 mt-4">
-                <button
-                    onClick={() => navigate("/")}
-                    className="bg-support_red text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
-                >
-                    {t('menu')}
-                </button>
+    return (
+        <div className='bg-main_medium_turquoise flex flex-col items-center justify-center text-white font-sans'>
+            <div className='bg-main_dark_turquoise border border-main_black rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center'>
+                <h1 className='text-3xl font-extrabold mb-4'>{t('daily')}</h1>
+
+                <div className='text-2xl font-bold mb-6'>
+                    {t('Next recydle in')}: {timeUntilReset}
+                </div>
+                <div className='flex flex-col items-center gap-4 mt-4'>
+                    <button
+                        onClick={() => navigate('/')}
+                        className='bg-support_red text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95'
+                    >
+                        {t('menu')}
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default RecydleEnd;

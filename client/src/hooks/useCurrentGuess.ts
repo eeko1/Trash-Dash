@@ -1,5 +1,5 @@
-import { useReducer } from "react";
-import { Action } from "../types/recydleTypes";
+import { useReducer } from 'react';
+import { Action } from '../types/recydleTypes';
 
 const createReducer = (wordLength: number) => {
     return (state: string, action: Action): string => {
