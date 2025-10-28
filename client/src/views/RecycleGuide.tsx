@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSelector from '../components/LanguageSelector';
 
 
+
 /* const mockWastePages: wastpage[] = [
     {
         id: 1,
@@ -65,6 +66,7 @@ const WasteTypesList = () => {
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const [page, setPage] = useState(1);
+    const [isLastPage, setIsLastPage] = useState(false);
     const { i18n } = useTranslation();
     const lang = i18n.language;
 
@@ -74,8 +76,14 @@ const WasteTypesList = () => {
         const getWastePages = async () => {
             try {
                 const data = await fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`);
-                console.log(data)
+                console.log(data.hits.length)
+                if (data.hits.length === 0){
+                    setIsLastPage(true)
+                    if (page > 1) setPage((p) => p - 1);
+                    return;
+                }
                 setWastePages(data.hits);
+                setIsLastPage(false)
                 setSelectedId(null);
             } catch (err) {
                 console.error(err);
@@ -133,6 +141,7 @@ const WasteTypesList = () => {
                         <button
                             className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80'
                             onClick={() => setPage(page => page + 1)}
+                            disabled={isLastPage}
                         >
                             Next
                         </button>
