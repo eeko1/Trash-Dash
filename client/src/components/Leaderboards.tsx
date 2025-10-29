@@ -4,6 +4,8 @@ import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
 import { fetchData } from '../lib/utils';
 import LanguageSelector from '../components/LanguageSelector';
+import { useUser } from '../contexts/UserContext';
+
 
 
 type leadersboard = {
@@ -14,6 +16,7 @@ type leadersboard = {
 
 
 const Leaderboards = () => {
+    const { username } = useUser()
     const [leaderboards, setLeaderboars] = useState<leadersboard[]>([]);
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -30,6 +33,10 @@ const Leaderboards = () => {
         };
         getLeaderboards();
     }, []);
+
+    const currentPlayer = leaderboards.find(placement => placement.name === username);
+    const rankCheck = currentPlayer && currentPlayer.ranking <= 5;
+    console.log(rankCheck)
 
 
 
@@ -57,22 +64,37 @@ const Leaderboards = () => {
                     </div>
                 </div>
                 <div className='h-80 overflow-y-auto space-y-4 sm:h-96'>
-                    {leaderboards.map((item) => (
-                        <div key={item.ranking}>
-                            <div className='flex flex-col items-center justify-center'>
-                                <div className='px-6 py-5 border rounded text-l w-full bg-gray-800/60 sm:py-5 sm:w-[40%]'>
-                                    <div className='flex justify-between w-full'>
-                                        <div className='font-bold text-white font-sans'>#{item.ranking}</div>
-                                        <div className='text-white font-sans'>{item.name}</div>
-                                        <div className='text-white font-sans'>{item.points} pts</div>
+                    {leaderboards
+                        .filter(player => player.name !== username)
+                        .map((player) => (
+                            <div key={player.ranking}>
+                                <div className='flex flex-col items-center justify-center'>
+                                    <div className='px-6 py-5 border rounded text-l w-full bg-gray-800/60 sm:py-5 sm:w-[40%]'>
+                                        <div className='flex justify-between w-full'>
+                                            <div className='font-bold text-white font-sans'>#{player.ranking}</div>
+                                            <div className='text-white font-sans'>{player.name}</div>
+                                            <div className='text-white font-sans'>{player.points} pts</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
                 </div>
-            </main>
-        </div>
+                {currentPlayer && (
+                    <div className={`sticky ${rankCheck ? 'top-0' : 'bottom-0'} mt-1`}>
+                        <div className='flex flex-col items-center justify-center'>
+                            <div className='px-6 py-5 border rounded text-l w-full bg-gray-800/60 sm:py-5 sm:w-[40%]'>
+                                <div className='flex justify-between w-full'>
+                                    <div className='font-bold text-white font-sans'>#{currentPlayer.ranking}</div>
+                                    <div className='text-white font-sans'>{currentPlayer.name}</div>
+                                    <div className='text-white font-sans'>{currentPlayer.points} pts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </main >
+        </div >
     )
 }
 
