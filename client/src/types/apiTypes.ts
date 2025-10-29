@@ -32,3 +32,9 @@ export type wastpage = {
     wasteTypes: wastetypes[],
     recyclingMethods: recyclingmethod[],
 }
+
+export type leaderboard = {
+    ranking: number,
+    name: string,
+    points: number
+}
