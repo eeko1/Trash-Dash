@@ -72,6 +72,18 @@ router.get('/wastepages/:id', async (req: Request, res: Response) => {
     }
 }); 
 
+router.get('/wastepages/:id/:types', async (req: Request, res: Response) => {
+    try {
+        const lang = req.query.lang;
+        const types = req.query.types;
+        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-pages/${req.params.id}?search=${types}&lang=${lang}`, {headers});
+        res.json(response.data)
+    } catch (error) {
+        console.error('Error fetching search results:', error);
+        throw error;
+    }
+}); 
+
 router.get('/leaderboards', async (eq: Request, res: Response) => {
     try {
         const data = await LeaderboardModel.find().sort({ points: -1 });

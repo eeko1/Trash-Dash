@@ -31,7 +31,6 @@ const Trashle = () => {
                         fetchData<{ hits: recyclingmethod[] }>(
                             `${baseUrl}/recyclingmethods?lang=${lang}`)
                         ]);
-      
                 const combineData = [...wasteType.hits, ...recyclingMethods.hits]
                 const filteredSolution = combineData.filter(item => {
                     const solution = item.title;
