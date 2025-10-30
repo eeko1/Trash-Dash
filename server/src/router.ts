@@ -29,7 +29,7 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
 router.get('/wastetypes/:types', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const types = req.query.types;
+        const types = req.params.types;
         const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`, {headers});
         res.json(response.data)
     } catch (error) {
@@ -54,7 +54,7 @@ router.get('/recyclingmethods', async (req: Request, res: Response) => {
 router.get('/recyclingmethods/:method', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const method = req.query.method
+        const method = req.params.method
         const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?search=${method}&lang=${lang}`, {headers});
         res.json(response.data)
     } catch (error) {   
@@ -79,9 +79,9 @@ router.get('/wastepages', async (req: Request, res: Response) => {
 router.get('/search/:q/:wastetype/:recyclingMethod', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const q = req.query.q;
-        const recyclingMethod = req.query.recyclingMethod
-        const wastetype = req.query.wastetype
+        const q = req.params.q;
+        const recyclingMethod = req.params.recyclingMethod
+        const wastetype = req.params.wastetype
         const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?q=${q}&lang=${lang}&wasteType%5B%5D=${wastetype}&recyclingMethod%5B%5D=${recyclingMethod}&includeSynonyms=true `, {headers});
         res.json(response.data)
     } catch (error) {
