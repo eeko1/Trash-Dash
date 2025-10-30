@@ -76,10 +76,13 @@ router.get('/wastepages', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/search', async (req: Request, res: Response) => {
+router.get('/search/:q/:wastetype/:recyclingMethod', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
-        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?lang=${lang}`, {headers});
+        const q = req.query.q;
+        const recyclingMethod = req.query.recyclingMethod
+        const wastetype = req.query.wastetype
+        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?q=${q}&lang=${lang}&wasteType%5B%5D=${wastetype}&recyclingMethod%5B%5D=${recyclingMethod}&includeSynonyms=true `, {headers});
         res.json(response.data)
     } catch (error) {
         console.error('Error fetching search results:', error);
