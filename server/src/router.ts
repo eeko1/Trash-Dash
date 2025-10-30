@@ -27,7 +27,7 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
 });
 
 router.get('/wastetypes/:types', async (req: Request, res: Response) => {
-    try {x§
+    try {
         const lang = req.query.lang;
         const types = req.query.types;
         const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`, {headers});
