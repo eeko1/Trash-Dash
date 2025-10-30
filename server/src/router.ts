@@ -26,6 +26,19 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/wastetypes/:types', async (req: Request, res: Response) => {
+    try {
+        const lang = req.query.lang;
+        const types = req.query.types;
+        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`, {headers});
+        res.json(response.data)
+    } catch (error) {
+        console.error('Error fetching search results:', error);
+        throw error;
+    }
+}); 
+
+
 router.get('/recyclingmethods', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
@@ -65,18 +78,6 @@ router.get('/wastepages/:id', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
         const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`, {headers});
-        res.json(response.data)
-    } catch (error) {
-        console.error('Error fetching search results:', error);
-        throw error;
-    }
-}); 
-
-router.get('/wastepages/:id/:types', async (req: Request, res: Response) => {
-    try {
-        const lang = req.query.lang;
-        const types = req.query.types;
-        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-pages/${req.params.id}?search=${types}&lang=${lang}`, {headers});
         res.json(response.data)
     } catch (error) {
         console.error('Error fetching search results:', error);
