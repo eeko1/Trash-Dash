@@ -27,7 +27,7 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
 });
 
 router.get('/wastetypes/:types', async (req: Request, res: Response) => {
-    try {
+    try {x§
         const lang = req.query.lang;
         const types = req.query.types;
         const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`, {headers});
@@ -43,6 +43,19 @@ router.get('/recyclingmethods', async (req: Request, res: Response) => {
     try {
         const lang = req.query.lang;
         const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?lang=${lang}`, {headers});
+        res.json(response.data)
+    } catch (error) {   
+        console.error('Error fetching recycling methods:', error);
+        throw error;
+    }
+});
+
+
+router.get('/recyclingmethods/:method', async (req: Request, res: Response) => {
+    try {
+        const lang = req.query.lang;
+        const method = req.query.method
+        const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?search=${method}&lang=${lang}`, {headers});
         res.json(response.data)
     } catch (error) {   
         console.error('Error fetching recycling methods:', error);
