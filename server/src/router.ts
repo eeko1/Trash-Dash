@@ -1,25 +1,52 @@
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
 import axios from 'axios';
-import { wastetypes, wastpage, searchResult, recyclingmethod } from './types/apiTypes';
+import {
+    wastetypes,
+    wastpage,
+    searchResult,
+    recyclingmethod,
+} from './types/apiTypes';
 import { LeaderboardModel } from './models/Leaderboard';
 
-
 import dotenv from 'dotenv';
-dotenv.config(); 
+dotenv.config();
 
 const router = express.Router();
 const API_BASE_URL = process.env.url;
 const headers = {
-    'client_id': process.env.client_id,
-    'client_secret': process.env.client_secret
-}
+    client_id: process.env.client_id,
+    client_secret: process.env.client_secret,
+};
 
+
+const search = async(req: Request, res: Response) =>{
+        try {
+            const { lang } = req.query;
+            const { q, wastetype = '', recyclingMethod = '' } = req.params;
+            const params = new URLSearchParams({
+                q,
+                lang: lang as string,
+                includeSynonyms: 'true',
+            });
+            if (wastetype) params.append('wasteType[]', wastetype as string);
+            if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
+            const apiUrl = `${API_BASE_URL}/search?${params.toString()}`;
+            const response = await axios.get<searchResult[]>(apiUrl, { headers });
+            res.json(response.data);
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+            throw error;
+        }
+    }
 
 router.get('/wastetypes', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
-        const response = await axios.get<wastetypes[]>(`${API_BASE_URL}/waste-types?lang=${lang}`, {headers});
-        res.json(response.data)
+        const { lang } = req.query;
+        const response = await axios.get<wastetypes[]>(
+            `${API_BASE_URL}/waste-types?lang=${lang}`,
+            { headers }
+        );
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching waste types:', error);
         throw error;
@@ -28,78 +55,79 @@ router.get('/wastetypes', async (req: Request, res: Response) => {
 
 router.get('/wastetypes/:types', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
-        const types = req.params.types;
-        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`, {headers});
-        res.json(response.data)
+        const { lang } = req.query;
+        const { types } = req.params;
+        const response = await axios.get<wastpage>(
+            `${API_BASE_URL}/waste-types?search=${types}&lang=${lang}`,
+            { headers }
+        );
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching search results:', error);
         throw error;
     }
-}); 
-
+});
 
 router.get('/recyclingmethods', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
-        const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?lang=${lang}`, {headers});
-        res.json(response.data)
-    } catch (error) {   
+        const { lang } = req.query;
+        const response = await axios.get<recyclingmethod[]>(
+            `${API_BASE_URL}/recycling-methods?lang=${lang}`,
+            { headers }
+        );
+        res.json(response.data);
+    } catch (error) {
         console.error('Error fetching recycling methods:', error);
         throw error;
     }
 });
-
 
 router.get('/recyclingmethods/:method', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
-        const method = req.params.method
-        const response = await axios.get<recyclingmethod[]>(`${API_BASE_URL}/recycling-methods?search=${method}&lang=${lang}`, {headers});
-        res.json(response.data)
-    } catch (error) {   
+        const { lang } = req.query;
+        const { method } = req.params;
+        const response = await axios.get<recyclingmethod[]>(
+            `${API_BASE_URL}/recycling-methods?search=${method}&lang=${lang}`,
+            { headers }
+        );
+        res.json(response.data);
+    } catch (error) {
         console.error('Error fetching recycling methods:', error);
         throw error;
     }
 });
 
-
 router.get('/wastepages', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
+        const { lang } = req.query;
         const page = req.query.page || 1;
-        const response = await axios.get<wastpage[]>(`${API_BASE_URL}/waste-pages?lang=${lang}&page=${page}`, { headers });
-        res.json(response.data)
+        const response = await axios.get<wastpage[]>(
+            `${API_BASE_URL}/waste-pages?lang=${lang}&page=${page}`,
+            { headers }
+        );
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching waste pages:', error);
         throw error;
     }
 });
 
-router.get('/search/:q/:wastetype/:recyclingMethod', async (req: Request, res: Response) => {
+['/search/:q', '/search/:q/:wastetype', '/search/:q/:wastetype/:recyclingMethod']
+  .forEach(path => router.get(path, search));
+
+router.get('/wastepages/:id', async (req: Request, res: Response) => {
     try {
-        const lang = req.query.lang;
-        const q = req.params.q;
-        const recyclingMethod = req.params.recyclingMethod
-        const wastetype = req.params.wastetype
-        const response = await axios.get<searchResult[]>(`${API_BASE_URL}/search?q=${q}&lang=${lang}&wasteType%5B%5D=${wastetype}&recyclingMethod%5B%5D=${recyclingMethod}&includeSynonyms=true `, {headers});
-        res.json(response.data)
+        const { lang } = req.query;
+        const response = await axios.get<wastpage>(
+            `${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`,
+            { headers }
+        );
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching search results:', error);
         throw error;
     }
 });
-
-router.get('/wastepages/:id', async (req: Request, res: Response) => {
-    try {
-        const lang = req.query.lang;
-        const response = await axios.get<wastpage>(`${API_BASE_URL}/waste-pages/${req.params.id}?lang=${lang}`, {headers});
-        res.json(response.data)
-    } catch (error) {
-        console.error('Error fetching search results:', error);
-        throw error;
-    }
-}); 
 
 router.get('/leaderboards', async (eq: Request, res: Response) => {
     try {
@@ -115,7 +143,5 @@ router.get('/leaderboards', async (eq: Request, res: Response) => {
         res.status(500).json({ error: 'Failed to fetch leaderboards' });
     }
 });
-
-
 
 export default router;

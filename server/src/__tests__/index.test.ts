@@ -18,7 +18,7 @@ describe('API Routes', () => {
   });
    describe('GET /wastetypes/:types', () => {
     it('should return waste types', async () => {
-      const response = await request(app).get('/wastetypes/plastic?lang=en');
+      const response = await request(app).get('/wastetypes/search=plastic?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
@@ -32,7 +32,7 @@ describe('API Routes', () => {
   });
     describe('GET /recyclingmethods/:method', () => {
     it('should return waste types', async () => {
-      const response = await request(app).get('/recyclingmethods/Pharmacy?lang=en');
+      const response = await request(app).get('/recyclingmethods/search=Pharmacy?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
@@ -45,15 +45,26 @@ describe('API Routes', () => {
     });
   });
   describe('GET /wastepages/:id', () => {
-    it('should return waste types', async () => {
+    it('works with both optional params', async () => {
       const response = await request(app).get('/wastepages/409?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
   });
+
   describe('GET /search/:q/:wastetype/:recyclingMethod', () => {
     it('should return waste types', async () => {
-      const response = await request(app).get('/search/plastic/181/178?lang=en');
+      const response = await request(app).get('/search/plastic?lang=en&wasteType=181&recyclingMethod=178');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+      it('works with only recyclingMethod', async () => {
+      const response = await request(app).get('/search/plastic?lang=en&recyclingMethod=178');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+      it('works with only wasteType', async () => {
+      const response = await request(app).get('/search/plastic?lang=en&wasteType=181');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
