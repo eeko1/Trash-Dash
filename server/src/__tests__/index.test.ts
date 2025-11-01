@@ -16,7 +16,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
     });
   });
-   describe('GET /wastetypes/:types', () => {
+  describe('GET /wastetypes/:types', () => {
     it('should return waste types', async () => {
       const response = await request(app).get('/wastetypes/search=plastic?lang=en');
       console.log(response.body)
@@ -30,7 +30,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
     });
   });
-    describe('GET /recyclingmethods/:method', () => {
+  describe('GET /recyclingmethods/:method', () => {
     it('should return waste types', async () => {
       const response = await request(app).get('/recyclingmethods/search=Pharmacy?lang=en');
       console.log(response.body)
@@ -44,6 +44,7 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
     });
   });
+
   describe('GET /wastepages/:id', () => {
     it('works with both optional params', async () => {
       const response = await request(app).get('/wastepages/409?lang=en');
@@ -52,19 +53,47 @@ describe('API Routes', () => {
     });
   });
 
-  describe('GET /search/:q/:wastetype/:recyclingMethod', () => {
+  describe('GET /SearchWastepages', () => {
+    it('should return waste types', async () => {
+      const response = await request(app).get('/SearchWastepages?search=Plastic&lang=en&wasteType=222&recyclingMethod=170');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+    it('works with only recyclingMethod and search word', async () => {
+      const response = await request(app).get('/SearchWastepages?search=Plastic&lang=en&recyclingMethod=170');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+    it('works with only wasteType and search word', async () => {
+      const response = await request(app).get('/SearchWastepages?search=Plastic&lang=en&wasteType=222');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+    it('works with only search word ', async () => {
+      const response = await request(app).get('/SearchWastepages?search=Plastic&lang=en');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+  });
+
+  describe('GET /search/:q', () => {
     it('should return waste types', async () => {
       const response = await request(app).get('/search/plastic?lang=en&wasteType=181&recyclingMethod=178');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
-      it('works with only recyclingMethod', async () => {
+    it('works with only recyclingMethod and search word', async () => {
       const response = await request(app).get('/search/plastic?lang=en&recyclingMethod=178');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
-      it('works with only wasteType', async () => {
+    it('works with only wasteType and search word', async () => {
       const response = await request(app).get('/search/plastic?lang=en&wasteType=181');
+      console.log(response.body)
+      expect(response.status).toBe(200);
+    });
+    it('works with only search word ', async () => {
+      const response = await request(app).get('/search/plastic?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
