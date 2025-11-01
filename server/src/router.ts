@@ -103,6 +103,7 @@ router.get('/search/:q', async (req: Request, res: Response) => {
         if (wasteType) params.append('wasteType[]', wasteType as string);
         if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
         const apiUrl = `${API_BASE_URL}/search?${params.toString()}`;
+        console.log(apiUrl)
         const response = await axios.get<searchResult[]>(apiUrl, { headers });
         res.json(response.data);
     } catch (error) {
@@ -111,7 +112,25 @@ router.get('/search/:q', async (req: Request, res: Response) => {
     }
 });
 
-
+router.get('/wastepages/:search', async (req: Request, res: Response) => {
+    console.log('✅ Route hit:', req.params, req.query);
+    try {
+        const { search } = req.params;
+        const { lang, wasteType, recyclingMethod } = req.query;
+        const params = new URLSearchParams({
+            search,
+            lang: lang as string,
+        });
+        if (wasteType) params.append('wasteType[]', wasteType as string);
+        if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
+        const apiUrl = `${API_BASE_URL}/waste-pages?${params.toString()}`;
+        const response = await axios.get<wastpage[]>(apiUrl, { headers });
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching search results:', error);
+        throw error;
+    }
+});
 
 router.get('/wastepages/:id', async (req: Request, res: Response) => {
     try {
@@ -127,24 +146,6 @@ router.get('/wastepages/:id', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/SearchWastepages', async (req: Request, res: Response) => {
-    try {
-        const { lang, wasteType, recyclingMethod, search } = req.query;
-        const params = new URLSearchParams({
-            search: search as string,
-            lang: lang as string,
-        });
-        if (wasteType) params.append('wasteType[]', wasteType as string);
-        if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
-        const apiUrl = `${API_BASE_URL}/waste-pages?${params.toString()}`;
-        console.log(apiUrl)
-        const response = await axios.get<wastpage[]>(apiUrl, { headers });
-        res.json(response.data);
-    } catch (error) {
-        console.error('Error fetching search results:', error);
-        throw error;
-    }
-});
 
 router.get('/leaderboards', async (eq: Request, res: Response) => {
     try {
