@@ -8,34 +8,6 @@ type SpecificWasteProps = {
     id: number;
 };
 
-
-/* const mockWastePages: wastpage[] = [
-    {
-        id: 1,
-        title: 'Plastic Bottle',
-        synonyms: ['PET Bottle', 'Water Bottle'],
-        notes: 'Rinse before recycling.',
-        additionalInfo: 'Accepted in most curbside programs.',
-        wasteTypes: [],
-        recyclingMethods: [
-            {
-                id: 101,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            },
-            {
-                id: 102,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            }
-        ]
-    }
-];
- */
 const SpecificWaste = ({ id }: SpecificWasteProps) => {
     const [wastePage, setWastePage] = useState<wastpage>();
     const [error, setError] = useState<string | null>(null);
@@ -54,19 +26,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
         };
         getSpecificWaste();
     }, [lang, id]);
-    /* 
-          useEffect(() => {
-               const baseUrl = process.env.REACT_APP_SERVER || '';
-               fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`)
-                      .then(data => setWastePage(data))
-            .catch(err => setError(err.message));
-           }, [lang, id]);  */
-
-    /*    useEffect(() => {
-           setWastePage(mockWastePages);
-       }, []); */
-
-
+   
     if (error) return <div className='text-red-600'>{error}</div>;
     if (!wastePage) return null;
 

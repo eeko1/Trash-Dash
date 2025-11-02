@@ -8,59 +8,6 @@ import { useTranslation } from 'react-i18next';
 import LanguageSelector from '../components/LanguageSelector';
 
 
-
-/* const mockWastePages: wastpage[] = [
-    {
-        id: 1,
-        title: 'Plastic Bottle',
-        synonyms: ['PET Bottle', 'Water Bottle'],
-        notes: 'Rinse before recycling.',
-        additionalInfo: 'Accepted in most curbside programs.',
-        wasteTypes: [],
-        recyclingMethods: [
-            {
-                id: 101,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            },
-            {
-                id: 102,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            }
-        ]
-    },
-    {
-        id: 2,
-        title: 'Class Bottle',
-        synonyms: ['PET Bottle', 'Water Bottle'],
-        notes: 'Rinse before recycling.',
-        additionalInfo: 'Accepted in most curbside programs.',
-        wasteTypes: [],
-        recyclingMethods: [
-            {
-                id: 101,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            },
-            {
-                id: 102,
-                title: 'Curbside Recycling',
-                description: 'Place in the recycling bin after rinsing.',
-                infoPageUrl: 'https://example.com/plastic-recycling',
-                isFree: true
-            }
-        ]
-    },
-
-]; */
-
 const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -91,25 +38,6 @@ const WasteTypesList = () => {
         };
         getWastePages();
     }, [lang, page]);
-
-    /* 
-        useEffect(() => {
-            const baseUrl = process.env.REACT_APP_SERVER || '';
-            fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`)
-                .then(data => {
-                    console.log('Fetched wastePages:', data);
-                    setWastePages(data.hits);
-                    setSelectedId(null); 
-                })
-                .catch(err => setError(err.message));
-        }, [lang, page]); */
-
-
-
-    /*  useEffect(() => {
-         setWastePages(mockWastePages);
-     }, []); */
-
 
     const navigate = useNavigate();
 

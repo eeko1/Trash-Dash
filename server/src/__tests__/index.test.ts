@@ -21,7 +21,7 @@ describe('API Routes', () => {
       const response = await request(app).get('/wastetypes/search=plastic?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
-    });
+    }); 
   });
   describe('GET /recyclingmethods', () => {
     it('should return recycling gmethods', async () => {
