@@ -103,7 +103,6 @@ router.get('/search/:q', async (req: Request, res: Response) => {
         if (wasteType) params.append('wasteType[]', wasteType as string);
         if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
         const apiUrl = `${API_BASE_URL}/search?${params.toString()}`;
-        console.log(apiUrl)
         const response = await axios.get<searchResult[]>(apiUrl, { headers });
         res.json(response.data);
     } catch (error) {

@@ -9,7 +9,7 @@ const app = express();
 app.use('/', router);
 
 describe('API Routes', () => {
-  describe('GET /wastetypes', () => {
+   describe('GET /wastetypes', () => {
     it('should return waste types', async () => {
       const response = await request(app).get('/wastetypes?lang=en');
       console.log(response.body)
@@ -51,26 +51,26 @@ describe('API Routes', () => {
       console.log(response.body)
       expect(response.status).toBe(200);
     });
-  }); 
+  });  
 
   describe('GET /wastepages/search/:search', () => {
     it('should return search result', async () => {
-      const response = await request(app).get('/wastepages/Plastic?lang=en&wasteType=222&recyclingMethod=170');
+      const response = await request(app).get('/wastepages/search/Plastic?lang=en&wasteType=222&recyclingMethod=170');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
     it('works with only recyclingMethod and search word', async () => {
-      const response = await request(app).get('/wastepages/Plastic?lang=en&recyclingMethod=170');
+      const response = await request(app).get('/wastepages/search/Plastic?lang=en&recyclingMethod=170');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
     it('works with only wasteType and search word', async () => {
-      const response = await request(app).get('/wastepages/Plastic?lang=en&wasteType=222');
+      const response = await request(app).get('/wastepages/search/Plastic?lang=en&wasteType=222');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
     it('works with only search word ', async () => {
-      const response = await request(app).get('/wastepages/Plastic?lang=en');
+      const response = await request(app).get('/wastepages/search/Plastic?lang=en');
       console.log(response.body)
       expect(response.status).toBe(200);
     });
@@ -97,5 +97,5 @@ describe('API Routes', () => {
       console.log(response.body)
       expect(response.status).toBe(200);
     });
-  }); 
+  });  
 });
