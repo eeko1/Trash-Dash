@@ -53,7 +53,7 @@ describe('API Routes', () => {
     });
   }); 
 
-  describe('GET /wastepages/:search', () => {
+  describe('GET /wastepages/search/:search', () => {
     it('should return search result', async () => {
       const response = await request(app).get('/wastepages/Plastic?lang=en&wasteType=222&recyclingMethod=170');
       console.log(response.body)
