@@ -112,7 +112,7 @@ router.get('/search/:q', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/wastepages/:search', async (req: Request, res: Response) => {
+router.get('/wastepages/search/:search', async (req: Request, res: Response) => {
     console.log('✅ Route hit:', req.params, req.query);
     try {
         const { search } = req.params;
@@ -133,6 +133,7 @@ router.get('/wastepages/:search', async (req: Request, res: Response) => {
 });
 
 router.get('/wastepages/:id', async (req: Request, res: Response) => {
+    console.log('single wastepage id route hit');
     try {
         const { lang } = req.query;
         const response = await axios.get<wastpage>(
