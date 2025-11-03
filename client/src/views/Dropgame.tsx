@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DropGameEnd from '../components/DropgameEnd';
+import { useTranslation } from 'react-i18next';
 
 // Define item types
 type ItemCategory = 'Bio' | 'Cardboard' | 'Glass' | 'Metal';
@@ -25,6 +26,7 @@ interface MistakeData {
 }
 
 const DropGame: React.FC = () => {
+  const { t } = useTranslation();
   // Mobile detection
   const [isMobile, setIsMobile] = useState<boolean>(false);
   
@@ -395,8 +397,8 @@ const DropGame: React.FC = () => {
       {!isGameOver ? (
         <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-main_light_turquoise to-main_medium_turquoise">
           <div className="mb-4 flex justify-between w-full" style={{ maxWidth: gameWidth }}>
-            <div className="text-xl font-bold">Score: {score}</div>
-            <div className="text-xl font-bold text-red-500">Missed: {missed}</div>
+            <div className="text-xl font-bold">{t('Score')}: {score}</div>
+            <div className="text-xl font-bold text-red-500">{t('Missed')}: {missed}</div>
           </div>
           
           <div 
@@ -468,7 +470,7 @@ const DropGame: React.FC = () => {
           
           {!isMobile && (
             <div className="mt-4 text-gray-600">
-              Use ← → arrow keys or A/D to move
+              {t('Use ← → arrow keys or A/D to move')}
             </div>
           )}
 
@@ -491,7 +493,7 @@ const DropGame: React.FC = () => {
                   />
                 </div>
                 <div className={`mt-1 bg-gray-300 px-1.5 py-0.5 rounded ${isMobile ? 'text-[10px]' : 'text-xs'} font-medium`}>
-                  {isMobile ? binCategories[binNum] : `${binNum} - ${binCategories[binNum]}`}
+                  {isMobile ? t(binCategories[binNum]) : `${binNum} - ${t(binCategories[binNum])}`}
                 </div>
               </div>
             ))}
@@ -499,7 +501,7 @@ const DropGame: React.FC = () => {
           
           {/* Game instructions - adjusted for mobile */}
           <div className={`mt-4 ${isMobile ? 'text-xs' : 'text-sm'} text-gray-600 max-w-md text-center`}>
-            {isMobile ? 'Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.' : 'Select the correct bin for each item type! Wrong bins count as misses.'}
+            {isMobile ? `${t('Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.')}` : `${t('Select the correct bin for each item type! Wrong bins count as misses')}`}
           </div>
         </div>
       ) : (
