@@ -40,11 +40,6 @@ const PickTheGame = () => {
               >
                 Waste Drop
               </button>
-                    <button className='w-full py-6 bg-gray-800/60 text-white font-sans rounded text-xl font-bold hover:bg-gray-800/80 sm:py-8 sm:w-1/2'
-                onClick={() => navigate('/Recydle')}
-              >
-                Recydle
-              </button>
             </div>
           </div>
         </div>

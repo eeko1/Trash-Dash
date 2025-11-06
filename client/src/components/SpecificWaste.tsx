@@ -23,7 +23,7 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
             } catch (err) {
                 console.error(err);
             }
-        };
+        };  
         getSpecificWaste();
     }, [lang, id]);
    

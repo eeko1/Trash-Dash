@@ -40,6 +40,11 @@ const Home = () => {
             >
               {t('practice')}
             </button>
+             <button className='w-full py-3 bg-gray-800/60 text-white rounded font-sans hover:bg-gray-800/80 sm:py-4'
+              onClick={() => navigate('/Recydle')}
+            >
+              {t('Daily Recydle')}
+            </button>
             <button className='w-full py-3 bg-gray-800/60 text-white rounded font-sans hover:bg-gray-800/80 sm:py-4'
               onClick={() => navigate('/Leaderboard')}
             >
