@@ -24,7 +24,7 @@ const WasteTypesList = () => {
             try {
                 const data = await fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`);
                 console.log(data.hits.length)
-                if (data.hits.length === 0){
+                if (data.hits.length === 0) {
                     setIsLastPage(true)
                     if (page > 1) setPage((p) => p - 1);
                     return;
