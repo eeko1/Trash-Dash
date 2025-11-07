@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from '../components/LanguageSelector';
+import WasteSearchBar from '../components/WasteSearchBar';
 
 
 const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [results, setResults] = React.useState<wastpage[]>([]);
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const [page, setPage] = useState(1);
     const [isLastPage, setIsLastPage] = useState(false);
@@ -23,7 +25,6 @@ const WasteTypesList = () => {
         const getWastePages = async () => {
             try {
                 const data = await fetchData<{ hits: wastpage[] }>(`${baseUrl}/wastepages?lang=${lang}&page=${page}`);
-                console.log(data.hits.length)
                 if (data.hits.length === 0) {
                     setIsLastPage(true)
                     if (page > 1) setPage((p) => p - 1);
@@ -39,10 +40,15 @@ const WasteTypesList = () => {
         getWastePages();
     }, [lang, page]);
 
+
+    const handleSearchResults = (hits: wastpage[]) => {
+        setResults(hits);
+    };
+
     const navigate = useNavigate();
 
     if (error) return <div className='text-red-600'>{error}</div>;
-
+    
     return (
         <div className='flex flex-col min-h-screen'>
             <div className='bg-white border-b border-gray-200'>
@@ -57,6 +63,7 @@ const WasteTypesList = () => {
             <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
                 <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
                 <div className='flex flex-col items-center'>
+                    <WasteSearchBar onSearch={handleSearchResults} />
                     <div className='flex space-x-2 mb-4'>
                         <button
                             className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'

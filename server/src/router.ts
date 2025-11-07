@@ -123,8 +123,8 @@ router.get('/wastepages/search/:search', async (req: Request, res: Response) => 
         if (wasteType) params.append('wasteType[]', wasteType as string);
         if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
         const apiUrl = `${API_BASE_URL}/waste-pages?${params.toString()}`;
-        const response = await axios.get<wastpage[]>(apiUrl, { headers });
-        res.json(response.data);
+       const response = await axios.get<wastpage[]>(apiUrl, { headers });
+        res.json(response.data); 
     } catch (error) {
         console.error('Error fetching search results:', error);
         throw error;

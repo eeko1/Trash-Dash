@@ -38,3 +38,7 @@ export type leaderboard = {
     name: string,
     points: number
 }
+
+export type WasteSearchBarProps = {
+  onSearch?: (results: wastpage[]) => void;
+};
