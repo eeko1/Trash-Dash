@@ -50,19 +50,20 @@ const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {
 
 
     return (
-        <div className="flex items-center justify-center h-12 w-full mx-auto p-2">
-            <form onSubmit={handleSearch} className="flex items-center justify-center h-12 w-full max-w-md mx-auto">
+        <div className="flex flex-wrap gap-2 items-center justify-center w-full mx-auto p-2">
+            <form onSubmit={handleSearch} className="flex flex-wrap gap-2 items-center justify-center w-full max-w-3xl mx-auto">
                 <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search for..."
-                    className="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    className="flex-1 min-w-[150px] border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 <select
                     value={selectedMethod}
                     onChange={(e) => setSelectedMethod(e.target.value)}
+                    className='flex-1 min-w-[150px] p-2 m-1'
                 >
-                    <option value="">-- Select a type --</option>
+                    <option value="">Select methond</option>
                     {methods.map((method) => (
                         <option key={method.id} value={method.id}>
                             {method.title}
@@ -72,8 +73,9 @@ const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {
                 <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
+                    className='flex-1 min-w-[150px] p-2 m-1'
                 >
-                    <option value="">-- Select a type --</option>
+                    <option value="">Select type</option>
                     {types.map((type) => (
                         <option key={type.id} value={type.id}>
                             {type.title}
@@ -82,7 +84,7 @@ const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {
                 </select>
                 <button
                     type="submit"
-                    className="bg-teal-600 text-white px-4 rounded-r-lg hover:bg-teal-700 transition"
+                    className="bg-teal-600 text-white p-2 rounded hover:bg-main_dark_turquoise transition"
                 >
                     Search
                 </button>
