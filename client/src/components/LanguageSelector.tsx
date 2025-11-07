@@ -4,23 +4,22 @@ const LanguageSelector = () => {
   const { i18n } = useTranslation();
 
   return (
-    <div className='flex space-x-2 self-end mt-4 mb-2 px-4'>
-      <span
-        className={`cursor-pointer text-l px-2 py-2 ${i18n.language === 'fi' ? 'bg-main_medium_turquoise rounded' : 'hover:bg-main_medium_turquoise/50 rounded'}`}
-        onClick={() => i18n.changeLanguage('fi')}
-        title='Suomi'
-      >FI</span>
-      <span
-        className={`cursor-pointer text-l px-2 py-2 ${i18n.language === 'en' ? 'bg-main_medium_turquoise rounded' : 'hover:bg-main_medium_turquoise/50 rounded'}`}
-        onClick={() => i18n.changeLanguage('en')}
-        title='English'
-      >EN</span>
-      <span
-        className={`cursor-pointer text-l px-2 py-2  ${i18n.language === 'sv' ? 'bg-main_medium_turquoise rounded' : 'hover:bg-main_medium_turquoise/50 rounded'}`}
-        onClick={() => i18n.changeLanguage('sv')}
-        title='Svenska'
-      >SV</span>
-    </div>
+   <div className='flex space-x-2 self-end mt-4 mb-2 px-4'>
+  {['fi', 'en', 'sv'].map((lang) => (
+    <button
+      key={lang}
+      className={`px-2 py-2 text-l ${
+        i18n.language === lang
+          ? 'bg-main_medium_turquoise rounded'
+          : 'hover:bg-main_medium_turquoise/50 rounded'
+      }`}
+      onClick={() => i18n.changeLanguage(lang)}
+      title={lang.toUpperCase()}
+    >
+      {lang.toUpperCase()}
+    </button>
+  ))}
+</div>
   );
 };
 

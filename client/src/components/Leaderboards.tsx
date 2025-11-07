@@ -33,9 +33,13 @@ const Leaderboards = () => {
         <div className='flex flex-col min-h-screen'>
             <div className='bg-white border-b border-gray-200'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-                    <div className='cursor-pointer' onClick={() => navigate('/')} title='Go to Home'>
+                    <button
+                        className='cursor-pointer bg-transparent border-none p-0'
+                        onClick={() => navigate('/')}
+                        title='Go to Home'
+                    >
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
-                    </div>
+                    </button>
                     <LanguageSelector />
                 </div>
             </div>

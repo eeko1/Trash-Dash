@@ -44,6 +44,8 @@ const WasteTypesList = () => {
         setResults(hits);
     };
 
+    const showWastes = results.length === 0 ? wasteTypes : results;
+
     const navigate = useNavigate();
 
     if (error) return <div className='text-red-600'>{error}</div>;
@@ -52,22 +54,23 @@ const WasteTypesList = () => {
         <div className='flex flex-col min-h-screen'>
             <div className='bg-white border-b border-gray-200'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-                    <div
-                        className='cursor-pointer'
+                    <button
+                        className='cursor-pointer bg-transparent border-none p-0'
                         onClick={() => navigate('/')}
                         title='Go to Home'
                     >
                         <VscIndent className='rotate-180 text-5xl text-gray-800' />
-                    </div>
+                    </button>
                     <LanguageSelector />
                 </div>
             </div>
 
-            <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
-                <div className='mb-6 w-full h-40 bg-gray-500 sm:h-96' />
+            <div className='w-full h-40 bg-gray-500 sm:h-96' />
+            <main className='bg-main_medium_turquoise flex-grow flex flex-col w-full items-center p-4'>
                 <WasteSearchBar onSearch={handleSearchResults} />
                 <div className='flex flex-col items-center'>
                     <div className='flex space-x-2 mb-4'>
+
                         <button
                             className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'
                             onClick={() => setPage((page) => Math.max(page - 1, 1))}
@@ -84,8 +87,9 @@ const WasteTypesList = () => {
                             Next
                         </button>
                     </div>
-                    <div className='grid grid-cols-2 gap-4 w-full max-w-xl mx-auto overflow-auto h-80 sm:grid-cols-2 sm:h-96'>
-                        {wasteTypes.map((waste) => (
+                    <div className={`grid gap-4 w-full mx-auto overflow-auto h-80 sm:h-96
+    ${showWastes.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+                        {showWastes.map((waste) => (
                             <button
                                 key={waste.id}
                                 className='py-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition hover:bg-gray-800/80 sm:py-8'
