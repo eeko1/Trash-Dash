@@ -45,7 +45,7 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
 
   const submitWord = useCallback(() => {
     if (currentGuess.length !== wordLength) {
-      showToast('not enough pylons')
+      showToast('not eneogh letters')
       return;
     }
     setGuessesCallback([...guesses, currentGuess]);

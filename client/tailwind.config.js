@@ -29,7 +29,26 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'Arial', 'sans-serif'],
       },
+       animation: {
+      flip: 'flip 1.1s ease-in forwards',
+      jump: 'jump 1s',
     },
+    keyframes: {
+      flip: {
+        '0%': { transform: 'rotateX(0deg)' },
+        '50%': { transform: 'rotateX(90deg)' },
+        '100%': { transform: 'rotateX(0deg)' },
+      },
+      jump: {
+        '0%, 20%': { transform: 'translateY(0)' },
+        '40%': { transform: 'translateY(-30px)' },
+        '50%': { transform: 'translateY(5px)' },
+        '60%': { transform: 'translateY(-15px)' },
+        '80%': { transform: 'translateY(2px)' },
+        '100%': { transform: 'translateY(0)' },
+      },
+    },
+  },
   },
   plugins: [],
 }
