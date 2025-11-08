@@ -51,8 +51,9 @@ export const Tile = ({ letter, state, id, jump }: tileProps) => {
 
 
     return (
-        <div
-            className={`
+        <div className='perspective: 500px'>
+            <div
+                className={`
     border border-gray-500 
     w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16
     flex items-center justify-center 
@@ -62,12 +63,13 @@ export const Tile = ({ letter, state, id, jump }: tileProps) => {
     ${state !== 'default' ? 'animate-flip' : ''}
     transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden]
   `}
-            style={{
-                animationDelay: state !== 'default' ? `${animationDelay}ms` : undefined,
-                transitionDelay: `${animationDelay + 300}ms`, 
-            }}
-        >
-            {letter}
+                style={{
+                    animationDelay: state !== 'default' ? `${animationDelay}ms` : undefined,
+                    transitionDelay: `${animationDelay + 300}ms`,
+                }}
+            >
+                {letter}
+            </div>
         </div>
     );
 };
