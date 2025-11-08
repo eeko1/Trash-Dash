@@ -20,13 +20,15 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
             try {
                 const data = await fetchData<wastpage>(`${baseUrl}/wastepages/${id}?lang=${lang}`);
                 setWastePage(data);
+                setError(null)
             } catch (err) {
-                console.error(err);
+                if (err instanceof Error) setError(err.message);
+                else setError("Failed to load waste page.");
             }
-        };  
+        };
         getSpecificWaste();
     }, [lang, id]);
-   
+
     if (error) return <div className='text-red-600'>{error}</div>;
     if (!wastePage) return null;
 

@@ -33,8 +33,10 @@ const WasteTypesList = () => {
                 setWastePages(data.hits);
                 setIsLastPage(false);
                 setSelectedId(null);
+                setError(null)
             } catch (err) {
-                console.error(err);
+                if (err instanceof Error) setError(err.message);
+                else setError("Failed to load waste pages.");
             }
         };
         getWastePages();
