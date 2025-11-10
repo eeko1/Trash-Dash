@@ -101,7 +101,8 @@ router.get('/search/:q', async (req: Request, res: Response) => {
             includeSynonyms: 'true',
         });
         if (wasteType) params.append('wasteType[]', wasteType as string);
-        if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
+        if (recyclingMethod)
+            params.append('recyclingMethod[]', recyclingMethod as string);
         const apiUrl = `${API_BASE_URL}/search?${params.toString()}`;
         const response = await axios.get<searchResult[]>(apiUrl, { headers });
         res.json(response.data);
@@ -111,25 +112,29 @@ router.get('/search/:q', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/wastepages/search/:search', async (req: Request, res: Response) => {
-    console.log('✅ Route hit:', req.params, req.query);
-    try {
-        const { search } = req.params;
-        const { lang, wasteType, recyclingMethod } = req.query;
-        const params = new URLSearchParams({
-            search,
-            lang: lang as string,
-        });
-        if (wasteType) params.append('wasteType[]', wasteType as string);
-        if (recyclingMethod) params.append('recyclingMethod[]', recyclingMethod as string);
-        const apiUrl = `${API_BASE_URL}/waste-pages?${params.toString()}`;
-       const response = await axios.get<wastpage[]>(apiUrl, { headers });
-        res.json(response.data); 
-    } catch (error) {
-        console.error('Error fetching search results:', error);
-        throw error;
+router.get(
+    '/wastepages/search/:search',
+    async (req: Request, res: Response) => {
+        console.log('✅ Route hit:', req.params, req.query);
+        try {
+            const { search } = req.params;
+            const { lang, wasteType, recyclingMethod } = req.query;
+            const params = new URLSearchParams({
+                search,
+                lang: lang as string,
+            });
+            if (wasteType) params.append('wasteType[]', wasteType as string);
+            if (recyclingMethod)
+                params.append('recyclingMethod[]', recyclingMethod as string);
+            const apiUrl = `${API_BASE_URL}/waste-pages?${params.toString()}`;
+            const response = await axios.get<wastpage[]>(apiUrl, { headers });
+            res.json(response.data);
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+            throw error;
+        }
     }
-});
+);
 
 router.get('/wastepages/:id', async (req: Request, res: Response) => {
     console.log('single wastepage id route hit');
@@ -146,8 +151,8 @@ router.get('/wastepages/:id', async (req: Request, res: Response) => {
     }
 });
 
-
-router.get('/leaderboards', async (eq: Request, res: Response) => {
+router.get('/leaderboards', async (req: Request, res: Response) => {
+    console.log('leaderboards get route hit');
     try {
         const data = await LeaderboardModel.find().sort({ points: -1 });
         const leaderboards = data.map((item, idx) => ({
@@ -159,6 +164,27 @@ router.get('/leaderboards', async (eq: Request, res: Response) => {
     } catch (error) {
         console.error('Error fetching leaderboards:', error);
         res.status(500).json({ error: 'Failed to fetch leaderboards' });
+    }
+});
+
+router.post('/leaderboards', async (req: Request, res: Response) => {
+    console.log('leaderboards post route hit');
+    try {
+        const { username, points } = req.body;
+
+        if (username == null || points == null) {
+            return res.status(400).json({ error: 'Username and points are missing' });
+        }
+
+        const leaderboardEntry = new LeaderboardModel({
+            username,
+            points
+        })
+        await leaderboardEntry.save()
+
+    } catch (error) {
+        console.error('Error posting in leaderboards:', error);
+        res.status(500).json({ error: 'Failed to post leaderboards' });
     }
 });
 
