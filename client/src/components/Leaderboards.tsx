@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
-import { fetchData } from '../lib/utils';
-import LanguageSelector from '../components/LanguageSelector';
-import { useUser } from '../contexts/UserContext';
-import { leaderboard } from '../types/apiTypes';
+import { fetchData } from 'lib/utils';
+import LanguageSelector from 'components/LanguageSelector';
+import { useUser } from 'contexts/UserContext';
+import { leaderboard } from 'types/apiTypes';
 
 
 const Leaderboards = () => {
@@ -76,7 +76,7 @@ const Leaderboards = () => {
                         </div>
                     </div>
                 </div>
-                <div className='relative h-[350px] overflow-y-auto space-y-4 sm:h-[350px]'>
+                <div className='relative h-[225px] overflow-y-auto space-y-4 sm:h-[225px]'>
                     {leaderboards
                         /*.filter(player => player.name !== username) */
                         .map((player) => (
@@ -94,6 +94,9 @@ const Leaderboards = () => {
                         ))}
                 </div>
             </main >
+            <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
+                <div className='max-w-screen-xl mx-auto text-center'>&copy; 2025 HSY. All rights reserved.</div>
+            </footer>
         </div >
     )
 }

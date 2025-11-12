@@ -1,4 +1,4 @@
-import { LetterState } from '../types/recydleTypes';
+import { LetterState } from 'types/recydleTypes';
 
 
 export const replaceCharAtIndex = (

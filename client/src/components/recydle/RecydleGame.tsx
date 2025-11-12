@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Backspace, Enter, Game_Rounds } from '../../data/constants'
+import { Backspace, Enter, Game_Rounds } from 'data/constants'
 import { KeyPad } from './Keypad'
 import { RecydleRow } from './RecydleRow'
-import { getTileStates } from '../../utils/getTilesState';
-import { useCurrentGuessReducer } from '../../hooks/useCurrentGuess';
+import { getTileStates } from 'utils/getTilesState';
+import { useCurrentGuessReducer } from 'hooks/useCurrentGuess';
 import {
   getStoredGameState,
   setStoredGameState,
-} from '../../utils/gameStorage';
-import { LetterState, solutionProps } from '../../types/recydleTypes';
+} from 'utils/gameStorage';
+import { LetterState, solutionProps } from 'types/recydleTypes';
 import RecydleEnd from './RecydleEnd';
 import { useTranslation } from 'react-i18next';
 

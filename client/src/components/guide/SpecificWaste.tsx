@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { wastpage, recyclingmethod } from '../types/apiTypes';
-import { fetchData } from '../lib/utils';
+import { wastpage, recyclingmethod } from 'types/apiTypes';
+import { fetchData } from 'lib/utils';
 import { useTranslation } from 'react-i18next';
 
 
@@ -34,10 +34,18 @@ const SpecificWaste = ({ id }: SpecificWasteProps) => {
 
     return (
         <div key={wastePage.id} className='p-4 rounded'>
-            <h2 className='text-2xl font-bold font-sans mb-2'>{wastePage.title}</h2>
-            <p className='mb-2 text-black-700 font-sans'><strong>{t('additional info')}:</strong> {wastePage.additionalInfo}</p>
+            <h2 className='text-center text-2xl font-bold font-sans mb-2'>{wastePage.title}</h2>
+            {wastePage.additionalInfo && wastePage.additionalInfo.length > 0 && (
+                <div className='mb-4'>
+                 <p className='text-black-700 font-sans'><strong>{t('additional info')}:</strong></p>
+                  <p className='text-gray-700 font-sans'>{wastePage.additionalInfo}</p>
+                 </div>
+            )}
             {wastePage.synonyms && wastePage.synonyms.length > 0 && (
-                <p className='mb-2 text-black-700 font-sans'><strong>{t('synonyms')}:</strong> {wastePage.synonyms.join(', ')}</p>
+                <div className='mb-4'>
+                <p className='text-black-700 font-sans'><strong>{t('synonyms')}:</strong></p>
+                <p className='text-gray-700 font-sans'> {wastePage.synonyms.join(', ')}</p>
+                </div>
             )}
             {wastePage.recyclingMethods && wastePage.recyclingMethods.length > 0 && (
                 <>

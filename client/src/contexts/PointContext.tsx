@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { fetchData } from '../lib/utils';
+import { fetchData } from 'lib/utils';
 import { useUser } from './UserContext';
 
 

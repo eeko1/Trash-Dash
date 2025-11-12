@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from '../lib/utils';
-import SpecificWaste from '../components/SpecificWaste';
-import { wastpage } from '../types/apiTypes';
+import { fetchData } from 'lib/utils';
+import SpecificWaste from 'components/guide/SpecificWaste';
+import { wastpage } from 'types/apiTypes';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
-import LanguageSelector from '../components/LanguageSelector';
-import WasteSearchBar from '../components/WasteSearchBar';
+import LanguageSelector from 'components/LanguageSelector';
+import WasteSearchBar from 'components/guide/WasteSearchBar';
 
 const WasteTypesList = () => {
     const [wasteTypes, setWastePages] = useState<wastpage[]>([]);

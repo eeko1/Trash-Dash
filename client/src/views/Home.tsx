@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../contexts/UserContext';
-import LanguageSelector from '../components/LanguageSelector';
+import { useUser } from 'contexts/UserContext';
+import LanguageSelector from 'components/LanguageSelector';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {

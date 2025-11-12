@@ -1,4 +1,4 @@
-import { keyPadProps, keyProps } from '../../types/recydleTypes';
+import { keyPadProps, keyProps } from 'types/recydleTypes';
 
 const Rows = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'å'],

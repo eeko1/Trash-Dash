@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { recyclingmethod, WasteSearchBarProps, wastetypes, wastpage } from '../types/apiTypes';
-import { fetchData } from '../lib/utils';
+import { recyclingmethod, WasteSearchBarProps, wastetypes, wastpage } from 'types/apiTypes';
+import { fetchData } from 'lib/utils';
 import { useTranslation } from 'react-i18next';
 
 const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {

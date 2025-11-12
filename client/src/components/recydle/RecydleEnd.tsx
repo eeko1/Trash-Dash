@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { recydleEndProp } from '../../types/recydleTypes';
+import { recydleEndProp } from 'types/recydleTypes';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 

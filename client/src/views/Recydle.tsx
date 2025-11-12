@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { recyclingmethod, wastetypes } from '../types/apiTypes';
-import { fetchData } from '../lib/utils';
+import { recyclingmethod, wastetypes } from 'types/apiTypes';
+import { fetchData } from 'lib/utils';
 import { useTranslation } from 'react-i18next';
-import RecydleGame from '../components/recydle/RecydleGame';
-import RecydleGuide from '../components/recydle/RecydleGuide';
+import RecydleGame from 'components/recydle/RecydleGame';
+import RecydleGuide from 'components/recydle/RecydleGuide';
 
 const Trashle = () => {
     const [solution, setSolution] = useState<string | undefined>();

@@ -1,8 +1,8 @@
-import { useUser } from '../contexts/UserContext';
+import { useUser } from 'contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
-import LanguageSelector from '../components/LanguageSelector';
+import LanguageSelector from 'components/LanguageSelector';
 
 
 const PickTheGame = () => {
