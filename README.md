@@ -25,6 +25,8 @@ Backend:http://localhost:5000/
 ## Project Structure
 
 ### Backend Structure
+
+```
 server/
 ├── jest.config.ts
 ├── package-lock.json
@@ -40,8 +42,11 @@ server/
 │       ├── apiTypes.ts
 │       └── MessageTypes.ts
 └── tsconfig.json
+```
 
 ### Frontend Structure
+
+```
 client/
 ├── package-lock.json
 ├── package.json
@@ -113,3 +118,4 @@ client/
 │       └── Trashorsmash.tsx
 ├── tailwind.config.js
 └── tsconfig.json
+```
