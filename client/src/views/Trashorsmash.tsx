@@ -72,9 +72,9 @@ const Trashorsmash = () => {
           <div className="relative w-full flex justify-between items-center mb-4 px-4">
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('left')}
-              label="Biowaste"
-              imageUrl="/assets/food-waste-bin.png"
-              altText="Biowaste Bin"
+              label="Mixwaste"
+              imageUrl="/assets/mix-waste.png" 
+              altText="Mixwaste Bin"
               bgColorClasses="bg-support_red"
             />
 
@@ -89,9 +89,9 @@ const Trashorsmash = () => {
 
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('right')}
-              label="Plastic"
-              imageUrl="/assets/recycle-trash-bin-plastic-icon.jpg"
-              altText="Plastic Bin"
+              label="Metalwaste"
+              imageUrl="/assets/metal-waste.png"
+              altText="Metalwaste Bin"
               bgColorClasses="bg-support_medium_green"
             />
           </div>
