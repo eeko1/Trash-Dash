@@ -18,8 +18,9 @@
 
 By default:
 
-Frontend:http://localhost:3000/
-Backend:http://localhost:5000/
+Frontend: `http://localhost:3000/`  
+Backend: `http://localhost:5000/`
+
 
 
 ## Project Structure
