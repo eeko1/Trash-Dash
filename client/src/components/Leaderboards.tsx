@@ -32,7 +32,7 @@ const Leaderboards = () => {
     return (
         <div className='flex flex-col min-h-screen'>
             <div className='bg-white border-b border-gray-200'>
-                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2'>
                     <button
                         className='cursor-pointer bg-transparent border-none p-0'
                         onClick={() => navigate('/')}

@@ -55,7 +55,7 @@ const WasteTypesList = () => {
     return (
         <div className='flex flex-col min-h-screen'>
             <div className='bg-white border-b border-gray-200'>
-                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2'>
                     <button
                         className='cursor-pointer bg-transparent border-none p-0'
                         onClick={() => navigate('/')}
@@ -71,24 +71,6 @@ const WasteTypesList = () => {
             <main className='bg-main_medium_turquoise flex-grow flex flex-col w-full items-center p-4'>
                 <WasteSearchBar onSearch={handleSearchResults} />
                 <div className='flex flex-col items-center'>
-                    <div className='flex space-x-2 mb-4'>
-
-                        <button
-                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'
-                            onClick={() => setPage((page) => Math.max(page - 1, 1))}
-                            disabled={page === 1}
-                        >
-                            Prev
-                        </button>
-                        <span className='px-4 py-2'>{page}</span>
-                        <button
-                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80'
-                            onClick={() => setPage((page) => page + 1)}
-                            disabled={isLastPage}
-                        >
-                            Next
-                        </button>
-                    </div>
                     <div className={`grid gap-4 w-full mx-auto overflow-auto h-80 sm:h-96
     ${showWastes.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                         {showWastes.map((waste) => (
@@ -115,6 +97,23 @@ const WasteTypesList = () => {
                         </div>
                     </div>
                 )}
+                <div className='flex space-x-2 mt-3'>
+                        <button
+                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'
+                            onClick={() => setPage((page) => Math.max(page - 1, 1))}
+                            disabled={page === 1}
+                        >
+                            Prev
+                        </button>
+                        <span className='px-4 py-2'>{page}</span>
+                        <button
+                            className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80'
+                            onClick={() => setPage((page) => page + 1)}
+                            disabled={isLastPage}
+                        >
+                            Next
+                        </button>
+                    </div>
             </main>
             <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
                 <div className='max-w-screen-xl mx-auto text-center'>

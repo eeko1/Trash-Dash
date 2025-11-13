@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className='flex flex-col min-h-screen'>
       <div className='bg-white border-b border-gray-200'>
-        <div className='max-w-screen-xl flex flex-wrap items-center mx-auto p-4'>
+        <div className='max-w-screen-xl flex flex-wrap items-center mx-auto p-2'>
           <div className='ml-auto'>
             <LanguageSelector />
           </div>

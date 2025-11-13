@@ -27,7 +27,7 @@ const PickTheGame = () => {
       </div>
 
       <div className='w-full h-40 bg-gray-500 sm:h-96' />
-      <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
+      <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-2'>
         <div className='flex flex-col items-center w-full  rounded'>
           <h2 className='text-4xl font-extrabold text-black-700 font-sans mb-4 tracking-wide'>
             {t('Pick the game')}
