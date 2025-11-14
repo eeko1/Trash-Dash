@@ -17,7 +17,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProp
 
     useEffect(() => {
   if (search.trim()) {
-    handleSearch(undefined, page); // run search whenever page changes
+    handleSearch(undefined, page);
   }
 }, [page]);
 
@@ -39,8 +39,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProp
     const handleSearch = async (e?: React.FormEvent, page = 1) => {
         if (e) e.preventDefault();
         if (!search.trim()) return;
-        console.log(page)
-
+     
         const baseUrl = process.env.REACT_APP_SERVER;
         const searchParams = new URLSearchParams();
         searchParams.append('lang', lang);

@@ -19,6 +19,8 @@ const WasteTypesList = () => {
     const { i18n } = useTranslation();
     const lang = i18n.language;
 
+     const navigate = useNavigate();
+
     useEffect(() => {
         if (isSearching) return;
         const baseUrl = process.env.REACT_APP_SERVER;
@@ -44,22 +46,21 @@ const WasteTypesList = () => {
         getWastePages();
     }, [lang, page, isSearching]);
 
-    const handlePageChange = (newPage: number) => {
-        setPage(newPage);
-    };
-
     const handleSearchResults = (hits: wastpage[],
         page: number) => {
         setPage(page)
         setResults(hits);
         setIsSearching(true);
-        setIsLastPage(hits.length === 0);
+        if (hits.length === 0) {
+            setIsLastPage(true);
+            if (page > 1) setPage((p) => p - 1);
+            return;
+        }
+        setIsLastPage(false);
     }
 
     const showWastes = results.length === 0 ? wasteTypes : results;
 
-
-    const navigate = useNavigate();
 
     if (error) return <div className='text-red-600'>{error}</div>;
 
@@ -78,13 +79,13 @@ const WasteTypesList = () => {
                 </div>
             </div>
 
-            <div className='w-full h-40 bg-gray-500 sm:h-96' />
+            <div className='w-full h-36 bg-gray-500 sm:h-72' />
             <main className='bg-main_medium_turquoise flex-grow flex flex-col w-full items-center p-4'>
                 <WasteSearchBar
                     onSearch={handleSearchResults}
-                    page={page} 
+                    page={page}
                 />
-                <div className='flex flex-col items-center'>
+                <div className='flex flex-col items-center pt-1'>
                     <div className={`grid gap-4 w-full mx-auto overflow-auto h-80 sm:h-96
     ${showWastes.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                         {showWastes.map((waste) => (
