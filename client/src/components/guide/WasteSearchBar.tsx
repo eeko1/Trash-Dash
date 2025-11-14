@@ -3,15 +3,23 @@ import { recyclingmethod, WasteSearchBarProps, wastetypes, wastpage } from 'type
 import { fetchData } from 'lib/utils';
 import { useTranslation } from 'react-i18next';
 
-const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {
+const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProps) => {
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult] = useState<wastpage[]>([]);
+    const [isLastPage, setIsLastPage] = useState(false);
+    const [searchPage, setSearchPage] = useState(1);
     const [methods, setMethods] = useState<recyclingmethod[]>([]);
     const [selectedMethod, setSelectedMethod] = useState<string>('');
     const [types, setTypes] = useState<wastetypes[]>([]);
     const [selectedType, setSelectedType] = useState<string>('');
     const { i18n } = useTranslation();
     const lang = i18n.language;
+
+    useEffect(() => {
+  if (search.trim()) {
+    handleSearch(undefined, page); // run search whenever page changes
+  }
+}, [page]);
 
     useEffect(() => {
         const fetchOptionals = async () => {
@@ -27,20 +35,28 @@ const WasteSearchBar = ({ onSearch }: WasteSearchBarProps) => {
         fetchOptionals();
     }, [lang]);
 
-    const handleSearch = async (e: React.FormEvent) => {
-        e.preventDefault();
+
+    const handleSearch = async (e?: React.FormEvent, page = 1) => {
+        if (e) e.preventDefault();
         if (!search.trim()) return;
+        console.log(page)
+
         const baseUrl = process.env.REACT_APP_SERVER;
         const searchParams = new URLSearchParams();
         searchParams.append('lang', lang);
+        searchParams.append('page', page.toString());
         if (selectedType) searchParams.append('wasteType', selectedType);
         if (selectedMethod) searchParams.append('recyclingMethod', selectedMethod);
+
         try {
             const url = `${baseUrl}/wastepages/search/${search}?${searchParams.toString()}`;
             const res = await fetchData<{ hits: wastpage[] }>(url);
             setSearchResult(res.hits);
+            setSearchPage(page);
+            setIsLastPage(res.hits.length === 0);
+
             if (onSearch) {
-                onSearch(res.hits);
+                onSearch(res.hits, page);
             }
         } catch (err) {
             console.error('Error fetching search results:', err);
