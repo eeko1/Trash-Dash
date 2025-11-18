@@ -21,6 +21,8 @@ const WasteTypesList = () => {
 
     const navigate = useNavigate();
 
+
+
     useEffect(() => {
         if (isSearching) return;
         const baseUrl = process.env.REACT_APP_SERVER;
@@ -80,17 +82,17 @@ const WasteTypesList = () => {
             </div>
 
             <div className='w-full h-36 bg-gray-500 sm:h-72' />
-            <main className='bg-main_medium_turquoise flex-grow flex flex-col w-full items-center p-4'>
+            <main className='bg-main_medium_turquoise flex flex-col flex-grow  w-full items-center p-4'>
                 <WasteSearchBar
                     onSearch={handleSearchResults}
                     page={page}
                 />
-                <div className='flex flex-col items-center pt-1'>
-                    <div className={showWastes.length === 1 ? 'flex flex-col justify-center w-full mx-auto overflow-auto h-80 sm:h-96' : 'grid grid-cols-2 gap-4 w-full mx-auto overflow-auto h-80 sm:h-96'}>
+                <div className='flex flex-col max-h-[40vh] items-center pt-1'>
+                    <div className={showWastes.length === 1 ? 'flex flex-col justify-center w-full mx-auto overflow-auto' : 'grid grid-cols-2 gap-4 w-full mx-auto overflow-auto'}>
                         {showWastes.map((waste) => (
                             <button
-                                key={waste.id}
-                                className='p-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition hover:bg-gray-800/80 sm:py-8'
+                                key={waste.id}  
+                                className='p-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition break-words hover:bg-gray-800/80 sm:py-8'
                                 onClick={() => setSelectedId(waste.id)}
                             >
                                 {waste.title}
@@ -113,12 +115,12 @@ const WasteTypesList = () => {
                         </div>
                     )
                 }
-                <div className='flex space-x-2 mt-3'>
+                    <div className='flex space-x-2 mt-3'>
                     <button
                         className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80 disabled:opacity-50'
                         onClick={() => setPage((page) => Math.max(page - 1, 1))}
                         disabled={page === 1}
-                    >
+                        >
                         Prev
                     </button>
                     <span className='px-4 py-2'>{page}</span>
@@ -126,7 +128,7 @@ const WasteTypesList = () => {
                         className='px-4 py-2 bg-gray-800/60 text-white rounded hover:bg-gray-800/80'
                         onClick={() => setPage((page) => page + 1)}
                         disabled={isLastPage}
-                    >
+                        >
                         Next
                     </button>
                 </div>
