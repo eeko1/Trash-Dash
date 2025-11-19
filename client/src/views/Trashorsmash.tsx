@@ -72,9 +72,9 @@ const Trashorsmash = () => {
           <div className="relative w-full flex justify-between items-center mb-4 px-4">
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('left')}
-              label="Mixwaste"
+              label="Mixedwaste"
               imageUrl="/assets/mix-waste.png" 
-              altText="Mixwaste Bin"
+              altText="Mixedwaste Bin"
               bgColorClasses="bg-support_red"
             />
 

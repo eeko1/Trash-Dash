@@ -1,14 +1,39 @@
 import { useNavigate } from "react-router-dom";
+import RecyclingInfoDialog from "./TrashorsmashMistakes";
+import { useState } from "react";
+
+interface WrongAnswerItem {
+  name: string;
+  image: string;
+  correctType: string;
+}
 
 interface EndScreenProps {
   score: number;
-  wrongAnswers: { name: string; image: string; correctType: string }[];
+  wrongAnswers: WrongAnswerItem[];
   onRestart: () => void;
 }
 
+// Define the types of recycling info we can display
+type RecyclingType = "Metal" | "Mixed" | null;
+
 const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
   const navigate = useNavigate();
+  
+  // 1. State to control the visibility and content of the dialog
+  const [dialogContent, setDialogContent] = 
+    useState<RecyclingType>(null); // State for the currently displayed info type
 
+  // 2. Function to open the dialog with specific content
+  const openDialog = (type: RecyclingType) => {
+    setDialogContent(type);
+  };
+
+  // 3. Function to close the dialog
+  const closeDialog = () => {
+    setDialogContent(null);
+  };
+  
   return (
     <div className="bg-main_medium_turquoise min-h-screen flex flex-col items-center justify-center text-white font-sans p-6">
       <div className="bg-main_dark_turquoise border border-main_black rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center">
@@ -17,10 +42,11 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
           Your Score: <span className="text-support_yellow">{score} / 5</span>
         </p>
 
+        {/* --- Wrong Answers Section --- */}
         {wrongAnswers.length > 0 ? (
           <div className="space-y-3 mb-6">
             <p className="text-lg font-bold text-support_light_red">You got these wrong:</p>
-            {wrongAnswers.map((item, i) => (
+            {wrongAnswers.map((item: WrongAnswerItem, i: number) => (
               <div key={i} className="flex items-center gap-3 bg-main_dark_turquoise p-3 rounded-lg">
                 <img
                   src={item.image}
@@ -41,7 +67,25 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
             You got everything correct! You are a recycling pro!
           </p>
         )}
+        
+        {/* --- New Recycling Info Buttons --- */}
+        <div className="flex justify-center gap-4 mb-8">
+            <button
+              onClick={() => openDialog("Mixed")}
+              className="bg-support_light_green text-main_dark_turquoise font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap"
+            >
+              Recycling Mixed Waste
+            </button>
+            <button
+              onClick={() => openDialog("Metal")}
+              className="bg-support_yellow text-main_dark_turquoise font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap"
+            >
+              Recycling Metal Waste
+            </button>
+        </div>
+        {/* --- End of New Buttons --- */}
 
+        {/* --- Game Control Buttons --- */}
         <div className="flex flex-col items-center gap-4 mt-4">
           <button
             onClick={onRestart}
@@ -58,6 +102,14 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
           </button>
         </div>
       </div>
+
+      {/* 4. Render the Dialog if dialogContent is not null */}
+      {dialogContent && (
+        <RecyclingInfoDialog
+          title={dialogContent}
+          onClose={closeDialog}
+        />
+      )}
     </div>
   );
 };
