@@ -1,7 +1,14 @@
 ## Tech Stack
 
 ### Frontend
+- **Framework**: React (18.3.1)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+
 ### Backend
+- **Framework**: Express.js (Node.js)
+- **Language**: TypeScript
+- **Database**: MongoDB
 
 ## Getting Started
 
