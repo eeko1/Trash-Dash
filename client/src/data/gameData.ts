@@ -11,4 +11,9 @@ export const INITIAL_CARDS: Card[] = [
   { id: '3', name: 'Hole Punch', image: '/assets/hole-punch.jpg', type: 'metal' },
   { id: '4', name: 'Air Filter', image: '/assets/air-filter.jpeg', type: 'mixed' },
   { id: '5', name: 'Bike Pump', image: '/assets/bike-pump.png', type: 'metal' },
+  { id: '6', name: 'Enamel Pot', image: '/assets/enamel-pot.jpg', type: 'metal' },
+  { id: '7', name: 'Leather, fur', image: '/assets/leather-fur.jpg', type: 'mixed' },
+  { id: '8', name: 'Polyurethane', image: '/assets/polyurethane.jpg', type: 'mixed' },
+  { id: '9', name: 'Hoe, blade', image: '/assets/hoe-blade.jpg', type: 'metal' },
+  { id: '10', name: 'Knife', image: '/assets/knife.jpg', type: 'metal' },
 ];
