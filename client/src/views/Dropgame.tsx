@@ -36,12 +36,14 @@ const DropGame: React.FC = () => {
   
   // Game state
   const [score, setScore] = useState(0);
-  const [missed, setMissed] = useState(0);
+  const [hearts, setHearts] = useState(5);
   const [playerX, setPlayerX] = useState(300); // Will adjust after dimensions are set
   const [items, setItems] = useState<GameItem[]>([]);
   const [isGameRunning, setIsGameRunning] = useState(true);
   const [lastItemId, setLastItemId] = useState(0);
   const [selectedBin, setSelectedBin] = useState(1); // Default to bin 1 (BinBio.png)
+  const [flashIntensity, setFlashIntensity] = useState(0); // Add flash state
+
 
   // Game over state and mistake tracking
   const [isGameOver, setIsGameOver] = useState(false);
@@ -215,6 +217,24 @@ const DropGame: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isMobile, gameWidth, playerSpeed, playerWidth]);
 
+  // Add effect to fade out the flash of a mistake
+  useEffect(() => {
+    if (flashIntensity > 0) {
+      const fadeInterval = setInterval(() => {
+        setFlashIntensity(prev => {
+          const newIntensity = prev - 0.05;
+          if (newIntensity <= 0) {
+            clearInterval(fadeInterval);
+            return 0;
+          }
+          return newIntensity;
+        });
+      }, 50); // Fade every 50ms
+      
+      return () => clearInterval(fadeInterval);
+    }
+  }, [flashIntensity]);
+
   // Handle touch input for mobile
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isMobile) return;
@@ -344,33 +364,35 @@ const DropGame: React.FC = () => {
       setSpawnRate(prev => Math.max(300, prev - (10 * correctBinItems.length)));
     }
     
-    // Fix the miss counting
+    // Decrease hearts for wrong/missed items
     const totalMissed = wrongBinItems.length + missedItems.length;
-      if (totalMissed > 0) {
-        setMissed(prev => {
-          const newMissed = prev + totalMissed;
-          // Check if game over (5 or more mistakes)
-          if (newMissed >= 5 && isGameRunning) {
-            setIsGameOver(true);
-            setIsGameRunning(false);
-          }
-          return newMissed;
+    if (totalMissed > 0) {
+      setHearts(prev => {
+        const newHearts = prev - totalMissed;
+        if (newHearts <= 0) {
+          setIsGameRunning(false);
+          setIsGameOver(true);
+        }
+        return Math.max(0, newHearts);
+      });
+
+      // Trigger flash effect
+      setFlashIntensity(1);
+      
+      // Update detailed mistake data - increment by the actual counts
+      setMistakeData(prev => {
+        const newData = {
+          missed: prev.missed + missedItems.length,
+          wrongBins: { ...prev.wrongBins }
+        };
+        
+        // Increment each category by the count of wrong items in that category
+        wrongBinItems.forEach(item => {
+          newData.wrongBins[item.category] += 1;
         });
         
-        // Update detailed mistake data
-        setMistakeData(prev => {
-          const newMistakeData = { ...prev };
-          
-          // Update missed count
-          newMistakeData.missed += missedItems.length;
-          
-          // Update wrong bin counts
-          wrongBinItems.forEach(item => {
-            newMistakeData.wrongBins[item.category] += 0.5; // Use 0.5 since we're counting double
-          });
-          
-          return newMistakeData;
-        });
+        return newData;
+      });
       }
       
       return activeItems;
@@ -398,52 +420,77 @@ const DropGame: React.FC = () => {
         <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-main_light_turquoise to-main_medium_turquoise">
           <div className="mb-4 flex justify-between w-full" style={{ maxWidth: gameWidth }}>
             <div className="text-xl font-bold">{t('Score')}: {score}</div>
-            <div className="text-xl font-bold text-red-500">{t('Missed')}: {missed}</div>
-          </div>
-          
-          <div 
-            className="relative bg-blue-100 border-2 border-blue-400 overflow-hidden"
-            style={{ width: gameWidth, height: gameHeight }}
-            onTouchMove={handleTouchMove}
-          >
-            {/* Player - Trash Bin */}
-            <div 
-              className="absolute"
-              style={{
-                width: playerWidth,
-                height: playerHeight,
-                bottom: 0,
-                left: playerX,
-                zIndex: 10
-              }}
-            >
-              <img 
-                src={`/${binImages[selectedBin as keyof typeof binImages]}`} 
-                alt="Trash Bin" 
-                className="w-full h-full object-contain"
-              />
+            {/* Heart display */}
+            <div className="flex items-center space-x-1">
+              {[...Array(5)].map((_, index) => (
+              <span 
+                key={index} 
+                className="text-2xl"
+              >
+                {index < hearts ? '❤️' : '💔'}
+              </span>
+              ))}
             </div>
-            
-            {/* Falling Items with Category Images */}
-            {items.map(item => (
-              <div
-                key={item.id}
+          </div>
+
+          {/* Wrapper for game area with flash effect */}
+          <div 
+            className="relative"
+            style={{
+              boxShadow: flashIntensity > 0 
+                ? `0 0 ${40 * flashIntensity}px ${20 * flashIntensity}px rgba(239, 68, 68, ${flashIntensity * 0.375 }), 
+                   0 0 ${80 * flashIntensity}px ${40 * flashIntensity}px rgba(239, 68, 68, ${flashIntensity * 0.225}), 
+                   0 0 ${120 * flashIntensity}px ${60 * flashIntensity}px rgba(239, 68, 68, ${flashIntensity * 0.10})`
+                : 'none',
+              transition: 'box-shadow 0.05s ease-out',
+              borderRadius: '4px'
+            }}
+          >
+          
+            <div 
+              className="relative bg-blue-100 border-2 border-blue-400 overflow-hidden"
+              style={{ width: gameWidth, height: gameHeight }}
+              onTouchMove={handleTouchMove}
+            >
+              {/* Player - Trash Bin */}
+              <div 
                 className="absolute"
                 style={{
-                  width: itemSize,
-                  height: itemSize,
-                  top: item.y,
-                  left: item.x,
-                  zIndex: 5
+                  width: playerWidth,
+                  height: playerHeight,
+                  bottom: 0,
+                  left: playerX,
+                  zIndex: 10
                 }}
               >
                 <img 
-                  src={`/${itemImages[item.category][item.imageIndex]}`} 
-                  alt={`${item.category} Item`} 
+                  src={`/${binImages[selectedBin as keyof typeof binImages]}`} 
+                  alt="Trash Bin" 
                   className="w-full h-full object-contain"
                 />
               </div>
-            ))}
+              
+              {/* Falling Items with Category Images */}
+              {items.map(item => (
+                <div
+                  key={item.id}
+                  className="absolute"
+                  style={{
+                    width: itemSize,
+                    height: itemSize,
+                    top: item.y,
+                    left: item.x,
+                    zIndex: 5
+                  }}
+                >
+                  <img 
+                    src={`/${itemImages[item.category][item.imageIndex]}`} 
+                    alt={`${item.category} Item`} 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Mobile controls */}

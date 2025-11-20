@@ -27,7 +27,7 @@ const DropGameEnd: React.FC<DropGameEndProps> = ({ score, mistakeData }) => {
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
         <h1 className="text-3xl font-bold text-red-500 mb-2">{t('Game over!')}</h1>
         <div className="mb-8">
-          <p className="text-gray-600 mb-2">{t('You made 5 mistakes')}.</p>
+          <p className="text-gray-600 mb-2">{t('You ran out of lives')}.</p>
           <p className="text-2xl font-bold text-green-600">{t('Final Score')}: {Math.round(score)}</p>
         </div>
         
