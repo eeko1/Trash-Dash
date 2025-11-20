@@ -20,14 +20,14 @@ export const useTrashGame = () => {
     if (gameCards.length === 0) return;
     const card = gameCards[0];
     const isCorrectSwipe =
-      (direction === 'left' && card.type === 'biowaste') ||
-      (direction === 'right' && card.type === 'plastic');
+      (direction === 'left' && card.type === 'mixed') ||
+      (direction === 'right' && card.type === 'metal');
 
     if (isCorrectSwipe) {
       setScore((prevScore) => prevScore + 1);
       setFeedback({ show: true, message: 'Correct!', isCorrect: true });
     } else {
-      const correctBin = card.type === 'biowaste' ? 'Biowaste' : 'Plastic';
+      const correctBin = card.type === 'mixed' ? 'Mixed' : 'Metal';
       setFeedback({ show: true, message: `Oops! That's ${correctBin}.`, isCorrect: false });
       setWrongAnswers((prev) => [...prev, { name: card.name, image: card.image, correctType: correctBin }]);
     }
