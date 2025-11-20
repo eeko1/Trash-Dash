@@ -3,7 +3,7 @@ import { recyclingmethod, WasteSearchBarProps, wastetypes, wastpage } from 'type
 import { fetchData } from 'lib/utils';
 import { useTranslation } from 'react-i18next';
 
-const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProps) => {
+const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: WasteSearchBarProps) => {
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult] = useState<wastpage[]>([]);
     const [isLastPage, setIsLastPage] = useState(false);
@@ -16,10 +16,10 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProp
     const lang = i18n.language;
 
     useEffect(() => {
-  if (search.trim()) {
-    handleSearch(undefined, page);
-  }
-}, [page]);
+        if (search.trim()) {
+            handleSearch(undefined, page);
+        }
+    }, [page]);
 
     useEffect(() => {
         const fetchOptionals = async () => {
@@ -39,7 +39,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProp
     const handleSearch = async (e?: React.FormEvent, page = 1) => {
         if (e) e.preventDefault();
         if (!search.trim()) return;
-     
+
         const baseUrl = process.env.REACT_APP_SERVER;
         const searchParams = new URLSearchParams();
         searchParams.append('lang', lang);
@@ -69,7 +69,14 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange }: WasteSearchBarProp
             <form onSubmit={handleSearch} className="flex flex-wrap gap-2 items-center justify-center w-full max-w-3xl mx-auto">
                 <input
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setSearch(value);
+
+                        if (!value.trim() && onEmptySearch) {
+                            onEmptySearch(); 
+                        }
+                    }}
                     placeholder="Search for..."
                     className="flex-1 min-w-[150px] border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />

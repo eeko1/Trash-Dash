@@ -41,6 +41,7 @@ export type leaderboard = {
 
 export type WasteSearchBarProps = {
     onSearch?: (hits: wastpage[], page: number) => void;
+    onEmptySearch?: () => void;
     page?: number;
     onPageChange?: (newPage: number) => void;
 };
