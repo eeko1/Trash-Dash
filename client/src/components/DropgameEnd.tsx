@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Mistakes from '../components/Mistakes';
 import { useTranslation } from 'react-i18next';
+import { usePlayMode } from 'contexts/PlayContext';
 
 interface MistakeData {
   missed: number;
@@ -20,7 +21,15 @@ interface DropGameEndProps {
 
 const DropGameEnd: React.FC<DropGameEndProps> = ({ score, mistakeData }) => {
   const [showMistakes, setShowMistakes] = useState(false);
-   const { t } = useTranslation();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { isPlayMode, setCurrentGame, setDropGameScore } = usePlayMode();
+
+  const handleNext = () => {
+    setDropGameScore(score);
+    setCurrentGame('trashorsmash');
+  };
+   
   
   return (
     <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gradient-to-b from-main_light_turquoise to-main_medium_turquoise">
@@ -39,17 +48,28 @@ const DropGameEnd: React.FC<DropGameEndProps> = ({ score, mistakeData }) => {
             {t('Show Mistakes')}
           </button>
           
-          <Link to="/">
-            <button className="bg-support_medium_green text-white px-6 py-2 rounded-lg font-semibold hover:bg-support_light_green transition w-full">
-              {t('Return Home')}
+          {isPlayMode ? (
+            <button 
+              onClick={handleNext}
+              className="bg-support_medium_green text-white px-6 py-2 rounded-lg font-semibold hover:bg-support_light_green transition w-full"
+            >
+              {t('Next Game')}
             </button>
-          </Link>
-          
-          <Link to="/PickTheGame">
-            <button className="bg-support_dark_blue text-white px-6 py-2 rounded-lg font-semibold hover:bg-support_light_blue transition w-full">
-              {t('Play Again')}
-            </button>
-          </Link>
+          ) : (
+            <>
+              <Link to="/">
+                <button className="bg-support_medium_green text-white px-6 py-2 rounded-lg font-semibold hover:bg-support_light_green transition w-full">
+                  {t('Return Home')}
+                </button>
+              </Link>
+              
+              <Link to="/PickTheGame">
+                <button className="bg-support_dark_blue text-white px-6 py-2 rounded-lg font-semibold hover:bg-support_light_blue transition w-full">
+                  {t('Play Again')}
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
       

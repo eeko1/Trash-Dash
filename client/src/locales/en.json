@@ -23,7 +23,7 @@
     "Show Mistakes": "Show Mistakes",
     "Return Home": "Return Home",
     "Play Again": "Play Again",
-    "You made 5 mistakes": "You made 5 mistakes",
+    "You ran out of lives": "You ran out of lives",
     "Final Score": "Final Score",
     "Your Mistakes": "Your Mistakes",
     "Missed Items": "Missed Items",
@@ -41,5 +41,13 @@
     "Missed": "Missed",
     "Use ← → arrow keys or A/D to move": "Use ← → arrow keys or A/D to move",
     "Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.": "Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.",
-    "Select the correct bin for each item type! Wrong bins count as misses": "Select the correct bin for each item type! Wrong bins count as misses"
+    "Select the correct bin for each item type! Wrong bins count as misses": "Select the correct bin for each item type! Wrong bins count as misses",
+    "Welcome": "Welcome",
+    "Are you ready to embark on a challenge to test your recycling skills? You will play two games in sequence. Complete both games to see your final score!" : "You will now embark on a challenge to test your recycling skills. You will play two games in sequence. Complete both games to see your final score!",
+    "Start Game": "Start Game",
+    "Return to Main Menu": "Return to Main Menu",
+    "Waste Drop Score": "Waste Drop Score",
+    "Trash or Smash Score": "Trash or Smash Score",
+    "Total Score": "Total Score",
+    "Congratulations!": "Congratulations!"
 }

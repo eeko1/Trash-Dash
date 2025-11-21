@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import RecyclingInfoDialog from "./TrashorsmashMistakes";
 import { useState } from "react";
+import { usePlayMode } from "contexts/PlayContext";
 
 interface WrongAnswerItem {
   name: string;
@@ -18,6 +19,7 @@ type RecyclingType = "Metal" | "Mixed" | null;
 
 const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
   const navigate = useNavigate();
+  const { isPlayMode, setCurrentGame, setTrashOrSmashScore } = usePlayMode();
   
   const [dialogContent, setDialogContent] = 
     useState<RecyclingType>(null);
@@ -28,6 +30,11 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
 
   const closeDialog = () => {
     setDialogContent(null);
+  };
+
+  const handleFinish = () => {
+    setTrashOrSmashScore(score);
+    setCurrentGame('finished');
   };
   
   return (
@@ -79,19 +86,30 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
         </div>
 
         <div className="flex flex-col items-center gap-4 mt-4">
-          <button
-            onClick={onRestart}
-            className="bg-support_dark_blue text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
-          >
-            Play Again
-          </button>
+          {isPlayMode ? (
+            <button
+              onClick={handleFinish}
+              className="bg-support_dark_blue text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
+            >
+              Finish
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={onRestart}
+                className="bg-support_dark_blue text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
+              >
+                Play Again
+              </button>
 
-          <button
-            onClick={() => navigate("/")}
-            className="bg-support_red text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
-          >
-            Main Menu
-          </button>
+              <button
+                onClick={() => navigate("/")}
+                className="bg-support_red text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
+              >
+                Main Menu
+              </button>
+            </>
+          )}
         </div>
       </div>
 

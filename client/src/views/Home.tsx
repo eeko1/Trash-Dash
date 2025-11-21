@@ -2,11 +2,32 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from 'contexts/UserContext';
 import LanguageSelector from 'components/LanguageSelector';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import PlayModeModal from 'components/PlayModeModal';
+import { usePlayMode } from 'contexts/PlayContext';
 
 const Home = () => {
   const { username, setUsername } = useUser();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [showPlayModal, setShowPlayModal] = useState(false);
+  const { setIsPlayMode, setCurrentGame, resetPlayMode } = usePlayMode();
+
+  const handlePlayClick = () => {
+    if (!username.trim()) {
+      alert('Please enter a username first!');
+      return;
+    }
+    setShowPlayModal(true);
+  };
+
+  const handleStartPlay = () => {
+    resetPlayMode();
+    setIsPlayMode(true);
+    setCurrentGame('dropgame');
+    setShowPlayModal(false);
+    navigate('/PlayMode');
+  };
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -32,7 +53,10 @@ const Home = () => {
             className='mb-6 w-full px-4 py-2 border rounded sm:w-[45%]'
           />
           <div className='flex flex-col w-full space-y-4 sm:w-1/2'>
-            <button className='w-full py-3 bg-gray-800/60 text-white rounded font-sans hover:bg-gray-800/80 sm:py-4'>
+            <button 
+              className='w-full py-3 bg-gray-800/60 text-white rounded font-sans hover:bg-gray-800/80 sm:py-4'
+              onClick={handlePlayClick}
+            >
               {t('play')}
             </button>
             <button className='w-full py-3 bg-gray-800/60 text-white rounded font-sans hover:bg-gray-800/80 sm:py-4'
@@ -61,6 +85,13 @@ const Home = () => {
       <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
         <div className='max-w-screen-xl mx-auto text-center'>&copy; 2025 HSY. All rights reserved.</div>
       </footer>
+
+      {showPlayModal && (
+        <PlayModeModal
+          onClose={() => setShowPlayModal(false)}
+          onStartPlay={handleStartPlay}
+        />
+      )}
     </div>
   );
 };

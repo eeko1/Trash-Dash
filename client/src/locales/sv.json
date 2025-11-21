@@ -23,7 +23,7 @@
     "Show Mistakes": "Visa misstag",
     "Return Home": "Återgå till start",
     "Play Again": "Spela igen",
-    "You made 5 mistakes": "Du gjorde fem misstag",
+    "You ran out of lives": "Du har slutat med liv",
     "Final Score": "Slutresultat",
     "Your Mistakes": "Dina misstag",
     "Missed Items": "Missade föremål",
@@ -41,5 +41,13 @@
     "Missed": "Missade",
     "Use ← → arrow keys or A/D to move": "Använd ← → piltangenterna eller A/D för att flytta",
     "Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.": "Tryck på rätt behållare för varje föremålstyp! Piltangenter rekommenderas för att flytta behållaren.",
-    "Select the correct bin for each item type! Wrong bins count as misses": "Välj rätt behållare för varje föremålstyp! Felaktiga behållare räknas som misstag"
+    "Select the correct bin for each item type! Wrong bins count as misses": "Välj rätt behållare för varje föremålstyp! Felaktiga behållare räknas som misstag",
+    "Welcome": "Välkommen",
+    "Are you ready to embark on a challenge to test your recycling skills? You will play two games in sequence. Complete both games to see your final score!" : "Är du redo att anta en utmaning för att testa dina återvinningsfärdigheter? Du kommer att spela två spel i följd. Slutför båda spelen för att se din slutpoäng!",
+    "Start Game": "Starta spelet",
+    "Return to Main Menu": "Återgå till huvudmenyn",
+    "Waste Drop Score": "Waste Drop Poäng",
+    "Trash or Smash Score": "Trash or Smash Poäng",
+    "Total Score": "Totalpoäng",
+    "Congratulations!": "Grattis!"
 }

@@ -23,7 +23,7 @@
   "Show Mistakes": "Näytä virheet",
   "Return Home": "Palaa kotiin",
   "Play Again": "Pelaa uudestaan",
-  "You made 5 mistakes": "Teit viisi virhettä",
+  "You ran out of lives": "Elämäsi loppuivat",
   "Final Score": "Pisteet yhteensä",
   "Your Mistakes": "Virheesi",
   "Missed Items": "Missatut esineet",
@@ -41,5 +41,14 @@
   "Missed": "Virheet",
   "Use ← → arrow keys or A/D to move": "Käytä ← → nuolinäppäimiä tai A/D liikkuaksesi",
   "Tap the correct bin for each item type! Arrow buttons recommended for moving the bin.": "Napauta oikeaa roskista jokaiselle esinetyypille! Nuolinäppäimiä suositellaan roskiksen liikuttamiseen.",
-  "Select the correct bin for each item type! Wrong bins count as misses": "Valitse oikea roskis jokaiselle esinetyypille! Väärät roskikset lasketaan virheiksi"
+  "Select the correct bin for each item type! Wrong bins count as misses": "Valitse oikea roskis jokaiselle esinetyypille! Väärät roskikset lasketaan virheiksi",
+  "Welcome": "Tervetuloa",
+  "Are you ready to embark on a challenge to test your recycling skills? You will play two games in sequence. Complete both games to see your final score!" : "Oletko valmis haastamaan kierrätystaitosi? Pelaat kaksi peliä peräkkäin. Suorita molemmat pelit nähdäksesi lopullisen pistemääräsi!",
+  "Start Game": "Aloita Peli",
+  "Return to Main Menu": "Palaa päävalikkoon",
+  "Waste Drop Score": "Waste Drop Pisteet",
+  "Trash or Smash Score": "Trash or Smash Pisteet",
+  "Total Score": "Kokonaispisteet",
+  "Congratulations!": "Onnittelut!"
+
 }
