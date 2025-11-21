@@ -1,0 +1,139 @@
+openapi: 3.0.0
+info:
+  title: Waste & Recycling API
+  version: 1.1.0
+  description: API documentation with examples for waste types, recycling methods, waste pages, search, and leaderboards.
+
+servers:
+  - url: http://localhost:5000
+
+tags:
+  - name: Waste Types
+  - name: Recycling Methods
+  - name: Waste Pages
+  - name: Search
+  - name: Leaderboards
+
+paths:
+
+  /wastetypes:
+    get:
+      tags: [Waste Types]
+      summary: Get all waste types
+      parameters:
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: "en"
+      responses:
+        200:
+          description: List of waste types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - description
+              example:
+                - id: "plastic"
+                  name: "Plastic"
+                  description: "Common recyclable materials such as bottles and containers."
+                - id: "paper"
+                  name: "Paper"
+                  description: "Newspapers, cardboard, office paper."
+
+  /wastepages:
+    get:
+      tags: [Waste Pages]
+      summary: Get a list of waste pages
+      parameters:
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: "en"
+      responses:
+        200:
+          description: List of waste pages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    lang:
+                      type: string
+                  required:
+                    - id
+                    - title
+                    - content
+              example:
+                - id: "461"
+                  title: "Plastic Recycling"
+                  content: "Information about how to recycle plastic."
+                  lang: "en"
+                - id: "462"
+                  title: "Paper Recycling"
+                  content: "Information about recycling paper products."
+                  lang: "en"
+
+  /wastepages/{id}:
+    get:
+      tags: [Waste Pages]
+      summary: Get a specific waste page
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          example: "461"
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: "en"
+      responses:
+        200:
+          description: Waste page details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  lang:
+                    type: string
+                required:
+                  - id
+                  - title
+                  - content
+              example:
+                id: "461"
+                title: "Plastic Recycling"
+                content: "Information about how to recycle plastic."
+                lang: "en"

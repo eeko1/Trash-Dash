@@ -2,9 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import router from './router';
 import mongoose from 'mongoose';
-import 'dotenv/config'; 
+import 'dotenv/config';
+import loadSwagger from './swagger'; 
 
 const app = express();
+loadSwagger(app);
 const PORT = 5000;
 
 
