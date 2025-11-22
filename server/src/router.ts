@@ -66,7 +66,7 @@ router.get('/recyclingmethods/:method', async (req: Request, res: Response) => {
         const { lang } = req.query;
         const { method } = req.params;
         const response = await axios.get<recyclingmethod[]>(
-            `${API_BASE_URL}/recycling-methods?search=${method}&lang=${lang}`,
+            `${API_BASE_URL}/recycling-methods?lang=${lang}&search=${method}`,
             { headers }
         );
         res.json(response.data);

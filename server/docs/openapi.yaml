@@ -9,13 +9,11 @@ servers:
 
 tags:
   - name: Waste Types
-  - name: Recycling Methods
   - name: Waste Pages
-  - name: Search
+  - name: Recycling Methods
   - name: Leaderboards
 
 paths:
-
   /wastetypes:
     get:
       tags: [Waste Types]
@@ -25,7 +23,7 @@ paths:
           name: lang
           schema:
             type: string
-          example: "en"
+          example: 'en'
       responses:
         200:
           description: List of waste types
@@ -47,12 +45,53 @@ paths:
                     - name
                     - description
               example:
-                - id: "plastic"
-                  name: "Plastic"
-                  description: "Common recyclable materials such as bottles and containers."
-                - id: "paper"
-                  name: "Paper"
-                  description: "Newspapers, cardboard, office paper."
+                - id: 'plastic'
+                  name: 'Plastic'
+                  description: 'Common recyclable materials such as bottles and containers.'
+                - id: 'paper'
+                  name: 'Paper'
+                  description: 'Newspapers, cardboard, office paper.'
+
+  /wastetypes/{type}:
+    get:
+      tags: [Waste Types]
+      summary: Get a specific waste type
+      parameters:
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+          example: 'plastic'
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: 'en'
+      responses:
+        200:
+          description: specific waste type
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - description
+              example:
+                - id: 'plastic'
+                  name: 'Plastic'
+                  description: 'Common recyclable materials such as bottles and containers.'
 
   /wastepages:
     get:
@@ -63,7 +102,7 @@ paths:
           name: lang
           schema:
             type: string
-          example: "en"
+          example: 'en'
       responses:
         200:
           description: List of waste pages
@@ -80,21 +119,17 @@ paths:
                       type: string
                     content:
                       type: string
-                    lang:
-                      type: string
                   required:
                     - id
                     - title
                     - content
               example:
-                - id: "461"
-                  title: "Plastic Recycling"
-                  content: "Information about how to recycle plastic."
-                  lang: "en"
-                - id: "462"
-                  title: "Paper Recycling"
-                  content: "Information about recycling paper products."
-                  lang: "en"
+              - id: '461'
+                title: 'Plastic Recycling'
+                content: 'Information about how to recycle plastic.'
+              - id: '462'
+                title: 'Paper Recycling'
+                content: 'Information about recycling paper products.'
 
   /wastepages/{id}:
     get:
@@ -106,15 +141,73 @@ paths:
           required: true
           schema:
             type: string
-          example: "461"
+          example: '461'
         - in: query
           name: lang
           schema:
             type: string
-          example: "en"
+          example: 'en'
       responses:
         200:
           description: Waste page details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                required:
+                  - id
+                  - title
+                  - content
+              example:
+                id: '461'
+                title: 'Plastic Recycling'
+                content: 'Information about how to recycle plastic.'
+
+  /wastepages/search/{search}:
+    get:
+      tags: [Waste Pages]
+      summary: Get a specific waste page
+      parameters:
+        - in: path
+          name: search
+          required: true
+          schema:
+            type: string
+          example: 'poster'
+        - in: query
+          name: lang
+          required: true
+          schema:
+            type: string
+          example: 'en'
+
+        - in: query  
+          name: wasteType
+          schema:
+            type: string
+          example: '192'
+
+        - in: query
+          name: recyclingMethod
+          schema:
+            type: string
+          example: '157'
+
+        - in: query
+          name: page
+          schema:
+            type: string
+          example: '1'
+      responses:
+        200:
+          description: Waste page search result
           content:
             application/json:
               schema:
@@ -132,8 +225,129 @@ paths:
                   - id
                   - title
                   - content
+
+  /recyclingmethods:
+    get:
+      tags: [Recycling Methods]
+      summary: Get a list of recycling methonds
+      parameters:
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: en
+      responses:
+        200':
+          description: List of recycle methods
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    isFree:
+                      type: boolean
+                    infoPageUrl:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - description
+                    - isFree
+                    - infoPageUrl
               example:
-                id: "461"
-                title: "Plastic Recycling"
-                content: "Information about how to recycle plastic."
-                lang: "en"
+
+
+
+  /recyclingmethods/{method}:
+    get:
+      tags: [Recycling Methods]
+      summary: Get a specific recycling method
+      parameters:
+        - in: path
+          name: method
+          required: true
+          schema:
+            type: string
+          example: 'pharmacy'
+        - in: query
+          name: lang
+          schema:
+            type: string
+          example: 'en'
+      responses:
+        200:
+          description: specific recycling method
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    isFree:
+                      type: boolean
+                    infoPageUrl:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - description
+                    - isFree
+                    - infoPageUrl
+              example:
+              
+                    
+
+
+
+  /leaderboards:
+    get:
+      tags:
+        - Leaderboards
+      summary: Get a ranked list of leaderboards
+      description: Returns all leaderboard entries sorted by points in descending order.
+      responses:
+        '200':
+          description: A list of leaderboard entries with ranking, name, and points.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ranking:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "Player1"
+                    points:
+                      type: number
+                      example: 1500
+        '500':
+          description: Server error while fetching leaderboards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to fetch leaderboards"
+
+      
