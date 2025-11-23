@@ -12,6 +12,7 @@
 - **Framework**: Express.js (Node.js)
 - **Language**: TypeScript
 - **Database**: MongoDB
+- **Docs**: Swagger
 
 ## Getting Started
 
@@ -39,6 +40,8 @@ Backend: `http://localhost:5000/`
 
 ```
 server/
+├── docs
+│   └── openapi.yaml
 ├── jest.config.ts
 ├── package-lock.json
 ├── package.json
@@ -49,11 +52,14 @@ server/
 │   │   └── Leaderboard.ts
 │   ├── router.ts
 │   ├── Server.ts
+│   ├── swagger.ts
 │   └── types
 │       ├── apiTypes.ts
 │       └── MessageTypes.ts
 └── tsconfig.json
 ```
+
+
 
 ### Frontend Structure
 
@@ -83,14 +89,19 @@ client/
 │   │   ├── Leaderboards.tsx
 │   │   ├── Mistakes.tsx
 │   │   ├── MistakesDetail.tsx
+│   │   ├── PlayMode.tsx
+│   │   ├── PlayModeFinish.tsx
+│   │   ├── PlayModeModal.tsx
 │   │   ├── recydle
 │   │   │   ├── Keypad.tsx
 │   │   │   ├── RecydleEnd.tsx
 │   │   │   ├── RecydleGame.tsx
 │   │   │   ├── RecydleGuide.tsx
 │   │   │   └── RecydleRow.tsx
-│   │   └── TrashBinButton.tsx
+│   │   ├── TrashBinButton.tsx
+│   │   └── TrashorsmashMistakes.tsx
 │   ├── contexts
+│   │   ├── PlayContext.tsx
 │   │   ├── PointContext.tsx
 │   │   └── UserContext.tsx
 │   ├── data
@@ -130,3 +141,4 @@ client/
 ├── tailwind.config.js
 └── tsconfig.json
 ```
+

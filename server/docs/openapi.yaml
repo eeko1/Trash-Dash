@@ -52,7 +52,7 @@ paths:
                   name: 'Paper'
                   description: 'Newspapers, cardboard, office paper.'
         500:
-          description:
+          description: Server error while fetching waste types
           content:
             application/json:
               schema:
@@ -60,7 +60,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 
+                    example: Error fetching all waste types
 
 
   /wastetypes/{type}:
@@ -104,7 +104,7 @@ paths:
                   name: 'Plastic'
                   description: 'Common recyclable materials such as bottles and containers.'
         500:
-          description:
+          description: Server error while fetching waste type with type
           content:
             application/json:
               schema:
@@ -112,7 +112,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
+                    example: Error fetching with specific waste type
 
   /wastepages:
     get:
@@ -210,7 +210,7 @@ paths:
                     isFree: false
                     infoPageUrl: ""
         500:
-          description:
+          description: Server error while fetching waste pages
           content:
             application/json:
               schema:
@@ -218,7 +218,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
+                    example: Error fetching all waste pages
 
   /wastepages/{id}:
     get:
@@ -287,7 +287,7 @@ paths:
                     isFree: false
                     infoPageUrl: ""
         500:
-          description:
+          description: Server error while fetching waste page with id
           content:
             application/json:
               schema:
@@ -295,7 +295,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
+                    example: Error fetching single waste page with id
 
 
   /wastepages/search/{search}:
@@ -387,7 +387,7 @@ paths:
                       isFree: false
                       infoPageUrl: ""
         500:
-          description:
+          description: Server error while fetching specific waste page with search term
           content:
             application/json:
               schema:
@@ -395,7 +395,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
+                    example: Error fetching waste page with search term
 
   /recyclingmethods:
     get:
@@ -446,7 +446,7 @@ paths:
                   isFree: false
                   infoPageUrl: ""
         500:
-          description:
+          description: Server error while fetching recycling methods
           content:
             application/json:
               schema:
@@ -454,7 +454,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
+                    example: Error fetching all recycling methods
 
 
 
@@ -507,7 +507,7 @@ paths:
                 isFree: false
                 infoPageUrl: ""
         500:
-          description:
+          description: Server error while fetching recycling methods with specific methdod
           content:
             application/json:
               schema:
@@ -515,7 +515,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:              
+                    example: Error fetching recycling method with method           
 
 
 
