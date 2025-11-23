@@ -51,6 +51,17 @@ paths:
                 - id: 'paper'
                   name: 'Paper'
                   description: 'Newspapers, cardboard, office paper.'
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 
+
 
   /wastetypes/{type}:
     get:
@@ -92,6 +103,16 @@ paths:
                 - id: 'plastic'
                   name: 'Plastic'
                   description: 'Common recyclable materials such as bottles and containers.'
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:
 
   /wastepages:
     get:
@@ -124,12 +145,80 @@ paths:
                     - title
                     - content
               example:
-              - id: '461'
-                title: 'Plastic Recycling'
-                content: 'Information about how to recycle plastic.'
-              - id: '462'
-                title: 'Paper Recycling'
-                content: 'Information about recycling paper products.'
+                id: 1
+                title: "Plastic Waste"
+                synonyms:
+                  - "Plastic items"
+                  - "Plastic materials"
+                notes: "Common household plastic waste."
+                additionalInfo: "Check local rules for which plastics are accepted."
+
+                wasteTypes:
+                  - id: 461
+                    title: "Plastic Bottles"
+                    description: "Information about disposing and recycling plastic bottles."
+                    informationPageUrl: ""
+
+                  - id: 462
+                    title: "Plastic Packaging"
+                    description: "How to recycle plastic packaging like wraps and containers."
+                    informationPageUrl: ""
+
+                recyclingMethods:
+                  - id: 701
+                    title: "Curbside Recycling"
+                    description: "Put clean plastics in your curbside blue bin."
+                    isFree: true
+                    infoPageUrl: ""
+
+                  - id: 702
+                    title: "Drop-off Center"
+                    description: "Bring plastic waste to a certified recycling drop-off center."
+                    isFree: false
+                    infoPageUrl: ""
+
+                id: 2
+                title: "Electronic Waste"
+                synonyms:
+                  - "E-waste"
+                  - "Electronics"
+                  - "Electronic devices"
+                notes: "Electronic waste must be handled carefully due to hazardous components."
+                additionalInfo: "Many municipalities offer free e-waste collection programs."
+
+                wasteTypes:
+                  - id: 551
+                    title: "Old Mobile Phones"
+                    description: "Information about safely recycling mobile phones and recovering valuable metals."
+                    informationPageUrl: ""
+
+                  - id: 552
+                    title: "Broken Laptops"
+                    description: "How to dispose of or recycle laptops that contain batteries, metals, and plastics."
+                    informationPageUrl: ""
+
+                recyclingMethods:
+                  - id: 801
+                    title: "Electronics Drop-off Center"
+                    description: "Bring electronic items to an authorized e-waste recycling facility."
+                    isFree: true
+                    infoPageUrl: ""
+
+                  - id: 802
+                    title: "Manufacturer Take-back"
+                    description: "Some manufacturers offer buyback or free take-back for old electronics."
+                    isFree: false
+                    infoPageUrl: ""
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:
 
   /wastepages/{id}:
     get:
@@ -166,9 +255,48 @@ paths:
                   - title
                   - content
               example:
-                id: '461'
-                title: 'Plastic Recycling'
-                content: 'Information about how to recycle plastic.'
+                id: 1
+                title: "Plastic Waste"
+                synonyms:
+                  - "Plastic items"
+                  - "Plastic materials"
+                notes: "Common household plastic waste."
+                additionalInfo: "Check local rules for which plastics are accepted."
+
+                wasteTypes:
+                  - id: 461
+                    title: "Plastic Bottles"
+                    description: "Information about disposing and recycling plastic bottles."
+                    informationPageUrl: ""
+
+                  - id: 462
+                    title: "Plastic Packaging"
+                    description: "How to recycle plastic packaging like wraps and containers."
+                    informationPageUrl: ""
+
+                recyclingMethods:
+                  - id: 701
+                    title: "Curbside Recycling"
+                    description: "Put clean plastics in your curbside blue bin."
+                    isFree: true
+                    infoPageUrl: ""
+
+                  - id: 702
+                    title: "Drop-off Center"
+                    description: "Bring plastic waste to a certified recycling drop-off center."
+                    isFree: false
+                    infoPageUrl: ""
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:
+
 
   /wastepages/search/{search}:
     get:
@@ -225,6 +353,49 @@ paths:
                   - id
                   - title
                   - content
+                example:
+                  id: 2
+                  title: "Electronic Waste"
+                  synonyms:
+                    - "E-waste"
+                    - "Electronics"
+                    - "Electronic devices"
+                  notes: "Electronic waste must be handled carefully due to hazardous components."
+                  additionalInfo: "Many municipalities offer free e-waste collection programs."
+
+                  wasteTypes:
+                    - id: 551
+                      title: "Old Mobile Phones"
+                      description: "Information about safely recycling mobile phones and recovering valuable metals."
+                      informationPageUrl: ""
+
+                    - id: 552
+                      title: "Broken Laptops"
+                      description: "How to dispose of or recycle laptops that contain batteries, metals, and plastics."
+                      informationPageUrl: ""
+
+                  recyclingMethods:
+                    - id: 801
+                      title: "Electronics Drop-off Center"
+                      description: "Bring electronic items to an authorized e-waste recycling facility."
+                      isFree: true
+                      infoPageUrl: ""
+
+                    - id: 802
+                      title: "Manufacturer Take-back"
+                      description: "Some manufacturers offer buyback or free take-back for old electronics."
+                      isFree: false
+                      infoPageUrl: ""
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:
 
   /recyclingmethods:
     get:
@@ -263,6 +434,27 @@ paths:
                     - isFree
                     - infoPageUrl
               example:
+                - id: 20
+                  title: Rinki station
+                  description: sreach nearest rinki station
+                  isFree: true
+                  infoPageUrl: ""
+                
+                - id: 21
+                  title: Ämmässuo Sortti Station
+                  description: See opening hours and location.
+                  isFree: false
+                  infoPageUrl: ""
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:
 
 
 
@@ -309,8 +501,22 @@ paths:
                     - isFree
                     - infoPageUrl
               example:
-              
-                    
+                id: 21
+                title: Ämmässuo Sortti Station
+                description: See opening hours and location.
+                isFree: false
+                infoPageUrl: ""
+        500:
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example:              
+
 
 
 
@@ -321,7 +527,7 @@ paths:
       summary: Get a ranked list of leaderboards
       description: Returns all leaderboard entries sorted by points in descending order.
       responses:
-        '200':
+        200:
           description: A list of leaderboard entries with ranking, name, and points.
           content:
             application/json:
@@ -339,7 +545,7 @@ paths:
                     points:
                       type: number
                       example: 1500
-        '500':
+        500:
           description: Server error while fetching leaderboards
           content:
             application/json:
