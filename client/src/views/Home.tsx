@@ -39,12 +39,19 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='w-full h-40 bg-gray-500 sm:h-96' />
+        <div className='w-full h-40 sm:h-96 bg-cover bg-center flex items-center justify-center' 
+      style={{ backgroundImage: "url('/assets/hsy-hero.jpg')" }}>
+    <div className='text-center p-4'>
+      <h1 className='text-3xl sm:text-5xl font-extrabold text-white tracking-wider drop-shadow-lg' style={{ textShadow: "4px 2px 4px rgba(0,0,0,0.15)" }}>
+        Trash Dash
+      </h1>
+      <p className='text-lg sm:text-xl text-white mt-2 drop-shadow-lg hidden sm:block style={{ textShadow: "4px 2px 4px rgba(0,0,0,0.15)'>
+        {t('hero_slogan')}
+          </p>
+        </div>
+      </div>
       <main className='bg-main_medium_turquoise flex-grow flex flex-col items-center p-4'>
         <div className='w-full h-full rounded flex flex-col items-center'>
-          <h2 className='text-4xl font-extrabold text-black-700 mb-4 tracking-wide'>
-            Trash Dash
-          </h2>
           <input
             type='text'
             placeholder='Enter username'
@@ -83,7 +90,7 @@ const Home = () => {
         </div>
       </main>
       <footer className='bg-main_dark_turquoise text-white text-sm p-4'>
-        <div className='max-w-screen-xl mx-auto text-center'>&copy; 2025 HSY. All rights reserved.</div>
+        <div className='max-w-screen-xl mx-auto text-center'>{t('Copyright')}</div>
       </footer>
 
       {showPlayModal && (

@@ -2,6 +2,7 @@
     "play": "Play",
     "practice": "Practice",
     "leaderboards": "Leaderboards",
+    "hero_slogan": "A quick dash for a greener world!",
     "find": "Find where to sort",
     "enter_username": "Enter username",
     "Pick the game": "Pick the game",
@@ -49,5 +50,6 @@
     "Waste Drop Score": "Waste Drop Score",
     "Trash or Smash Score": "Trash or Smash Score",
     "Total Score": "Total Score",
-    "Congratulations!": "Congratulations!"
+    "Congratulations!": "Congratulations!",
+    "Copyright": "© 2025 HSY. All rights reserved."
 }

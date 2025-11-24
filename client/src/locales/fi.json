@@ -2,6 +2,7 @@
   "play": "Pelaa",
   "practice": "Harjoittele",
   "leaderboards": "Tulostaulukot",
+  "hero_slogan": "Nopea juoksu vihreämmän maailman puolesta!",
   "find": "Etsi lajittelupaikka",
   "enter_username": "Anna käyttäjänimi",
   "Pick the game": "Valitse peli",
@@ -49,6 +50,6 @@
   "Waste Drop Score": "Waste Drop Pisteet",
   "Trash or Smash Score": "Trash or Smash Pisteet",
   "Total Score": "Kokonaispisteet",
-  "Congratulations!": "Onnittelut!"
-
+  "Congratulations!": "Onnittelut!",
+  "Copyright": "© 2025 HSY. Kaikki oikeudet pidätetään."
 }

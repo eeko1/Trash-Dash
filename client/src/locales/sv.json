@@ -2,6 +2,7 @@
     "play": "Spela",
     "practice": "Praktik",
     "leaderboards": "Topplistor",
+    "hero_slogan": "En snabb dash för en grönare värld!",
     "find": "Hitta var du ska sortera",
     "enter_username": "Ange användarnamn",
     "Pick the game": "Välj spel",
@@ -49,5 +50,6 @@
     "Waste Drop Score": "Waste Drop Poäng",
     "Trash or Smash Score": "Trash or Smash Poäng",
     "Total Score": "Totalpoäng",
-    "Congratulations!": "Grattis!"
+    "Congratulations!": "Grattis!",
+    "Copyright": "© 2025 HSY. Alla rättigheter förbehålls."
 }
