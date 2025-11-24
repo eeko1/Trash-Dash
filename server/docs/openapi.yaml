@@ -18,6 +18,9 @@ paths:
     get:
       tags: [Waste Types]
       summary: Get all waste types
+      description: |
+        Example request:
+        GET /wastetypes?lang=en
       parameters:
         - in: query
           name: lang
@@ -67,6 +70,9 @@ paths:
     get:
       tags: [Waste Types]
       summary: Get a specific waste type
+      description: |
+        Example request:
+        GET /wastetypes/plastic?lang=en
       parameters:
         - in: path
           name: type
@@ -118,6 +124,9 @@ paths:
     get:
       tags: [Waste Pages]
       summary: Get a list of waste pages
+      description: |
+        Example request:
+        GET /wastepages?lang=en
       parameters:
         - in: query
           name: lang
@@ -224,6 +233,9 @@ paths:
     get:
       tags: [Waste Pages]
       summary: Get a specific waste page
+      description: |
+        Example request:
+        GET /wastepages/461?lang=en
       parameters:
         - in: path
           name: id
@@ -302,6 +314,9 @@ paths:
     get:
       tags: [Waste Pages]
       summary: Get a specific waste page
+      description: |
+        Example request:
+        GET /wastepages/search/poster?lang=en&wasteType=192&recyclingMethod=157&page=1
       parameters:
         - in: path
           name: search
@@ -401,6 +416,9 @@ paths:
     get:
       tags: [Recycling Methods]
       summary: Get a list of recycling methonds
+      description: |
+        Example request:
+        GET /recyclingmethods?lang=en
       parameters:
         - in: query
           name: lang
@@ -462,6 +480,9 @@ paths:
     get:
       tags: [Recycling Methods]
       summary: Get a specific recycling method
+      description: |
+        Example request:
+        GET /recyclingmethods/pharmacy?lang=en
       parameters:
         - in: path
           name: method

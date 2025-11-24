@@ -47,7 +47,7 @@ const Home = () => {
           </h2>
           <input
             type='text'
-            placeholder='Enter username'
+            placeholder= {t('enter_username')}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className='mb-6 w-full px-4 py-2 border rounded sm:w-[45%]'

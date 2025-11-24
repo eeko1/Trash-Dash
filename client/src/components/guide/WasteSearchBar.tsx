@@ -12,7 +12,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
     const [selectedMethod, setSelectedMethod] = useState<string>('');
     const [types, setTypes] = useState<wastetypes[]>([]);
     const [selectedType, setSelectedType] = useState<string>('');
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const lang = i18n.language;
 
     useEffect(() => {
@@ -34,6 +34,12 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
         };
         fetchOptionals();
     }, [lang]);
+
+    useEffect(() => {
+    if (search.trim()) {
+        handleSearch(undefined, 1);
+    }
+}, [selectedMethod, selectedType, lang]);
 
 
     const handleSearch = async (e?: React.FormEvent, page = 1) => {
@@ -77,7 +83,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
                             onEmptySearch(); 
                         }
                     }}
-                    placeholder="Search for..."
+                    placeholder={t('Search for')}
                     className="flex-1 min-w-[150px] border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 <select
@@ -85,7 +91,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
                     onChange={(e) => setSelectedMethod(e.target.value)}
                     className='flex-1 min-w-[150px] p-2 m-1'
                 >
-                    <option value="">Select methond</option>
+                    <option value="">{t('Select methond')}</option>
                     {methods.map((method) => (
                         <option key={method.id} value={method.id}>
                             {method.title}
@@ -97,7 +103,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
                     onChange={(e) => setSelectedType(e.target.value)}
                     className='flex-1 min-w-[150px] p-2 m-1'
                 >
-                    <option value="">Select type</option>
+                    <option value="">{t('Select type')}</option>
                     {types.map((type) => (
                         <option key={type.id} value={type.id}>
                             {type.title}
@@ -108,7 +114,7 @@ const WasteSearchBar = ({ onSearch, page = 1, onPageChange, onEmptySearch }: Was
                     type="submit"
                     className="bg-teal-600 text-white p-2 rounded hover:bg-main_dark_turquoise transition"
                 >
-                    Search
+                    {t('Search')}
                 </button>
             </form>
         </div>

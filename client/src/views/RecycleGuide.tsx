@@ -16,7 +16,7 @@ const WasteTypesList = () => {
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const [page, setPage] = useState(1);
     const [isLastPage, setIsLastPage] = useState(false);
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const lang = i18n.language;
 
     const navigate = useNavigate();
@@ -58,7 +58,7 @@ const WasteTypesList = () => {
         setIsLastPage(false);
     };
 
-    const handleEmptySearchBar = () =>{
+    const handleEmptySearchBar = () => {
         setIsSearching(false);
         setResults([]);
     }
@@ -86,6 +86,12 @@ const WasteTypesList = () => {
             <main className='bg-main_medium_turquoise flex flex-col flex-grow  w-full items-center p-4'>
                 <WasteSearchBar onSearch={handleSearchResults} onEmptySearch={handleEmptySearchBar} page={page} />
                 <div className='flex flex-col max-h-[40vh] items-center pt-1'>
+                    {isSearching && results.length === 0 && (
+                        <div className="text-center text-white mt-6 text-xl">
+                            {t('No results found')}
+                        </div>
+                    )}
+                    {(!isSearching || results.length > 0) && (
                     <div
                         className={
                             showWastes.length === 1
@@ -103,6 +109,7 @@ const WasteTypesList = () => {
                             </button>
                         ))}
                     </div>
+                    )}
                 </div>
                 {selectedId !== null && (
                     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
@@ -123,7 +130,7 @@ const WasteTypesList = () => {
                         onClick={() => setPage((page) => Math.max(page - 1, 1))}
                         disabled={page === 1}
                     >
-                        Prev
+                        {t('Prev')}
                     </button>
                     <span className='px-4 py-2'>{page}</span>
                     <button
@@ -131,7 +138,7 @@ const WasteTypesList = () => {
                         onClick={() => setPage((page) => page + 1)}
                         disabled={isLastPage}
                     >
-                        Next
+                        {t('Next')}
                     </button>
                 </div>
             </main>
