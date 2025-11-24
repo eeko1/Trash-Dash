@@ -69,5 +69,16 @@
     "Recycling Information": "Återvinningsinformation",
     "Error": "Fel",
     "Failed to load info:": "Misslyckades med att ladda information:",
-    "Loading recycling information for": "Laddar återvinningsinformation för"
+    "Loading recycling information for": "Laddar återvinningsinformation för",
+    "Tent": "Tält",
+    "ABS Plastic": "ABS-plast",
+    "Hole Punch": "Hålslagare",
+    "Air Filter": "Luftfilter",
+    "Bike Pump": "Cykelpump",
+    "Enamel Pot": "Emaljerad kastrull",
+    "Leather, fur": "Läder, päls",
+    "Polyurethane": "Polyuretan",
+    "Hoe, blade": "Hacka, blad",
+    "Knife": "Kniv",
+    "Mixed": "Blandat"
 }

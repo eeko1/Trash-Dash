@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "lib/utils";
 import { useTranslation } from 'react-i18next';
 
+
 interface WasteHit {
   description: string | null;
   id: string;
@@ -45,7 +46,9 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
   const [data, setData] = useState<wastetypes | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  
 
   useEffect(() => {
     let isMounted = true; 
@@ -55,7 +58,7 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
       setError(null);
       try {
         const baseUrl = process.env.REACT_APP_SERVER;
-        const url = `${baseUrl}/wastetypes/"${title}"/?lang=en`; 
+        const url = `${baseUrl}/wastetypes/"${title}"/?lang=${lang}`; 
         
         const response = await fetchData<wastetypes>(url);
         

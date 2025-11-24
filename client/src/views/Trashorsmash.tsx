@@ -77,7 +77,7 @@ const Trashorsmash = () => {
               onClick={() => triggerSwipeAnimation('left')}
               label={t('Mixedwaste Bin')}
               imageUrl="/assets/mix-waste.png" 
-              altText="Mixedwaste Bin"
+              altText={t('Mixedwaste Bin')}
               bgColorClasses="bg-support_red"
             />
 
@@ -92,9 +92,9 @@ const Trashorsmash = () => {
 
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('right')}
-              label={t('Mixedwaste Bin')}
+              label={t('Metalwaste Bin')}
               imageUrl="/assets/metal-waste.png"
-              altText="Metalwaste Bin"
+              altText={t('Metalwaste Bin')}
               bgColorClasses="bg-support_medium_green"
             />
           </div>

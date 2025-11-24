@@ -53,8 +53,8 @@
     "Congratulations!": "Congratulations!",
     "Copyright": "© 2025 HSY. All rights reserved.",
     "Which bin does it go in?": "Which bin does it go in?",
-    "Mixedwaste Bin": "Mixedwaste Bin",
-    "Metalwaste Bin": "Metalwaste Bin",
+    "Mixedwaste Bin": "Mixed Waste",
+    "Metalwaste Bin": "Metal Waste",
     "Correct!" : "Correct!",
     "Oops! That's": "Oops! That's",
     "Game Over!": "Game Over!",
@@ -70,5 +70,17 @@
     "Recycling Information": "Recycling Information",
     "Error": "Error",
     "Failed to load info:": "Failed to load info:",
-    "Loading recycling information for": "Loading recycling information for"
+    "Loading recycling information for": "Loading recycling information for",
+    "Tent": "Tent",
+    "ABS Plastic": "ABS Plastic",
+    "Hole Punch": "Hole Punch",
+    "Air Filter": "Air Filter",
+    "Bike Pump": "Bike Pump",
+    "Enamel Pot": "Enamel Pot",
+    "Leather, fur": "Leather, fur",
+    "Polyurethane": "Polyurethane",
+    "Hoe, blade": "Hoe, blade",
+    "Knife": "Knife",
+    "Mixed": "Mixed"
+    
 }

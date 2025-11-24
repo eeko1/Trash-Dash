@@ -53,8 +53,8 @@
   "Congratulations!": "Onnittelut!",
   "Copyright": "© 2025 HSY. Kaikki oikeudet pidätetään.",
   "Which bin does it go in?": "Mihin roskikseen tämä menee?",
-  "Mixedwaste Bin": "Sekajäte roskakori",
-  "Metalwaste Bin": "Metallijäte roskakori",
+  "Mixedwaste Bin": "Sekajäte",
+  "Metalwaste Bin": "Metallijäte",
   "Correct!" : "Oikein!",
   "Oops! That's": "Hups! Tämä on",
   "Game Over!": "Peli ohi!",
@@ -70,5 +70,16 @@
   "Recycling Information": "Kierrätystiedot",
   "Error": "Virhe",
   "Failed to load info:": "Tietojen lataaminen epäonnistui:",
-  "Loading recycling information for": "Ladataan kierrätystietoja kohteelle"
+  "Loading recycling information for": "Ladataan kierrätystietoja kohteelle",
+  "Tent": "Teltta",
+  "ABS Plastic": "ABS muovi",
+  "Hole Punch": "Rei'itin",
+  "Air Filter": "Ilmansuodatin",
+  "Bike Pump": "Polkupyörän pumppu",
+  "Enamel Pot": "Emalipannu",
+  "Leather, fur": "Nahka, turkis",
+  "Polyurethane": "Polyuretaani",
+  "Hoe, blade": "Hara, terä",
+  "Knife": "Veitsi",
+  "Mixed": "Sekajäte"
 }
