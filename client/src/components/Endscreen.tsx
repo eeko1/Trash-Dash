@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import RecyclingInfoDialog from "./TrashorsmashMistakes";
 import { useState } from "react";
 import { usePlayMode } from "contexts/PlayContext";
+import { useTranslation } from 'react-i18next';
 
 interface WrongAnswerItem {
   name: string;
@@ -20,6 +21,7 @@ type RecyclingType = "Metal" | "Mixed" | null;
 const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
   const navigate = useNavigate();
   const { isPlayMode, setCurrentGame, setTrashOrSmashScore } = usePlayMode();
+  const { t } = useTranslation();
   
   const [dialogContent, setDialogContent] = 
     useState<RecyclingType>(null);
@@ -40,14 +42,14 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
   return (
     <div className="bg-main_medium_turquoise min-h-screen flex flex-col items-center justify-center text-white font-sans p-6">
       <div className="bg-main_dark_turquoise border border-main_black rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center">
-        <h1 className="text-3xl font-extrabold mb-4">Game Over!</h1>
+        <h1 className="text-3xl font-extrabold mb-4">{t('Game Over!')}</h1>
         <p className="text-xl font-bold mb-6">
-          Your Score: <span className="text-support_yellow">{score} / 10</span>
+          {t('Final Score')}: <span className="text-support_yellow">{score} / 10</span>
         </p>
 
         {wrongAnswers.length > 0 ? (
           <div className="space-y-3 mb-6">
-            <p className="text-lg font-bold text-support_light_red">You got these wrong:</p>
+            <p className="text-lg font-bold text-support_light_red">{t('Wrong Bin Selections')}</p>
             {wrongAnswers.map((item: WrongAnswerItem, i: number) => (
               <div key={i} className="flex items-center gap-3 bg-main_dark_turquoise p-3 rounded-lg">
                 <img
@@ -58,7 +60,7 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
                 <div className="text-left">
                   <p className="font-bold">{item.name}</p>
                   <p className="text-sm text-gray-300">
-                    Correct bin: <span className="text-support_yellow">{item.correctType}</span>
+                    {t('Correct bin:')} <span className="text-support_yellow">{item.correctType}</span>
                   </p>
                 </div>
               </div>
@@ -66,7 +68,7 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
           </div>
         ) : (
           <p className="text-support_medium_green font-bold text-lg mb-6">
-            You got everything correct! You are a recycling pro!
+            {t('No wrong bin selections!')}
           </p>
         )}
         
@@ -75,13 +77,13 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
               onClick={() => openDialog("Mixed")}
               className="bg-main_medium_turquoise text-main_black font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap border border-main_black"
             >
-              Recycling Mixed Waste
+              {t('Recycling Mixed Waste')}
             </button>
             <button
               onClick={() => openDialog("Metal")}
               className="bg-main_medium_turquoise text-main_black font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap border border-main_black"
             >
-              Recycling Metal Waste
+              {t('Recycling Metal Waste')}
             </button>
         </div>
 
@@ -91,7 +93,7 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
               onClick={handleFinish}
               className="bg-support_dark_blue text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
             >
-              Finish
+              {t('Finish')}
             </button>
           ) : (
             <>
@@ -99,14 +101,14 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
                 onClick={onRestart}
                 className="bg-support_dark_blue text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
               >
-                Play Again
+                {t('Play again')}
               </button>
 
               <button
                 onClick={() => navigate("/")}
                 className="bg-support_red text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105 active:scale-95"
               >
-                Main Menu
+                {t('Exit to Main Menu')}
               </button>
             </>
           )}

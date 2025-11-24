@@ -39,7 +39,7 @@ const Home = () => {
         </div>
       </div>
 
-        <div className='w-full h-40 sm:h-96 bg-cover bg-center flex items-center justify-center' 
+      <div className='w-full h-40 sm:h-96 bg-cover bg-center flex items-center justify-center' 
       style={{ backgroundImage: "url('/assets/hsy-hero.jpg')" }}>
     <div className='text-center p-4'>
       <h1 className='text-3xl sm:text-5xl font-extrabold text-white tracking-wider drop-shadow-lg' style={{ textShadow: "4px 2px 4px rgba(0,0,0,0.15)" }}>
