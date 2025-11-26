@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "lib/utils";
+import { useTranslation } from 'react-i18next';
+
 
 interface WasteHit {
   description: string | null;
@@ -44,6 +46,9 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
   const [data, setData] = useState<wastetypes | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  
 
   useEffect(() => {
     let isMounted = true; 
@@ -53,7 +58,7 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
       setError(null);
       try {
         const baseUrl = process.env.REACT_APP_SERVER;
-        const url = `${baseUrl}/wastetypes/"${title}"/?lang=en`; 
+        const url = `${baseUrl}/wastetypes/"${title}"/?lang=${lang}`; 
         
         const response = await fetchData<wastetypes>(url);
         
@@ -81,8 +86,8 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
   if (loading) {
     return (
       <DialogStructure onClose={onClose}>
-        <h2 className="text-2xl font-bold mb-4 text-main_dark_turquoise">Recycling Info</h2>
-        <p>Loading recycling information for **{title}**...</p>
+        <h2 className="text-2xl font-bold mb-4 text-main_dark_turquoise">{t('Recycling Information')}</h2>
+        <p>{t('Loading recycling information for')} **{title}**...</p>
       </DialogStructure>
     );
   }
@@ -90,8 +95,8 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
   if (error) {
     return (
       <DialogStructure onClose={onClose}>
-        <h2 className="text-2xl font-bold mb-4 text-support_red">Error</h2>
-        <p className="text-sm text-support_red mt-2">Failed to load info: {error}</p>
+        <h2 className="text-2xl font-bold mb-4 text-support_red">{t('Error')}</h2>
+        <p className="text-sm text-support_red mt-2">{t('Failed to load info:')} {error}</p>
       </DialogStructure>
     );
   }
@@ -101,10 +106,10 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
   if (!primaryHit) {
     return (
       <DialogStructure onClose={onClose}>
-        <h2 className="text-2xl font-bold mb-4 text-main_dark_turquoise">Recycling Info</h2>
+        <h2 className="text-2xl font-bold mb-4 text-main_dark_turquoise">{t('Recycling Information')}</h2>
         <p className="text-xl font-extrabold text-support_red">{title}</p>
         <p className="mt-4 text-gray-700">
-            No specific recycling information found for **{title}**.
+            {t('No description available.')}
         </p>
       </DialogStructure>
     );
@@ -114,16 +119,16 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
 
   return (
     <DialogStructure onClose={onClose}>
-      <h2 className="text-2xl font-bold mb-4 text-main_black">Recycling Information</h2>
+      <h2 className="text-2xl font-bold mb-4 text-main_black">{t('Recycling Information')}</h2>
       
       <h3 className="text-xl font-extrabold text-main_black mb-2">
         {wasteTitle}
       </h3>
       
       <div className="mt-2 p-3 bg-gray-50 rounded-md mb-4">
-        <p className="font-semibold text-gray-800">Description:</p>
+        <p className="font-semibold text-gray-800">{t('Description')}:</p>
         <p className="text-gray-700">
-            {description || "No detailed description provided."}
+            {description || t('No description available.')}
         </p>
       </div>
       
@@ -135,7 +140,7 @@ const RecyclingInfoDialog: React.FC<RecyclingInfoDialogProps> = ({ title, onClos
         className="text-main_dark_turquoise text-underline text-sm block **hover:no-underline**"
        >
       <button>
-      Full Sorting Guide on HSY Website
+      {t('Full Sorting Guide on HSY Website')}
     </button>
         </a>
       )}

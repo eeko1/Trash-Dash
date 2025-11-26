@@ -3,6 +3,8 @@ import { useTrashGame } from '../hooks/useTrashGame';
 import EndScreen from '../components/Endscreen';
 import GameCard from '../components/GameCard';
 import TrashBinButton from '../components/TrashBinButton';
+import { useTranslation } from 'react-i18next';
+
 
 const Trashorsmash = () => {
   const { score, wrongAnswers, feedback, gameCards, handleSwipe, removeTopCard, handleRestart } = useTrashGame();
@@ -11,6 +13,7 @@ const Trashorsmash = () => {
   const [flyDir, setFlyDir] = useState<'left' | 'right' | null>(null);
   const touchStartX = useRef<number | null>(null);
   const [username] = useState('Matti Meikäläinen');
+  const { t } = useTranslation();
 
   const triggerSwipeAnimation = (dir: 'left' | 'right') => {
     if (gameCards.length === 0 || isFlying) return;
@@ -63,7 +66,7 @@ const Trashorsmash = () => {
       <main className="bg-main_medium_turquoise flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-lg bg-main_dark_turquoise rounded-2xl shadow-2xl border-main_black flex flex-col items-center text-center p-6 relative">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trash or Smash?</h1>
-          <p className="text-white font-medium mb-6 text-lg">Which bin does it go in?</p>
+          <p className="text-white font-medium mb-6 text-lg">{t('Which bin does it go in?')}</p>
 
           <div className="h-10 mb-4 flex items-center justify-center">
             {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-support_medium_green' : 'text-support_red'}`}>{feedback.message}</p>}
@@ -72,9 +75,9 @@ const Trashorsmash = () => {
           <div className="relative w-full flex justify-between items-center mb-4 px-4">
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('left')}
-              label="Mixedwaste"
+              label={t('Mixedwaste Bin')}
               imageUrl="/assets/mix-waste.png" 
-              altText="Mixedwaste Bin"
+              altText={t('Mixedwaste Bin')}
               bgColorClasses="bg-support_red"
             />
 
@@ -89,9 +92,9 @@ const Trashorsmash = () => {
 
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('right')}
-              label="Metalwaste"
+              label={t('Metalwaste Bin')}
               imageUrl="/assets/metal-waste.png"
-              altText="Metalwaste Bin"
+              altText={t('Metalwaste Bin')}
               bgColorClasses="bg-support_medium_green"
             />
           </div>
@@ -99,14 +102,14 @@ const Trashorsmash = () => {
           <div className="w-full flex justify-between items-center text-white mt-8 pt-4">
             <div className="font-bold text-lg">{username}</div>
             <div className="font-bold text-lg">
-              Score: <span className="text-2xl text-support_yellow">{score}</span>
+              {t('Score')}: <span className="text-2xl text-support_yellow">{score}</span>
             </div>
           </div>
         </div>
       </main>
 
       <footer className="bg-main_dark_turquoise text-white text-sm p-4">
-        <div className="max-w-screen-xl mx-auto text-center">&copy; 2025 HSY. All rights reserved.</div>
+        <div className="max-w-screen-xl mx-auto text-center">{t('Copyright')}</div>
       </footer>
     </div>
   );
