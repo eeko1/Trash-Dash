@@ -1,4 +1,3 @@
-import { useUser } from 'contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { VscIndent } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';

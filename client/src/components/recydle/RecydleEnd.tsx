@@ -35,7 +35,7 @@ const RecydleEnd = ({ result }: recydleEndProp) => {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, );
 
 
     return (
