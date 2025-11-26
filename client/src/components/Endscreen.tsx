@@ -58,9 +58,9 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
                   className="w-14 h-14 object-contain rounded-md"
                 />
                 <div className="text-left">
-                  <p className="font-bold">{item.name}</p>
+                  <p className="font-bold">{t(item.name)}</p>
                   <p className="text-sm text-gray-300">
-                    {t('Correct bin:')} <span className="text-support_yellow">{item.correctType}</span>
+                    {t('Correct bin:')} <span className="text-support_yellow">{t(item.correctType)}</span>
                   </p>
                 </div>
               </div>
@@ -75,13 +75,13 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
         <div className="flex justify-center gap-4 mb-8">
             <button
               onClick={() => openDialog("Mixed")}
-              className="bg-main_medium_turquoise text-main_black font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap border border-main_black"
+              className="bg-main_medium_turquoise text-white text-sm py-2 px-4 rounded-lg transition transform hover:scale-105 active:scale-95 whitespace-nowrap"
             >
               {t('Recycling Mixed Waste')}
             </button>
             <button
               onClick={() => openDialog("Metal")}
-              className="bg-main_medium_turquoise text-main_black font-bold text-sm py-2 px-4 rounded-full transition transform hover:scale-105 active:scale-95 whitespace-nowrap border border-main_black"
+              className="bg-main_medium_turquoise text-white text-sm py-2 px-4 rounded-lg transition transform hover:scale-105 active:scale-95 whitespace-nowrap"
             >
               {t('Recycling Metal Waste')}
             </button>
