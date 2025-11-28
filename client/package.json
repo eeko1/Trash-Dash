@@ -37,7 +37,8 @@
     "build": "react-scripts build",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "eject": "react-scripts eject",
-    "build:css": "postcss src/index.css -o public/styles.css"
+    "build:css": "postcss src/index.css -o public/styles.css",
+    "live": "node client/"
   },
   "eslintConfig": {
     "extends": [
