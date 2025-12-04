@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VscIndent } from 'react-icons/vsc';
+import { FiArrowLeft } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 import { fetchData } from 'lib/utils';
 import LanguageSelector from 'components/LanguageSelector';
@@ -34,11 +34,12 @@ const Leaderboards = () => {
             <div className='bg-white border-b border-gray-200'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2'>
                     <button
-                        className='cursor-pointer bg-transparent border-none p-0'
+                        className='flex flex-col items-center cursor-pointer bg-transparent border-none p-0'
                         onClick={() => navigate('/')}
                         title='Go to Home'
                     >
-                        <VscIndent className='rotate-180 text-5xl text-gray-800' />
+                        <FiArrowLeft className="text-2xl" />
+                        <span className="font-medium">{t('back')}</span>
                     </button>
                     <LanguageSelector />
                 </div>

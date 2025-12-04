@@ -3,7 +3,7 @@ import { fetchData } from 'lib/utils';
 import SpecificWaste from 'components/guide/SpecificWaste';
 import { wastpage } from 'types/apiTypes';
 import { useNavigate } from 'react-router-dom';
-import { VscIndent } from 'react-icons/vsc';
+import { FiArrowLeft } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from 'components/LanguageSelector';
 import WasteSearchBar from 'components/guide/WasteSearchBar';
@@ -72,11 +72,12 @@ const WasteTypesList = () => {
             <div className='bg-white border-b border-gray-200'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2'>
                     <button
-                        className='cursor-pointer bg-transparent border-none p-0'
+                        className='flex flex-col items-center cursor-pointer bg-transparent border-none p-0'
                         onClick={() => navigate('/')}
                         title='Go to Home'
                     >
-                        <VscIndent className='rotate-180 text-5xl text-gray-800' />
+                        <FiArrowLeft className="text-2xl" />
+                        <span className="font-medium">{t('back')}</span>
                     </button>
                     <LanguageSelector />
                 </div>
@@ -92,23 +93,23 @@ const WasteTypesList = () => {
                         </div>
                     )}
                     {(!isSearching || results.length > 0) && (
-                    <div
-                        className={
-                            showWastes.length === 1
-                                ? 'flex flex-col justify-center w-full mx-auto overflow-auto'
-                                : 'grid grid-cols-2 gap-4 w-full mx-auto overflow-auto'
-                        }
-                    >
-                        {showWastes.map((waste) => (
-                            <button
-                                key={waste.id}
-                                className='p-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition break-words hover:bg-gray-800/80 sm:py-8'
-                                onClick={() => setSelectedId(waste.id)}
-                            >
-                                {waste.title}
-                            </button>
-                        ))}
-                    </div>
+                        <div
+                            className={
+                                showWastes.length === 1
+                                    ? 'flex flex-col justify-center w-full mx-auto overflow-auto'
+                                    : 'grid grid-cols-2 gap-4 w-full mx-auto overflow-auto'
+                            }
+                        >
+                            {showWastes.map((waste) => (
+                                <button
+                                    key={waste.id}
+                                    className='p-6 bg-gray-800/60 text-white rounded-xl border-2 border-teal-600 shadow-lg text-xl font-bold transition break-words hover:bg-gray-800/80 sm:py-8'
+                                    onClick={() => setSelectedId(waste.id)}
+                                >
+                                    {waste.title}
+                                </button>
+                            ))}
+                        </div>
                     )}
                 </div>
                 {selectedId !== null && (
