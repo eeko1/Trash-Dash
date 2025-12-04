@@ -90,5 +90,20 @@
   "Search for": "Etsi",
   "Prev": "Edellinen",
   "Next": "Seuraava",
-  "back": "Takaisin"
+  "back": "Takaisin",
+  "How to Play": "Miten pelataan",
+  "Objective": "Tavoite",
+  "Catch falling items in the correct recycling bin!": "Kerää putoavat esineet oikeaan kierrätysastiaan!",
+  "Controls": "Ohjaus",
+  "Touch and drag to move the bin": "Kosketa ja vedä siirtääksesi astiaa",
+  "Use arrow buttons to move": "Käytä nuolipainikkeita liikkumiseen",
+  "Tap a bin icon to select it": "Napauta astian kuvaketta valitaksesi sen",
+  "Press 1, 2, 3, or 4 to select bin type": "Paina 1, 2, 3 tai 4 valitaksesi astian tyypin",
+  "1 is for bio, 2 is for cardboard, 3 is for glass, 4 is for metal": "1 on bio, 2 on pahvi, 3 on lasi, 4 on metalli",
+  "Click a bin icon to select it": "Klikkaa astian kuvaketta valitaksesi sen",
+  "The game gets faster as you gain points, so get ready to move the bin fast by tapping quickly!": "Peli nopeutuu pisteiden karttuessa, joten valmistaudu liikuttamaan astiaa nopeasti napauttamalla nopeasti!",
+  "Scoring": "Pisteytys",
+  "Correct bin: +1 point": "Oikea astia: +1 piste",
+  "Wrong bin or missed item: -1 heart": "Väärä astia tai missattu esine: -1 sydän",
+  "Got it!": "Selvä!"
 }

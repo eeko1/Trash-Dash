@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DropGameEnd from '../components/DropgameEnd';
 import { useTranslation } from 'react-i18next';
+import DropGameTutorial from 'components/DropgameTutorial';
 
 // Define item types
 type ItemCategory = 'Bio' | 'Cardboard' | 'Glass' | 'Metal';
@@ -29,6 +30,10 @@ const DropGame: React.FC = () => {
   const { t } = useTranslation();
   // Mobile detection
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  // Tutorial state
+  const [showTutorial, setShowTutorial] = useState(true);
+  
   
   // Game area dimensions - will adjust based on mobile/desktop
   const [gameWidth, setGameWidth] = useState<number>(600);
@@ -39,7 +44,7 @@ const DropGame: React.FC = () => {
   const [hearts, setHearts] = useState(5);
   const [playerX, setPlayerX] = useState(300); // Will adjust after dimensions are set
   const [items, setItems] = useState<GameItem[]>([]);
-  const [isGameRunning, setIsGameRunning] = useState(true);
+  const [isGameRunning, setIsGameRunning] = useState(false);
   const [lastItemId, setLastItemId] = useState(0);
   const [selectedBin, setSelectedBin] = useState(1); // Default to bin 1 (BinBio.png)
   const [flashIntensity, setFlashIntensity] = useState(0); // Add flash state
@@ -103,6 +108,12 @@ const DropGame: React.FC = () => {
   const isMobileRef = useRef(isMobile);
   const itemSpeedRef = useRef<number>(itemSpeed);
   const spawnRateRef = useRef<number>(spawnRate);
+
+  // Handle tutorial completion
+  const handleTutorialComplete = () => {
+    setShowTutorial(false);
+    setIsGameRunning(true);
+  };
 
   useEffect(() => {
     // Create a style element
@@ -405,7 +416,9 @@ const DropGame: React.FC = () => {
   
   // Start/stop game loop
   useEffect(() => {
-    requestRef.current = requestAnimationFrame(gameLoop);
+    if (isGameRunning) {
+      requestRef.current = requestAnimationFrame(gameLoop);
+    }
     return () => {
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
@@ -416,6 +429,13 @@ const DropGame: React.FC = () => {
   
   return (
     <>
+      {showTutorial && (
+        <DropGameTutorial 
+          isMobile={isMobile} 
+          onComplete={handleTutorialComplete} 
+        />
+      )}
+
       {!isGameOver ? (
         <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-main_light_turquoise to-main_medium_turquoise">
           <div className="mb-4 flex justify-between w-full" style={{ maxWidth: gameWidth }}>
