@@ -105,5 +105,16 @@
   "Scoring": "Pisteytys",
   "Correct bin: +1 point": "Oikea astia: +1 piste",
   "Wrong bin or missed item: -1 heart": "Väärä astia tai missattu esine: -1 sydän",
-  "Got it!": "Selvä!"
+  "Got it!": "Selvä!",
+  "Sort the item on the card into the correct bin: Mixedwaste or Metalwaste!": "Lajittele kortin roska oikeaan roskakoriin: Sekajäteeseen tai Metallijätteeseen!",
+  "Swipe Left": "Pyyhkäise vasemmalle",
+  "Swipe Right": "Pyyhkäise oikealle",
+  "Click the Mixedwaste Bin button.": "Klikkaa Sekajäte-roskakorin painiketta.",
+  "Click the Metalwaste Bin button.": "Klikkaa Metallijäte-roskakorin painiketta.",
+  "Correct Answer": "Oikea vastaus",
+  "Wrong Answer": "Väärä vastaus",
+  "+1 point is added to your score.": "+1 piste lisätään pistemäärääsi.",
+  "You dont get or lose points.": "Et saa etkä menetä pisteitä.",
+  "Wrong!": "Väärin!",
+  "Got it! Start the Game": "Selvä! Aloita peli"
 }

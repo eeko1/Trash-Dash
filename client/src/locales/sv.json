@@ -104,5 +104,16 @@
     "Scoring": "Poängsättning",
     "Correct bin: +1 point": "Rätt behållare: +1 poäng",
     "Wrong bin or missed item: -1 heart": "Fel behållare eller missat föremål: -1 hjärta",
-    "Got it!": "Jag förstår!"
+    "Got it!": "Jag förstår!",
+    "Sort the item on the card into the correct bin: Mixedwaste or Metalwaste!": "Sortera föremålet på kortet i rätt behållare: Blandavfall eller Metallavfall!",
+    "Swipe Left": "Svep vänster",
+    "Swipe Right": "Svep höger",
+    "Click the Mixedwaste Bin button.": "Klicka på knappen för blandavfallsbehållaren.",
+    "Click the Metalwaste Bin button.": "Klicka på knappen för metallavfallsbehållaren.",
+    "Correct Answer": "Korrekt svar",
+    "Wrong Answer": "Fel svar",
+    "+1 point is added to your score.": "+1 poäng läggs till din poäng.",
+    "You dont get or lose points.": "Du får inte poäng eller förlorar poäng.",
+    "Wrong!": "Fel!",
+    "Got It! Start the Game": "Jag förstår! Starta spelet"
 }

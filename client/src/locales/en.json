@@ -105,5 +105,16 @@
     "Scoring": "Scoring",
     "Correct bin: +1 point": "Correct bin: +1 point",
     "Wrong bin or missed item: -1 heart": "Wrong bin or missed item: -1 heart",
-    "Got it!": "Got it!"
+    "Got it!": "Got it!",
+    "Sort the item on the card into the correct bin: Mixedwaste or Metalwaste!": "Sort the item on the card into the correct bin: Mixedwaste or Metalwaste!",
+    "Swipe Left": "Swipe Left",
+    "Swipe Right": "Swipe Right",
+    "Click the Mixedwaste Bin button.": "Click the Mixedwaste Bin button.",
+    "Click the Metalwaste Bin button.": "Click the Metalwaste Bin button.",
+    "Correct Answer": "Correct answer",
+    "Wrong Answer": "Wrong answer",
+    "+1 point is added to your score.": "+1 point is added to your score.",
+    "You dont get or lose points.": "You don't get or lose points.",
+    "Wrong!": "Wrong!",
+    "Got it! Start the Game": "Got it! Start the Game"
 }

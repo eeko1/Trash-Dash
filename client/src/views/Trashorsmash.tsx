@@ -4,6 +4,7 @@ import EndScreen from '../components/Endscreen';
 import GameCard from '../components/GameCard';
 import TrashBinButton from '../components/TrashBinButton';
 import { useTranslation } from 'react-i18next';
+import TrashorsmashTutorial from '../components/TrashorsmashTutorial'; 
 
 
 const Trashorsmash = () => {
@@ -12,11 +13,16 @@ const Trashorsmash = () => {
   const [isFlying, setIsFlying] = useState(false);
   const [flyDir, setFlyDir] = useState<'left' | 'right' | null>(null);
   const touchStartX = useRef<number | null>(null);
-  const [username] = useState('Matti Meikäläinen');
   const { t } = useTranslation();
 
+  const [showTutorial, setShowTutorial] = useState(true);
+
+  const handleTutorialEnd = () => {
+    setShowTutorial(false);
+  };
+
   const triggerSwipeAnimation = (dir: 'left' | 'right') => {
-    if (gameCards.length === 0 || isFlying) return;
+    if (gameCards.length === 0 || isFlying || showTutorial) return; 
     handleSwipe(dir);
     setFlyDir(dir);
     setIsFlying(true);
@@ -29,18 +35,18 @@ const Trashorsmash = () => {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isFlying) return;
+    if (isFlying || showTutorial) return; 
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null || isFlying) return;
+    if (touchStartX.current === null || isFlying || showTutorial) return;
     const diff = e.touches[0].clientX - touchStartX.current;
     setOffsetX(diff);
   };
 
   const handleTouchEnd = () => {
-    if (isFlying) return;
+    if (isFlying || showTutorial) return;
     if (Math.abs(offsetX) > 100) {
       const dir: 'left' | 'right' = offsetX < 0 ? 'left' : 'right';
       triggerSwipeAnimation(dir);
@@ -54,11 +60,16 @@ const Trashorsmash = () => {
     return <EndScreen score={score} wrongAnswers={wrongAnswers} onRestart={handleRestart} />;
   }
 
+  if (showTutorial) {
+    return <TrashorsmashTutorial onGotIt={handleTutorialEnd}/>;
+  }
+
   const currentCard = gameCards[0];
   const cardStyle = {
     transform: isFlying
       ? `translateX(${flyDir === 'left' ? '-400px' : '400px'}) rotate(${flyDir === 'left' ? '-30deg' : '30deg'}) scale(0.8)`
       : `translateX(${offsetX}px) rotate(${offsetX / 20}deg) scale(1)`,
+      transition: isFlying ? 'transform 0.3s ease-in-out' : 'none',
   };
 
   return (
@@ -67,7 +78,15 @@ const Trashorsmash = () => {
         <div className="w-full max-w-lg bg-main_dark_turquoise rounded-2xl shadow-2xl border-main_black flex flex-col items-center text-center p-6 relative">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trash or Smash?</h1>
           <p className="text-white font-medium mb-6 text-lg">{t('Which bin does it go in?')}</p>
-
+          
+          <button 
+            onClick={() => setShowTutorial(true)} 
+            className="absolute top-4 right-4 text-white bg-main_medium_turquoise p-2 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shadow-md hover:bg-main_dark_turquoise transition"
+            aria-label={t('Show tutorial')}
+          >
+            ?
+          </button>
+          
           <div className="h-10 mb-4 flex items-center justify-center">
             {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-support_medium_green' : 'text-support_red'}`}>{feedback.message}</p>}
           </div>
@@ -100,7 +119,6 @@ const Trashorsmash = () => {
           </div>
 
           <div className="w-full flex justify-between items-center text-white mt-8 pt-4">
-            <div className="font-bold text-lg">{username}</div>
             <div className="font-bold text-lg">
               {t('Score')}: <span className="text-2xl text-support_yellow">{score}</span>
             </div>
