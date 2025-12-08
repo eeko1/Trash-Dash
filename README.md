@@ -99,7 +99,8 @@ client/
 │   │   │   ├── RecydleGuide.tsx
 │   │   │   └── RecydleRow.tsx
 │   │   ├── TrashBinButton.tsx
-│   │   └── TrashorsmashMistakes.tsx
+│   │   ├──TrashorsmashMistakes.tsx
+│   │   └──TrashorsmashTutorial.tsx
 │   ├── contexts
 │   │   ├── PlayContext.tsx
 │   │   ├── PointContext.tsx
