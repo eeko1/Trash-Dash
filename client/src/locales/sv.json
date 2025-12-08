@@ -52,8 +52,8 @@
     "Total Score": "Totalpoäng",
     "Copyright": "© 2025 HSY. Alla rättigheter förbehålls.",
     "Which bin does it go in?": "Vilken behållare ska det vara i?",
-    "Mixedwaste Bin": "Blandavfallsbehållare",
-    "Metalwaste Bin": "Metallavfallsbehållare",
+    "Mixedwaste Bin": "Blandat avfall",
+    "Metalwaste Bin": "Metallavfall",
     "Correct!" : "Korrekt!",
     "Oops! That's": "Oj! Det är",
     "Game Over!": "Spelet är slut!",
@@ -115,5 +115,6 @@
     "+1 point is added to your score.": "+1 poäng läggs till din poäng.",
     "You dont get or lose points.": "Du får inte poäng eller förlorar poäng.",
     "Wrong!": "Fel!",
-    "Got It! Start the Game": "Jag förstår! Starta spelet"
+    "Got it! Start the Game": "Jag förstår! Starta spelet",
+    "Incorrectly recycled waste!": "Felaktigt återvunnet avfall!"
 }

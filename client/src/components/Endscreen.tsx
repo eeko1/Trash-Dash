@@ -49,7 +49,7 @@ const EndScreen = ({ score, wrongAnswers, onRestart }: EndScreenProps) => {
 
         {wrongAnswers.length > 0 ? (
           <div className="space-y-3 mb-6">
-            <p className="text-lg font-bold text-support_light_red">{t('Wrong Bin Selections')}</p>
+            <p className="text-lg font-bold text-support_light_red">{t('Incorrectly recycled waste!')}</p>
             {wrongAnswers.map((item: WrongAnswerItem, i: number) => (
               <div key={i} className="flex items-center gap-3 bg-main_dark_turquoise p-3 rounded-lg">
                 <img

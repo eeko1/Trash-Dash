@@ -23,15 +23,22 @@ const Trashorsmash = () => {
 
   const triggerSwipeAnimation = (dir: 'left' | 'right') => {
     if (gameCards.length === 0 || isFlying || showTutorial) return; 
+    
     handleSwipe(dir);
+  
     setFlyDir(dir);
     setIsFlying(true);
+    
+    const ANIMATION_DURATION = 10;
+    const FEEDBACK_DELAY = 1000;
+    const TOTAL_TIMEOUT = ANIMATION_DURATION + FEEDBACK_DELAY;
+
     setTimeout(() => {
       removeTopCard();
       setIsFlying(false);
       setFlyDir(null);
       setOffsetX(0);
-    }, 300);
+    }, TOTAL_TIMEOUT);
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -88,14 +95,22 @@ const Trashorsmash = () => {
           </button>
           
           <div className="h-10 mb-4 flex items-center justify-center">
-            {feedback.show && <p className={`text-xl font-bold ${feedback.isCorrect ? 'text-support_medium_green' : 'text-support_red'}`}>{feedback.message}</p>}
+  {feedback.show && (
+    <p 
+      className={`text-4xl font-extrabold ${
+        feedback.isCorrect ? 'text-support_medium_green' : 'text-support_red'
+      } transition-opacity duration-300`}
+    >
+      {feedback.message}
+    </p>
+  )}
           </div>
 
           <div className="relative w-full flex justify-between items-center mb-4 px-4">
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('left')}
               label={t('Mixedwaste Bin')}
-              imageUrl="/assets/mix-waste.png" 
+              imageUrl="/assets/mixed-waste-logo.png" 
               altText={t('Mixedwaste Bin')}
               bgColorClasses="bg-support_red"
             />
@@ -112,7 +127,7 @@ const Trashorsmash = () => {
             <TrashBinButton
               onClick={() => triggerSwipeAnimation('right')}
               label={t('Metalwaste Bin')}
-              imageUrl="/assets/metal-waste.png"
+              imageUrl="/assets/metal-waste-logo.png"
               altText={t('Metalwaste Bin')}
               bgColorClasses="bg-support_medium_green"
             />
