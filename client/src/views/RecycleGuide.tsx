@@ -83,7 +83,17 @@ const WasteTypesList = () => {
                 </div>
             </div>
 
-            <div className='w-full h-36 bg-gray-500 sm:h-72' />
+            <div className='w-full h-40 sm:h-96 bg-cover bg-center flex items-center justify-center'
+                style={{ backgroundImage: "url('/assets/hsy-hero.jpg')" }}>
+                <div className='text-center p-4'>
+                    <h1 className='text-3xl sm:text-5xl font-extrabold text-white tracking-wider drop-shadow-lg' style={{ textShadow: "4px 2px 4px rgba(0,0,0,0.15)" }}>
+                        Trash Dash
+                    </h1>
+                    <p className='text-lg sm:text-xl text-white mt-2 drop-shadow-lg hidden sm:block style={{ textShadow: "4px 2px 4px rgba(0,0,0,0.15)'>
+                        {t('hero_slogan')}
+                    </p>
+                </div>
+            </div>
             <main className='bg-main_medium_turquoise flex flex-col flex-grow  w-full items-center p-4'>
                 <WasteSearchBar onSearch={handleSearchResults} onEmptySearch={handleEmptySearchBar} page={page} />
                 <div className='flex flex-col max-h-[40vh] items-center pt-1'>
