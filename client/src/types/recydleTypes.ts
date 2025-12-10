@@ -25,14 +25,12 @@ export type GameState = {
 export type rowProps = {
     guess: string | undefined;
     letterState: Array<LetterState>;
-    jump: boolean;
     wordLength: number;
 };
 export type tileProps = {
     letter: string | undefined;
     state: LetterState;
     id: number;
-    jump: boolean
 }
 
 export type recydleEndProp = {

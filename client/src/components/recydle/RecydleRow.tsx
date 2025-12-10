@@ -4,7 +4,6 @@ import { rowProps, tileProps } from 'types/recydleTypes';
 export const RecydleRow = ({
     guess,
     letterState,
-    jump,
     wordLength,
 }: rowProps) => {
     return (
@@ -16,16 +15,15 @@ export const RecydleRow = ({
                         id={id}
                         letter={guess ? guess[id] : ''}
                         state={letterState[id]}
-                        jump={jump}
                     />
                 );
             })}
         </div>
     );
 };
-export const Tile = ({ letter, state, id, jump }: tileProps) => {
+export const Tile = ({ letter, state, id }: tileProps) => {
     const [revealColor, setRevealColor] = useState(false);
-    const animationDelay = jump ? id * 300 : id * 300;
+    const animationDelay = id * 300;
 
     useEffect(() => {
         if (state !== 'default') {

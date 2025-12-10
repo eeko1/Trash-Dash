@@ -163,7 +163,6 @@ const RecydleGame = ({ solution, wordLength }: solutionProps) => {
                     key={id}
                     guess={isCurrentGuess ? currentGuess : guesses[id]}
                     letterState={guessIdTotiles[id]}
-                    jump={id === guesses.length - 1}
                     wordLength={wordLength}
                   />
                 );
